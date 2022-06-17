@@ -1,0 +1,36 @@
+{
+  "name": "remix-app",
+  "version": "0.0.0",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./build.d.ts",
+      "default": "./build/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix watch",
+    "lint": "eslint .",
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {
+    "remix": "npm:@remix-run/server-runtime@^1.6.0",
+    "@remix-run/react": "^1.6.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^1.6.0",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.4",
+    "eslint": "^8.15.0",
+    "eslint-config-custom": "*",
+    "rollup-plugin-node-polyfills": "^0.2.1",
+    "tsconfig": "*",
+    "typescript": "^4.6.4"
+  }
+}
