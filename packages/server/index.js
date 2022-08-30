@@ -5,8 +5,11 @@ import express from "express";
 import { createRequestHandler } from "@remix-run/express";
 import { createRoutes } from "@remix-run/server-runtime/dist/routes.js";
 import { matchServerRoutes } from "@remix-run/server-runtime/dist/routeMatching.js";
+import { installGlobals } from "@remix-run/node";
 import Gun from 'gun'
 import './gunlibs.js'
+import process from 'process';
+installGlobals()
 let require = createRequire(import.meta.url);
 let packagePath = dirname(require.resolve("../remix-app/package.json"));
 let importPath = resolve(packagePath, "build/index.js");
@@ -50,11 +53,11 @@ app.use(express.static(publicPath, { maxAge: "5m" }));
 // eslint-disable-next-line no-undef
 if (process.env.NODE_ENV === "development") {
   app.all("*", async (req, res, next) => {
-    console.log("[remix-run] Starting development server", req);
+    console.log("[remix-run] Starting development server", req.protocol, req.hostname, req.originalUrl);
     try {
       purgeRequireCache(importPath);
 
-      // remixEarlyHints(require.resolve(importPath))(req, res);
+      remixEarlyHints(await import(importPath))(req, res);
       await createRequestHandler({
         build: await import(`${importPath}?${Date.now()}`),
         getLoadContext,
@@ -75,7 +78,7 @@ if (process.env.NODE_ENV === "development") {
     })
   );
 }
-const port = 3333;
+const port = process.env.PORT ??3333;
 
 const radataDir = "radata";
 let server = app.listen(port, () => {
@@ -89,8 +92,17 @@ function purgeRequireCache(path) {
 }
 
 function getLoadContext() {
-  return function () {
-    return gun;
+  return async function ({request, params}) {
+    await import('chainlocker')
+    let masterKeys = await gun.keys();
+    return {
+      authorizedDB(opts) {
+        let keypair = opts.keypair ?? masterKeys;
+        let {protocol, host} =request ??{protocol: 'http', host: `localhost:${port}`};
+       let db = gun.vault(`${protocol}://${host}`, keypair)
+        return {db, gun};
+      }
+    };
   };
 }
 function remixEarlyHints(build) {

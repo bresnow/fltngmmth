@@ -2575,10 +2575,10 @@ caniuse-lite@^1.0.30001370, caniuse-lite@^1.0.30001373:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001384.tgz#029527c2d781a3cfef13fa63b3a78a6088e35973"
   integrity sha512-BBWt57kqWbc0GYZXb47wTXpmAgqr5LSibPzNjk/AWMdmJMQhLqOl3c/Kd4OAU/tu4NLfYkMx8Tlq3RVBkOBolQ==
 
-chainlocker@^1.2.31:
-  version "1.2.35"
-  resolved "https://registry.yarnpkg.com/chainlocker/-/chainlocker-1.2.35.tgz#ef5157ab00a70dcb423e664c5db619d4711d30a1"
-  integrity sha512-CTFOHABgGhZWJ/0q0f45CmbYHO01S9UwwzVp3vEzW538wuGbFY1diFZIjM6tW3pLdNxsNmlV1zLEV1R6ZNQi1w==
+chainlocker@^1.2.36:
+  version "1.2.36"
+  resolved "https://registry.yarnpkg.com/chainlocker/-/chainlocker-1.2.36.tgz#d01de9864b7d1a8b0965824e49ff359887519b9a"
+  integrity sha512-SwvYZv5eqIoundQsLVc7XtDjivHD/ybi9Sv6NXbqMCmfQ1KSCghA/mj0w0FVkANaOb/NiYPbXk9oYYDr3ttEzw==
   dependencies:
     "@types/node-forge" "^1.0.4"
     btoa "^1.2.1"

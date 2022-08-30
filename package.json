@@ -17,7 +17,7 @@
     "lint": "npx --yes turbo run lint",
     "typecheck": "npx --yes turbo run typecheck",
     "format": "prettier --write \"**/*.{json,md,mdx,mjs,mts,js,jsx,ts,tsx}\"",
-    "purge": "rm *.tmp && rm -rf radata **/node_modules"
+    "purge": "rm **/*.tmp && rm -rf **/radata **/node_modules"
   },
   "devDependencies": {
     "patch-package": "^6.4.7",

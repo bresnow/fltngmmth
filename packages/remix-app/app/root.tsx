@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import type { MetaFunction } from "remix";
+import type { LoaderFunction, MetaFunction } from "remix";
 import {
   Link,
   Links,
@@ -10,13 +10,32 @@ import {
   ScrollRestoration,
   useCatch,
 } from "@remix-run/react";
-
+import type { LoaderContext } from "types";
+import reset from '@unocss/reset/tailwind.css';
+import unocss from './uno.css';
+import type { LinksFunction } from "@remix-run/server-runtime";
+export const links: LinksFunction = () => {
+  return [
+    {
+      rel: 'stylesheet',
+      href: unocss,
+    },
+    {
+      rel: 'stylesheet',
+      href: reset,
+    },
+  ];
+};
 export let meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "New Remix App",
   viewport: "width=device-width,initial-scale=1",
 });
-
+export let loader: LoaderFunction = async({params, request, context}) => { 
+    await import("chainlocker");
+ let loaderContext= context as unknown as LoaderContext;
+  return null
+}
 function Document({ children }: PropsWithChildren<{}>) {
   return (
     <html lang="en">

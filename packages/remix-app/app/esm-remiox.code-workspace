@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../remix-gun-esm"
+		},
+		{
+			"path": "../../../../CNXT"
+		}
+	],
+	"settings": {
+		"powershell.cwd": "/Volumes/swag/esm-remiox"
+	}
+}
