@@ -1,10 +1,10 @@
-import * as React from 'react'
-import * as Dialog from 'ariakit/dialog'
+import React from 'react'
+import * as Ariakit from 'ariakit'
 import type { DisclosureState } from 'ariakit'
 
 import { Button, Text } from '../'
 
-export const useDialog = Dialog.useDialogState
+export const useDialog = Ariakit.useDialogState
 
 export const Content = ({
 	children,
@@ -14,7 +14,7 @@ export const Content = ({
 	state: DisclosureState
 }) => {
 	return (
-		<Dialog.Dialog
+		<Ariakit.Dialog
 			state={state}
 			className="z-50 mx-auto h-screen w-full bg-white md:mt-[5%] md:h-auto md:max-w-[600px] md:rounded-2xl"
 			backdropProps={{
@@ -22,7 +22,7 @@ export const Content = ({
 			}}
 		>
 			{children}
-		</Dialog.Dialog>
+		</Ariakit.Dialog>
 	)
 }
 
@@ -40,10 +40,10 @@ export const Header = ({
 }>) => {
 	return (
 		<header className="flex h-16 w-full items-center justify-between px-2">
-			<Button as={Dialog.DialogDismiss} variant="ghost" icon="close" />
+			<Button as={Ariakit.DialogDismiss} variant="ghost" icon="close" />
 			{title && (
 				<Text
-					as={Dialog.DialogHeading}
+					as={Ariakit.DialogHeading}
 					size="xl"
 					weight={7}
 					className="flex-auto pl-8"
@@ -57,5 +57,5 @@ export const Header = ({
 }
 
 export const Description = ({ children }: React.PropsWithChildren<{}>) => {
-	return <Dialog.DialogDescription>{children}</Dialog.DialogDescription>
+	return <Ariakit.DialogDescription>{children}</Ariakit.DialogDescription>
 }

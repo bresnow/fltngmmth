@@ -1,12 +1,11 @@
-import React from 'react'
 import { Form, useLocation } from '@remix-run/react'
 import * as AriaKit from 'ariakit'
 
-import { useUser } from '../utils'
+// import { useUser } from '../utils'
 import { Icon, Avatar, Text } from '../'
 
 export const AccountMenu = () => {
-	const user = useUser()
+	const user = {avatarUrl: 'https://avatars0.githubusercontent.com/u/17098?s=460&v=4', username: 'bresnow', name: 'Bresnow'}
 	const location = useLocation()
 	const popover = AriaKit.usePopoverState()
 

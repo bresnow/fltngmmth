@@ -1,6 +1,7 @@
 import { useLoaderData } from "@remix-run/react";
 import type { LoaderFunction } from "@remix-run/server-runtime";
 import type { LoaderContext } from "types";
+import {AccountMenu} from '@pkg/ui'
 export const loader: LoaderFunction = async ({ params, request, context }) => {
 
   let loaderContext = context as unknown as LoaderContext;
@@ -16,8 +17,7 @@ export default function () {
   let { loader, putter } = useLoaderData();
   return (
     <main>
-      <h1>Remix App!</h1>
-      <p>This is compiled to ESM and running on a node ESM server.</p>
+      <AccountMenu />
       <h1>{loader}</h1>
       <p>{putter}</p>
     </main>

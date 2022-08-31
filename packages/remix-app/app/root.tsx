@@ -15,7 +15,6 @@ import reset from '@unocss/reset/tailwind.css';
 import unocss from './uno.css';
 import type { LinksFunction } from "@remix-run/server-runtime";
 import 'chainlocker'
-import '@pkg/lib'
 export const links: LinksFunction = () => {
   return [
     {
