@@ -90,14 +90,14 @@ global.gun = gun;
 function purgeRequireCache(path) {
   delete require.cache[require.resolve(path)];
 }
-
+const SECRET_KEY = process.env.SECRET_KEY??"secret_key";
 function getLoadContext() {
   return async function ({request, params}) {
-    await import('chainlocker')
     let masterKeys = await gun.keys();
+    console.log("masterKeys", masterKeys);
     return {
       authorizedDB(opts) {
-        let keypair = opts.keypair ?? masterKeys;
+        let keypair =  masterKeys;
         let {protocol, host} =request ??{protocol: 'http', host: `localhost:${port}`};
        let db = gun.vault(`${protocol}://${host}`, keypair)
         return {db, gun};

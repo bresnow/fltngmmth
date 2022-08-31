@@ -14,5 +14,8 @@
     "**/.turbo": true,
     // "**/build": true,
     // "**/node_modules": true
-  }
+  },
+  "cSpell.words": [
+    "chainlocker"
+  ]
 }

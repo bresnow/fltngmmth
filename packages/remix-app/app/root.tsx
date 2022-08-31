@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import type { LoaderFunction, MetaFunction } from "remix";
+import type { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 import {
   Link,
   Links,
@@ -14,6 +14,8 @@ import type { LoaderContext } from "types";
 import reset from '@unocss/reset/tailwind.css';
 import unocss from './uno.css';
 import type { LinksFunction } from "@remix-run/server-runtime";
+import 'chainlocker'
+import '@pkg/lib'
 export const links: LinksFunction = () => {
   return [
     {
@@ -32,7 +34,6 @@ export let meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 export let loader: LoaderFunction = async({params, request, context}) => { 
-    await import("chainlocker");
  let loaderContext= context as unknown as LoaderContext;
   return null
 }

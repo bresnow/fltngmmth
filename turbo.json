@@ -11,6 +11,9 @@
     "lint": {
       "outputs": []
     },
+    "postinstall": {
+      "outputs": []
+    },
     "typecheck": {
       "outputs": ["tsconfig.tsbuildinfo"]
     }

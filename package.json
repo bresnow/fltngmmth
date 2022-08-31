@@ -5,19 +5,21 @@
   "sideEffects": false,
   "workspaces": [
     "config/*",
-    "packages/*",
-    "scripts/*"
+    "packages/*"
   ],
   "scripts": {
-    "postinstall": "echo \"postinstall script running\" ",
+    "postinstall": "npx --yes turbo run postinstall",
+    "ci": "purge:full && yarn install --frozen-lockfile",
     "build": "npx --yes turbo run build",
     "add:remix": "yarn add --cwd packages/remix-app",
     "add:server": "yarn add --cwd packages/server",
+    "add:scripts": "yarn workspace dev-scripts add",
     "dev": "npx --yes turbo run dev --parallel",
     "lint": "npx --yes turbo run lint",
     "typecheck": "npx --yes turbo run typecheck",
     "format": "prettier --write \"**/*.{json,md,mdx,mjs,mts,js,jsx,ts,tsx}\"",
-    "purge": "rm **/*.tmp && rm -rf **/radata **/node_modules"
+    "purge:full": "rm -rf node_modules **/**/radata **/**/node_modules",
+    "purge:rad": "rm -rf **/**/radata"
   },
   "devDependencies": {
     "patch-package": "^6.4.7",
@@ -29,4 +31,5 @@
     "node": ">=14.0.0"
   },
   "packageManager": "yarn@1.22.17"
+
 }
