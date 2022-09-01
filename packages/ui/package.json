@@ -3,8 +3,14 @@
   "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",
+   "exports": {
+    "styles":"./styles.css"
+   },
   "scripts": {
-    "lint": "eslint  **/*"
+    "build": "tailwindcss -m -i ./styles/app.css -o ./styles.css",
+    "dev": "tailwindcss -w -i ./styles/app.css -o ./styles.css",
+    "lint": "eslint  **/*",
+    "prettier": "prettier --write '**/*.{json,md,mdx,mjs,mts,js,jsx,ts,tsx}'"
   },
   "dependencies": {
     "@remix-validated-form/with-zod": "^2.0.1",
@@ -15,6 +21,11 @@
     "zod-form-data": "^1.2.1"
   },
   "devDependencies": {
-    "remix-app": "*"
+    "autoprefixer": "^10.4.8",
+    "concurrently": "^7.3.0",
+    "postcss": "^8.4.16",
+    "remix-app": "*",
+    "tailwindcss": "^3.1.8",
+    "unocss": "^0.45.13"
   }
 }

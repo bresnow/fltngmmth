@@ -15,9 +15,9 @@ export default function () {
         <>
         <SimpleFolioHome />
             <div className="flex justify-center">
-                {/* <div className="mdl:grid-cols-[auto_600px_minmax(auto,390px)] inline-grid grid-cols-[auto_minmax(auto,600px)]"> */}
+                <div className="mdl:grid-cols-[auto_600px_minmax(auto,390px)] inline-grid grid-cols-[auto_minmax(auto,600px)]">
                     {/* Header */}
-                    <div className="sticky top-0 z-10 col-start-1 row-start-1 flex h-16 flex-col justify-center px-0 sm:h-screen sm:items-center sm:px-[5px] md:px-3.5 xl:w-[275px] xl:items-start">
+                    <div className="sticky top-0 z-10 col-start-1 row-start-1 flex flex-wrap h-16 flex-col justify-center px-0 sm:h-screen sm:items-center sm:px-[5px] md:px-3.5 xl:w-[275px] xl:items-start">
                         {/* Logo */}
                         {/* Nav */}
                         <div className="fixed bottom-0 flex h-16 w-full flex-auto flex-col border-t border-gray-200 bg-cnxt_black sm:static sm:bottom-auto sm:h-auto sm:border-none">
@@ -48,12 +48,12 @@ export default function () {
                     {/* Search */}
                     </div>
                     {/* get the list of widgets from helper matches */}
-                    {/* <div className="sticky top-16">sidebar</div> */}
+                    <div className="sticky top-16">sidebar</div>
                     </div>
-                {/* </div> */}
+                </div>
             </div>
             {/* show if not logged in */}
-            <AuthBanner />
+            {/* <AuthBanner /> */}
         </>
     )
 }

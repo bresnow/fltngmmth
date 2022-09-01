@@ -1,7 +1,6 @@
 import type { PropsWithChildren } from "react";
 import type { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 import {
-  Link,
   Links,
   LiveReload,
   Meta,
@@ -11,20 +10,16 @@ import {
   useCatch,
 } from "@remix-run/react";
 import type { LoaderContext } from "types";
-import reset from '@unocss/reset/tailwind.css'
-import unocss from './uno.css';
+
+import styles from '@pkg/ui/styles.css';
 import type { LinksFunction } from "@remix-run/server-runtime";
 import 'chainlocker'
 export const links: LinksFunction = () => {
   return [
     {
       rel: "stylesheet",
-      href: unocss,
-    },
-    {
-      rel: "stylesheet",
-      href: reset,
-    },
+      href: styles,
+    }
    
   ];
 };
@@ -59,7 +54,7 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         {/* <ExternalScripts /> */}
-        {process.env.NODE_ENV === 'development' && <LiveReload />}
+ <LiveReload />
       </body>
     </html>
   );
