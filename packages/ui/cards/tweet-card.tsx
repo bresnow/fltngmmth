@@ -18,7 +18,7 @@ export const Tweet = ({ tweet }: { tweet: any }) => {
 						<Avatar
 							src={tweet.user.avatarUrl}
 							alt={tweet.user.username}
-							size="sm"
+							size="xs"
 						/>
 					</Link>
 				</div>

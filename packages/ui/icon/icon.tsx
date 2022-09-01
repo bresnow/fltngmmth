@@ -3,7 +3,7 @@ import React from 'react'
 import type { IconCollection } from './icon.collection'
 import { icons } from './icon.collection'
 
-import { Theme } from '..//theme'
+import { Theme } from '../theme'
 
 export type IconProps = {
 	name: IconCollection

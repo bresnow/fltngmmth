@@ -10,8 +10,8 @@ const TailkitHome = () => {
                             <div className=" flex justify-between items-center  border-gray-100 py-6  md:space-x-10">
                                 <div className="flex justify-start items-center gap-12">
                                     <a className="flex items-center" href="/">
-                                        <img className="h-12 w-auto sm:h-12" src="/icons/icon-96x96" alt="site" />
-                                        <span className="text-indigo-600 ml-2 text-2xl font-bold">Tail-Kit</span>
+                                        <img className="h-12 w-auto sm:h-12" src="/icons/icon-96x96.png" alt="site" />
+                                        <span className="text-indigo-600 ml-2 text-2xl font-bold">FLTNGMMTH + CNXT</span>
                                     </a>
                                     <nav className="hidden md:flex space-x-10">
                                         <div className="relative">
@@ -19,7 +19,7 @@ const TailkitHome = () => {
                                                 type="button"
                                                 className="group bg-white rounded-md text-gray-800 inline-flex items-center text-base font-normal hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-xl"
                                             >
-                                                <span>Components</span>
+                                                <span>Browse Services</span>
                                                 <svg
                                                     className="ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500"
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -67,17 +67,16 @@ const TailkitHome = () => {
                         <div className="flex flex-col md:flex-row w-full items-start justify-between md:justify-start h-full md:h-1/2">
                             <div className="text-left z-20 md:z-30 w-full md:w-1/2 flex flex-col items-center md:items-start justify-start md:justify-center h-full">
                                 <h1 className="tracking-tight font-extrabold text-gray-900 titleHome text-6xl ">
-                                    <span className="flex w-full m-auto text-indigo-600"> Tail-kit</span>
+                                    <span className="flex w-full m-auto text-indigo-600"> Namespace Services</span>
                                     <span className="block font-bold xl:inline">
-                                        <span className="absolute">Components</span> <br />
-                                        for Tailwind CSS 2.0
+                                        <span className="absolute"></span> <br />
+                                       Instantly Deploy Software Platforms 
                                     </span>
                                 </h1>
                                 <h2 className="mt-3  text-gray-500 sm:mt-5 text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                                    Tail-kit gives you access to over
-                                    <span className="text-gray-700 font-bold">200</span>
-                                    fully coded and responsive components and templates, based on Tailwind CSS 2.0.
-                                    It&#x27;s all free and open-source.
+                                    
+                                    <span className="text-gray-700 font-bold">Over 50 different available services</span>
+                                 ...and growing
                                 </h2>
                                 <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start w-full">
                                     <div className="rounded-md shadow">
@@ -110,7 +109,7 @@ const TailkitHome = () => {
                                     </div>
                                 </div>
                                 <div className="mt-4">
-                                    Need specific or new component ?
+                                    Learn More ?
                                     <span className="underline cursor-pointer">Make a request</span>
                                 </div>
                             </div>
@@ -139,18 +138,18 @@ const TailkitHome = () => {
                                                     </button>
                                                     <p className="text-gray-800 text-xl font-medium mb-2">Natural</p>
                                                     <p className="text-gray-600 text-xs">
-                                                        Dare to take the lead and never let yourself be overtaken by
-                                                        events.
+                                                        {/* Dare to take the lead and never let yourself be overtaken by
+                                                        events. */}
                                                     </p>
                                                     <div className="flex flex-wrap justify-starts items-center mt-6">
                                                         <div className="text-xs mb-2 mr-2 py-1.5 px-4 text-gray-600 bg-purple-200 rounded-2xl">
-                                                            #car
+                                                            #Finance
                                                         </div>
                                                         <div className="text-xs mb-2 mr-2 py-1.5 px-4 text-gray-600 bg-purple-200 rounded-2xl">
-                                                            #auto
+                                                            #Development
                                                         </div>
                                                         <div className="text-xs mb-2 py-1.5 px-4 text-gray-600 bg-purple-200 rounded-2xl">
-                                                            #sport
+                                                            #Design
                                                         </div>
                                                     </div>
                                                 </div>

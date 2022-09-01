@@ -13,7 +13,7 @@ export const ButtonProvider = ({
 	...props
 }: ButtonAuthProps) => {
 	return (
-		<Button {...props} icon={provider} name="provider" value={provider}>
+		<Button {...props} icon={"hash_fill"} name="provider" value={provider}>
 			Sign in with {Providers[provider].displayName}
 		</Button>
 	)
@@ -23,4 +23,14 @@ const Providers = {
 	github: {
 		displayName: 'GitHub',
 	},
+keypair:{
+	displayName: 'Encryptiom Keypair',
+},
+	twitter: {
+		displayName: 'Twitter',
+	},
+	twoFactor: {
+		displayName: '2FA',
+	}
+
 }

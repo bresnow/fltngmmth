@@ -253,7 +253,7 @@ export let paths = {
   },
 };
 
-const SvgIcons = () => {
+export const SvgIcons = () => {
   return {
     search: () => (
       <svg

@@ -72,10 +72,9 @@ export default function Home() {
     return (
         <div className="bg">
                 <>
-                    <ContentForm />
                     <div className="my-[5px] h-0 border-b border-gray-200" />
                 </>
-                       {/* <TweetList list={data.tweets} /> */}
+                       <TweetList list={data.tweets} />
         </div>
     )
 }

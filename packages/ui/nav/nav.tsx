@@ -3,7 +3,7 @@ import type { NavLinkProps } from '@remix-run/react'
 import cn from 'clsx'
 import React from 'react'
 
-import type { IconCollection } from '../'
+import { HashtagLarge, IconCollection, PencilIcon } from '../'
 import {  ContentForm, Button, Icon, Dialog } from '../'
 
 export const NavList = () => {
@@ -77,13 +77,13 @@ const TweetButton = () => {
 		<>
 			<Button
 				onClick={dialog.toggle}
-				color="primary"
-				size="xl"
+				color="default"
+				size="lg"
 				className="shadow-md sm:shadow-none xl:w-full"
 				square
 			>
-				<span className="hidden text-xl xl:block">Tweet</span>
-				<Icon name="pen" className="xl:hidden" size="xl" />
+				<span className="hidden text-xl xl:block">New Namespace</span>
+				<HashtagLarge className="w-6 h-6" />
 			</Button>
 
 			<Dialog.Content state={dialog}>

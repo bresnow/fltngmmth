@@ -14,12 +14,12 @@ export const AccountMenu = () => {
 				state={popover}
 				className="relative flex w-full cursor-pointer select-none items-center rounded-full p-3.5 transition-colors hover:bg-gray-100 active:bg-gray-200"
 			>
-				{/* <Avatar
-					size="sm"
+				<Avatar
+					size="xs"
 					className="pointer-events-none sm:h-12 sm:w-12 rounded-full"
-					src={"https://avatars0.githubusercontent.com/u/17098?s=460&v=4"}
+					src={"/images/icon-96x96.png"}
 					alt={"Bresnow"}
-				/> */}
+				/>
 				<div className=" flex-auto items-center justify-between xl:flex">
 					<div className="text-start mx-3.5 flex flex-col text-lg">
 						

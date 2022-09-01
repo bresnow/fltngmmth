@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { SVGProps } from 'react';
-import { Link } from 'remix';
+import { Link } from '@remix-run/react';
 export interface FltngMmthProps extends SVGProps<SVGSVGElement> {
   to?: string;
 }

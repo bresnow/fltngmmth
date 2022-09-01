@@ -39,7 +39,7 @@ const Tab = (props : NavLinkProps ) => {
 				<div className="relative grid h-16 place-items-center">
 					<Text
 						weight={isActive ? 7 : 5}
-						color={isActive ? undefined : 'gray'}
+						color={isActive ? "green" : 'primary'}
 						className="whitespace-nowrap"
 					>
 						{props.children as React.ReactNode}

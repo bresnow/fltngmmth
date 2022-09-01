@@ -33,9 +33,9 @@ export const Avatar = ({
 }
 
 const AvatarStyles = {
-	base: 'rounded-full',
+	base: 'rounded-fmd',
 	size: {
-		xs: 'w-5.5 h-5.5',
+		xs: 'w-1/2 h-1/2',
 		sm: 'w-9.5 h-9.5',
 		md: 'w-12 h-12',
 		lg: 'w-14.5 h-14.5',
