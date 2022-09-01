@@ -1,7 +1,7 @@
 import React from 'react'
 import { useFetcher } from '@remix-run/react'
 
-import { Button } from '../'
+import { Button, MoonIcon } from '../'
 import type { ButtonProps } from '../'
 
 type ButtonFollowProps = {
@@ -20,15 +20,17 @@ export const ButtonFollow = ({ profile, action,...rest }: ButtonFollowProps) => 
 			<input type="hidden" name="remove" value={`${isFollowed}`} />
 			<Button
 				// eslint-disable-next-line no-self-compare
-				type={('1'==='1')? 'submit' : 'button'}
+				type={'button'}
 				name="action"
 				value="follow"
 				aria-label={`'Follow ${profile?.username || 'Default'}'`}
-				variant={isFollowed ? 'ghost' : 'fill'}
-				outline={isFollowed}
+				variant={ 'fill'}
+				outline={true}
+				icon="message"
 				{...rest}
 			>
 				{isFollowed ? 'Following' : 'Follow'}
+				<MoonIcon />
 			</Button>
 		</fetcher.Form>
 	)

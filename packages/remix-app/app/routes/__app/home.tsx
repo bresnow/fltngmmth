@@ -70,12 +70,12 @@ export default function Home() {
     const { data } = useLoaderData<typeof loader>()
 
     return (
-        <div>
+        <div className="bg">
                 <>
                     <ContentForm />
                     <div className="my-[5px] h-0 border-b border-gray-200" />
                 </>
-                       <TweetList list={data.tweets} />
+                       {/* <TweetList list={data.tweets} /> */}
         </div>
     )
 }

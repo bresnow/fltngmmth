@@ -47,9 +47,11 @@
 .border-t{border-top-width:1px;border-top-style:solid;}
 .border-gray-200{--un-border-opacity:1;border-color:rgba(229,231,235,var(--un-border-opacity));}
 .sm\:border-none{border-style:none;}
+.bg-cnxt_black{--un-bg-opacity:1;background-color:rgba(0,3,0,var(--un-bg-opacity));}
 .bg-primary-500{--un-bg-opacity:1;background-color:rgba(229,113,102,var(--un-bg-opacity));}
+.bg-red\/80{background-color:rgba(248,113,113,0.8);}
 .bg-white{--un-bg-opacity:1;background-color:rgba(255,255,255,var(--un-bg-opacity));}
-.bg-white\/80{background-color:rgba(255,255,255,0.8);}
+.bg-yellow-400{--un-bg-opacity:1;background-color:rgba(250,204,21,var(--un-bg-opacity));}
 .md\:px-3\.5{padding-left:0.875rem;padding-right:0.875rem;}
 .px-0{padding-left:0rem;padding-right:0rem;}
 .px-6{padding-left:1.5rem;padding-right:1.5rem;}

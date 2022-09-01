@@ -15,7 +15,7 @@ export const ContentForm = ({ onSubmit }: TweetFormProps) => {
 
 	return (
 		<div className="flex gap-3.5 px-5 pt-2.5 pb-2.5">
-			<Avatar src={'https://avatars0.githubusercontent.com/u/17098?s=460&v=4'} alt={"Bresnow"} size="lg" />
+			<Avatar className="rounded-full" src={'https://avatars0.githubusercontent.com/u/17098?s=460&v=4'} alt={"Bresnow"} size="lg" />
 			<fetcher.Form
 				onSubmit={() => onSubmit && onSubmit}
 				action="/"

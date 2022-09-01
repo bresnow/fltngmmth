@@ -12,19 +12,20 @@ import {
 } from "@remix-run/react";
 import type { LoaderContext } from "types";
 import reset from '@unocss/reset/tailwind.css'
-import unocss from '~/uno.css';
+import unocss from './uno.css';
 import type { LinksFunction } from "@remix-run/server-runtime";
 import 'chainlocker'
 export const links: LinksFunction = () => {
   return [
     {
-      rel: 'stylesheet',
+      rel: "stylesheet",
       href: unocss,
     },
     {
-      rel: 'stylesheet',
+      rel: "stylesheet",
       href: reset,
     },
+   
   ];
 };
 export let meta: MetaFunction = () => ({
@@ -36,31 +37,31 @@ export let loader: LoaderFunction = async ({ params, request, context }) => {
   let loaderContext = context as unknown as LoaderContext;
   return null
 }
-function Document({ children }: PropsWithChildren<{}>) {
-  return (
-    <html lang="en">
-      <head>
-        <Meta />
-        <Links />
-      </head>
-      <body >
-        <div className=' font-sans antialiased bg-gcxt_black bg-cover'>
-{children}
-       
-        </div>
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-      </body>
-    </html>
-  );
-}
 
 export default function App() {
   return (
-    <Document>
-      <Outlet />
-    </Document>
+    <html lang='en'>
+      <head>
+        <meta charSet='utf-8' />
+        <meta name='viewport' content='width=device-width,initial-scale=1' />
+        <Meta />
+        <Links />
+      </head>
+      <body className='bg-dark-800'>
+        <div className=' font-sans antialiased bg-gradient-to-tr from-cnxt_red via-white to-transparent text-gray-900 leading-normal tracking-wider bg-cover'>
+          <div className='p-5 font-sans antialiased bg-gradient-to-b from-cnxt_black via-blue-400 to-cnxt_blue text-gray-900 leading-normal tracking-wider bg-cover'>
+            {' '}
+            <div className='py-10 mt-10 font-sans antialiased bg-gradient-to-tr from-slate-900 via-transparent to-cnxt_red text-gray-900 leading-normal tracking-wider bg-cover'>
+              <Outlet />
+            </div>
+          </div>
+        </div>
+        <ScrollRestoration />
+        <Scripts />
+        {/* <ExternalScripts /> */}
+        {process.env.NODE_ENV === 'development' && <LiveReload />}
+      </body>
+    </html>
   );
 }
 
@@ -68,12 +69,12 @@ export function CatchBoundary() {
   let { status, statusText } = useCatch();
 
   return (
-    <Document>
+
       <main>
         <h1>{status}</h1>
         {statusText && <p>{statusText}</p>}
       </main>
-    </Document>
+
   );
 }
 
@@ -81,10 +82,10 @@ export function ErrorBoundary({ error }: { error: Error }) {
   console.log(error);
 
   return (
-    <Document>
+
       <main>
         <h1>Oops, looks like something went wrong 😭</h1>
       </main>
-    </Document>
+
   );
 }

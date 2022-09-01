@@ -14,7 +14,7 @@ export type TabsProps = {
 
 export const Tabs = ({ list, className, ...rest }: TabsProps) => {
 	const classes = cn(
-		'no-scrollbar flex h-16 w-full snap-x snap-mandatory flex-col flex-wrap items-stretch overflow-x-auto overflow-y-hidden border-b border-gray-200 bg-white/80 backdrop-blur-lg',
+		'no-scrollbar flex h-16 w-full snap-x snap-mandatory flex-col bg-green-500 items-stretch overflow-x-auto overflow-y-hidden border-b border-gray-200 bg-white/80 backdrop-blur-lg',
 		className
 	)
 	return (
