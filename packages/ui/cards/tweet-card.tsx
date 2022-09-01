@@ -1,10 +1,9 @@
 import { Link, useFetcher } from '@remix-run/react'
 import React from 'react'
 import { Avatar, Button, Text } from '../'
-import { useOptionalUser } from '../utils'
 
 export const Tweet = ({ tweet }: { tweet: any }) => {
-	const user = useOptionalUser()
+	const user = { username: 'bresnow', name: 'Bresnow' } 
 	const fetcher = useFetcher()
 
 	return (

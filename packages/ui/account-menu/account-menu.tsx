@@ -5,7 +5,6 @@ import * as AriaKit from 'ariakit'
 import { Icon, Avatar, Text } from '../'
 
 export const AccountMenu = () => {
-	const user = {avatarUrl: 'https://avatars0.githubusercontent.com/u/17098?s=460&v=4', username: 'bresnow', name: 'Bresnow'}
 	const location = useLocation()
 	const popover = AriaKit.usePopoverState()
 
@@ -18,16 +17,16 @@ export const AccountMenu = () => {
 				<Avatar
 					size="sm"
 					className="pointer-events-none sm:h-12 sm:w-12"
-					src={user.avatarUrl}
-					alt={user.username}
+					src={"https://avatars0.githubusercontent.com/u/17098?s=460&v=4"}
+					alt={"Bresnow"}
 				/>
 				<div className="hidden flex-auto items-center justify-between xl:flex">
 					<div className="text-start mx-3.5 flex flex-col text-lg">
 						<Text weight={7} className="leading-tight">
-							{user.name}
+							{'Bresnow'}
 						</Text>
 						<Text color="gray" className="leading-tight">
-							{`@${user.username}`}
+							{`@bresnow`}
 						</Text>
 					</div>
 					<Icon name="dots" size="md" />
@@ -40,10 +39,10 @@ export const AccountMenu = () => {
 						<Form action="/auth/logout" method="post" className="w-full">
 							<button
 								name="redirectTo"
-								value={location.pathname}
+								value={'/'}
 								className="w-full p-4 text-left text-lg leading-6 hover:bg-gray-100"
 							>
-								Log out @{user.username}
+								Log out @bresnow
 							</button>
 						</Form>
 					</div>

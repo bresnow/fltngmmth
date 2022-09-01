@@ -1,33 +1,24 @@
-import presetUno from "@unocss/preset-uno";
-import presetWebFonts from "@unocss/preset-web-fonts";
-/* eslint-disable no-restricted-imports */
-import { defineConfig } from "unocss";
+import { defineConfig, presetUno, presetIcons } from 'unocss'
+
+const theme = presetUno().theme
 
 export default defineConfig({
+  shortcuts: {
+    link: 'text-primary-500 hover:underline',
+  },
   theme: {
     colors: {
-      body: "#f3f3f3",
-      cnxt_black: "#000300",
-      cnxt_navy: "#081d42",
-      cnxt_red: "#e80911",
-      cnxt_blue: "#053c9c",
-      gray: {
-        100: "#f7fafc",
-        // ...
-        900: "#1a202c",
-      },
-      turquoise: "#1DE3EB",
-      punch: "#b30205",
+      gray: theme?.colors?.slate,
+      primary: theme?.colors?.indigo,
+    },
+    breakpoints: {
+      sm: '500px',
+      md: '614px',
+      mdl: '1002px',
+      lg: '1024px',
+      lgx: '1092px',
+      xl: '1280px',
     },
   },
-
-  presets: [
-    presetUno(),
-    presetWebFonts({
-      provider: "google",
-      fonts: {
-        sans: "Roboto",
-      },
-    }),
-  ],
-});
+  presets: [presetUno(), presetIcons()],
+})

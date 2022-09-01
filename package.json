@@ -1,5 +1,5 @@
 {
-  "name": "remix-wasm-example",
+  "name": "remix-gun",
   "version": "0.0.0",
   "private": true,
   "sideEffects": false,
@@ -9,13 +9,14 @@
   ],
   "scripts": {
     "postinstall": "npx --yes turbo run postinstall",
-    "ci": "purge:full && yarn install --frozen-lockfile",
+    "ci": "yarn purge:full && yarn install --frozen-lockfile",
     "build": "npx --yes turbo run build",
     "add:remix": "yarn add --cwd packages/remix-app",
     "add:server": "yarn add --cwd packages/server",
-    "add:scripts": "yarn workspace dev-scripts add",
+    "add:scripts": "yarn workspace scripts add",
     "dev": "npx --yes turbo run dev --parallel",
     "lint": "npx --yes turbo run lint",
+    "push": "npx --yes turbo run push",
     "typecheck": "npx --yes turbo run typecheck",
     "format": "prettier --write \"**/*.{json,md,mdx,mjs,mts,js,jsx,ts,tsx}\"",
     "purge:full": "rm -rf node_modules **/**/radata **/**/node_modules",
@@ -31,5 +32,4 @@
     "node": ">=14.0.0"
   },
   "packageManager": "yarn@1.22.17"
-
 }

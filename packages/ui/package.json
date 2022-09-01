@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint  **/*"
+  },
   "dependencies": {
     "@remix-validated-form/with-zod": "^2.0.1",
     "ariakit": "^2.0.0-next.40",

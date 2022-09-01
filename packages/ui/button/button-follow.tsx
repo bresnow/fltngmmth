@@ -3,7 +3,6 @@ import { useFetcher } from '@remix-run/react'
 
 import { Button } from '../'
 import type { ButtonProps } from '../'
-import { useOptionalUser } from '../utils'
 
 type ButtonFollowProps = {
 	profile?: {is_followed: boolean; is_own:boolean| false; username: string; id: string}
@@ -11,7 +10,7 @@ type ButtonFollowProps = {
 } & ButtonProps
 
 export const ButtonFollow = ({ profile, action,...rest }: ButtonFollowProps) => {
-	const user = useOptionalUser()
+
 	const fetcher = useFetcher()
 	const isFollowed = profile?.is_followed ?? false
 
@@ -20,7 +19,8 @@ export const ButtonFollow = ({ profile, action,...rest }: ButtonFollowProps) => 
 			<input type="hidden" name="user" value={profile?.id} />
 			<input type="hidden" name="remove" value={`${isFollowed}`} />
 			<Button
-				type={user ? 'submit' : 'button'}
+				// eslint-disable-next-line no-self-compare
+				type={('1'==='1')? 'submit' : 'button'}
 				name="action"
 				value="follow"
 				aria-label={`'Follow ${profile?.username || 'Default'}'`}

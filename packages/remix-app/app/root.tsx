@@ -11,8 +11,8 @@ import {
   useCatch,
 } from "@remix-run/react";
 import type { LoaderContext } from "types";
-import reset from '@unocss/reset/tailwind.css';
-import unocss from './uno.css';
+import reset from '@unocss/reset/antfu.css';
+import unocss from '~/uno.css';
 import type { LinksFunction } from "@remix-run/server-runtime";
 import 'chainlocker'
 export const links: LinksFunction = () => {
@@ -42,17 +42,8 @@ function Document({ children }: PropsWithChildren<{}>) {
       <head>
         <Meta />
         <Links />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/@exampledev/new.css@1.1.3/new.css"
-        />
       </head>
       <body>
-        <header>
-          <h1>
-            <Link to="/">Remix ESM</Link>
-          </h1>
-        </header>
         {children}
         <ScrollRestoration />
         <Scripts />

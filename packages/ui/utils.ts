@@ -39,39 +39,11 @@ export function useMatchesData<T>(routeId: string) {
 	return route?.data as unknown as T
 }
 
-function isUser<User>(user: any): user is User {
+export function isUser<User>(user: any): user is User {
 	return user && typeof user === 'object' && typeof user.id === 'string'
 }
 
-export function useOptionalUser() {
-	const { data } = useMatchesData<any>('root')
-	if (!data || !isUser(data.user)) return undefined
-	return data.user
-}
 
-export function useUser() {
-	const maybeUser = useOptionalUser()
-	if (!maybeUser)
-		throw new Error(
-			'No user found in root loader, but user is required by useUser. If user is optional, try useOptionalUser instead.'
-		)
-	return maybeUser
-}
-
-export function useOptionalProfile() {
-	const { data } = useMatchesData<any>('routes/__app/$user')
-	if (!data || !isUser(data.profile)) return undefined
-	return data.profile
-}
-
-export function useProfile() {
-	const maybeProfile = useOptionalProfile()
-	if (!maybeProfile)
-		throw new Error(
-			'No profile found in $user loader, but user is required by useProfile. If profile is optional, try useOptionalProfile instead.'
-		)
-	return maybeProfile
-}
 
 export function formatUserCreatedDate(created_at: Date) {
 	return new Intl.DateTimeFormat('en-US', {

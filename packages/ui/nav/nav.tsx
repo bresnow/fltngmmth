@@ -3,19 +3,18 @@ import type { NavLinkProps } from '@remix-run/react'
 import cn from 'clsx'
 import React from 'react'
 
-import { useOptionalUser } from '../utils'
 import type { IconCollection } from '../'
 import {  ContentForm, Button, Icon, Dialog } from '../'
 
 export const NavList = () => {
-	const user = useOptionalUser()
+	const user ={username: 'bresnow', name: 'Bresnow'}
 	return (
 		<nav className="flex flex-auto justify-around gap-2 sm:my-1 sm:flex-col sm:justify-start xl:w-full">
-			{user && (
+			{/* {user && ( */}
 				<NavButton to="/home" icon="home" iconActive="home_fill">
 					Home
 				</NavButton>
-			)}
+			{/* )} */}
 
 			<NavButton
 				to="/explore"
@@ -25,7 +24,7 @@ export const NavList = () => {
 				Explore
 			</NavButton>
 
-			{user && (
+			{/* {user && ( */}
 				<>
 					<NavButton
 						to={`/${user.username}`}
@@ -39,7 +38,7 @@ export const NavList = () => {
 						<TweetButton />
 					</div>
 				</>
-			)}
+			{/* )} */}
 		</nav>
 	)
 }

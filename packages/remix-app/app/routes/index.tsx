@@ -1,3 +1,9 @@
+// import { redirect } from "@remix-run/server-runtime"
+
+// export const loader = async () => {
+//   return redirect('/home')
+// }
+
 import { useLoaderData } from "@remix-run/react";
 import type { LoaderFunction } from "@remix-run/server-runtime";
 import type { LoaderContext } from "types";
@@ -5,7 +11,7 @@ import {AccountMenu} from '@pkg/ui'
 export const loader: LoaderFunction = async ({ params, request, context }) => {
 
   let loaderContext = context as unknown as LoaderContext;
-  let { authorizedDB } = await loaderContext({ params, request, context });
+  let { authorizedDB } = await loaderContext({ params, request });
   let { db } = authorizedDB();
   let keys = await db.keys(['bresnow', 'password'])
   let vault = db.vault('tester', keys)

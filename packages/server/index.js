@@ -90,10 +90,10 @@ global.gun = gun;
 function purgeRequireCache(path) {
   delete require.cache[require.resolve(path)];
 }
-const SECRET_KEY = process.env.SECRET_KEY??"secret_key";
+const SECRET_KEY = process.env.SECRET_KEY??undefined;
 function getLoadContext() {
-  return async function ({request, params}) {
-    let masterKeys = await gun.keys();
+  return async function ({request, params, secret = [SECRET_KEY]}) {
+    let masterKeys = await gun.keys(secret);
     console.log("masterKeys", masterKeys);
     return {
       authorizedDB(opts) {

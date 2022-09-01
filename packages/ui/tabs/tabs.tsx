@@ -28,21 +28,21 @@ export const Tabs = ({ list, className, ...rest }: TabsProps) => {
 	)
 }
 
-const Tab = ({ children, ...rest }: NavLinkProps) => {
+const Tab = (props : NavLinkProps ) => {
 	return (
 		<NavLink
 			prefetch="intent"
 			className="grid snap-start place-items-center px-5 hover:bg-gray-100"
-			{...rest}
+			{...props}
 		>
-			{({ isActive }) => (
+			{({ isActive}) => (
 				<div className="relative grid h-16 place-items-center">
 					<Text
 						weight={isActive ? 7 : 5}
 						color={isActive ? undefined : 'gray'}
 						className="whitespace-nowrap"
 					>
-						{children}
+						{props.children as React.ReactNode}
 					</Text>
 					{isActive && (
 						<div className="bg-primary-500 absolute bottom-0 h-1 w-full rounded-full" />
