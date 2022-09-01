@@ -1,5 +1,7 @@
+import React from 'react'
 import { useFetcher } from '@remix-run/react'
-import { Avatar, Button } from '../'
+import { Avatar, Button ,Text} from '../'
+import { ContentEditable } from '../editable'
 
 
 
@@ -33,17 +35,13 @@ export const ContentForm = ({ onSubmit }: TweetFormProps) => {
 const TextArea = ({ name }: { name: string }) => {
 
 	return (
-		<textarea
-			placeholder="What's happening?"
-			rows={1}
-			minLength={1}
-			maxLength={280}
-			className="resize-none overflow-hidden border-b border-transparent py-3 text-2xl focus:border-gray-200 focus:outline-none"
-			name={name}
-			onChange={(event) => {
+		<ContentEditable onChange={(event) => {
 	event.currentTarget.style.height = '1px'
-	event.currentTarget.style.height = `${event.currentTarget.scrollHeight}px`}}
-		/>
+	event.currentTarget.style.height = `${event.currentTarget.scrollHeight}px`}} className=" border-b border-transparent py-3 text-2xl focus:outline-none" name={name} id={'2222'} edit={true}>
+			<Text weight={7} className="font-black text-2xl">
+				Add description
+			</Text>
+</ContentEditable>
 	)
 }
 

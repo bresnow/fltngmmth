@@ -1,10 +1,10 @@
 /** @type {import("@remix-run/dev").AppConfig} */
-import regexp from 'super-expressive'
+// import regexp from 'super-expressive'
 
-let chokidar = regexp().string('chokidar').toRegex()
+// let chokidar = regexp().string('chokidar').toRegex()
 let config = {
   serverModuleFormat: "esm",
-serverDependenciesToBundle: [ chokidar,],
+serverDependenciesToBundle: [ /^chainlocker/],
   ignoredRouteFiles: ["**/.*"],
   devServerPort: 8002,
 };

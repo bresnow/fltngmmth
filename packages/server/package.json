@@ -4,7 +4,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon ./index.js --watch ./index.js",
+    "dev": "cross-env NODE_ENV=development nodemon ./index.js --watch ../ui/**/* ../chain-extensions/* ./index.js",
     "start": "cross-env-shell NODE_ENV=production PORT=$PORT node ./index.js",
     "lint": "eslint .",
     "typecheck": "tsc -b"

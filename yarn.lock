@@ -2043,7 +2043,7 @@
   dependencies:
     "@unocss/core" "0.45.13"
 
-"@unocss/transformer-directives@0.45.13":
+"@unocss/transformer-directives@0.45.13", "@unocss/transformer-directives@^0.45.13":
   version "0.45.13"
   resolved "https://registry.yarnpkg.com/@unocss/transformer-directives/-/transformer-directives-0.45.13.tgz#d36ef30cf95dcb57c86c913091e202c4eca6c031"
   integrity sha512-qEBj3zw06cFFUv4+P36ZKw0YKjNt/H9q2IivEOoQETxAiYAH+1ZfHP5gb1lPGSYQYoWHIGVezp56OGQcv7qkwQ==
@@ -3222,6 +3222,11 @@ dotenv@^16.0.0:
   version "16.0.1"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.1.tgz#8f8f9d94876c35dac989876a5d3a82a267fdce1d"
   integrity sha512-1K6hR6wtk2FviQ4kEiSjFiH5rpzEVi8WW0x96aztHVMhEspNpc4DVOUTEHtEva5VThQ8IaBX1Pe4gSzpVVUsKQ==
+
+duecss@^0.27.0:
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/duecss/-/duecss-0.27.0.tgz#c17b8396aa1e04e7a487a17189ec2a958085e238"
+  integrity sha512-6//upLdvUVYmqP9XW4HyzTwDXAJdNiKRFzG6es3BLvOQ+2eSkg7HOLYd9o+AAByWNfB0j0sTChK5jC0Im/mQeA==
 
 duplexer@^0.1.2, duplexer@~0.1.1:
   version "0.1.2"

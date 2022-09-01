@@ -11,7 +11,7 @@ import {
   useCatch,
 } from "@remix-run/react";
 import type { LoaderContext } from "types";
-import reset from '@unocss/reset/antfu.css';
+import reset from '@unocss/reset/tailwind.css'
 import unocss from '~/uno.css';
 import type { LinksFunction } from "@remix-run/server-runtime";
 import 'chainlocker'
@@ -32,8 +32,8 @@ export let meta: MetaFunction = () => ({
   title: "New Remix App",
   viewport: "width=device-width,initial-scale=1",
 });
-export let loader: LoaderFunction = async({params, request, context}) => { 
- let loaderContext= context as unknown as LoaderContext;
+export let loader: LoaderFunction = async ({ params, request, context }) => {
+  let loaderContext = context as unknown as LoaderContext;
   return null
 }
 function Document({ children }: PropsWithChildren<{}>) {
@@ -43,8 +43,11 @@ function Document({ children }: PropsWithChildren<{}>) {
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body >
+        <div className=' font-sans antialiased bg-gcxt_black bg-cover'>
+{children}
+       
+        </div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

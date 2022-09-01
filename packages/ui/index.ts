@@ -12,3 +12,6 @@ export * from './cards'
 export * from './account-menu'
 export * from './route-header'
 export * from './form'
+
+export * from './svg/Icons'
+export * from './svg/logos'
