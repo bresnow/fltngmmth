@@ -2,5 +2,13 @@
   "name": "docker",
   "version": "0.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dockerode": "^3.3.4",
+    "js-base64": "^3.7.2",
+    "ssh2": "^1.11.0"
+  },
+  "devDependencies": {
+    "@types/dockerode": "^3.3.9"
+  }
 }
