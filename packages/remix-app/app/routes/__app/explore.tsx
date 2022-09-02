@@ -4,7 +4,7 @@ import { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 import { LoaderContext } from "../../../types/index";
 import { MultipleShoppingCard } from "@pkg/ui";
 import { Trigger } from "../../../../ui/dialog/dialog";
-import Natural2Home from "@pkg/ui/kit/templates/homePages/simplePage/Natural2Home";
+import NaturalHome from "@pkg/ui/kit/templates/homePages/simplePage/NaturalHome";
 import TailKitHome from "@pkg/ui/kit/templates/homePages/simplePage/TailkitHome";
 export const meta: MetaFunction = () => ({
     title: "Explore",
@@ -28,7 +28,7 @@ export default function Explore() {
     return (
         <div>
             <TailKitHome />
-            <Natural2Home />
+            <NaturalHome />
             <Tabs
                 list={[
                     {

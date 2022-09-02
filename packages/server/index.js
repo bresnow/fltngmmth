@@ -9,7 +9,7 @@ import { installGlobals } from "@remix-run/node";
 import Gun from 'gun'
 import './gunlibs.js'
 import process from 'process';
-import {data} from './loader.config.js'
+import { data } from './loader.config.js'
 installGlobals()
 let require = createRequire(import.meta.url);
 let packagePath = dirname(require.resolve("../remix-app/package.json"));
@@ -52,8 +52,6 @@ app.use(
 app.use(express.static(publicPath, { maxAge: "5m" }));
 
 // eslint-disable-next-line no-undef
-void (async () => {
-
   if (process.env.NODE_ENV === "development") {
     app.all("*", async (req, res, next) => {
       try {
@@ -79,9 +77,9 @@ void (async () => {
       })
     );
   }
-})();
-const port = process.env.PORT ?? 3333;
-const SECRET_KEY = process.env.SECRET_KEY ;
+
+const port = parseInt(process.env.PORT) ?? 3333;
+const SECRET_KEY = process.env.SECRET_KEY, SECRET_KEY_ARRAY = SECRET_KEY ? [SECRET_KEY] : []
 
 const radataDir = "radata";
 let server = app.listen(port, () => {
@@ -95,24 +93,24 @@ function purgeRequireCache(path) {
 }
 (async () => {
   await import('chainlocker')
-gun.keys([SECRET_KEY],masterKeys => {
-  gun.vault("REMIX_GUN", masterKeys);
-  let locker = gun.locker(['ENCRYPTED_APP_CONTEXT'])
-      locker.put(data);
+  gun.keys(SECRET_KEY_ARRAY, masterKeys => {
+    gun.vault("REMIX_GUN", masterKeys);
+    let locker = gun.locker(['ENCRYPTED_APP_CONTEXT'])
+    locker.put(data);
 
-});
+  });
 })();
 function getLoadContext() {
   return async function () {
 
     return {
       authorizedDB() {
-        return {gun };
+        return { gun };
       },
-      SECRET_KEY,
+      SECRET_KEY_ARRAY,
     }
-    };
-  
+  };
+
 }
 function remixEarlyHints(build) {
   function getRel(resource) {

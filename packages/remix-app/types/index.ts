@@ -11,6 +11,6 @@ export interface LoaderContext {
         authorizedDB(): {
             gun: IGunInstance<any>;
         };
-        SECRET_KEY: string | undefined;
+        SECRET_KEY_ARRAY: string[] | [];
     }>
 }

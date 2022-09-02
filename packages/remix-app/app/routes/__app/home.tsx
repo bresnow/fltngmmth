@@ -1,7 +1,7 @@
 import { useLoaderData } from '@remix-run/react'
 import type { LoaderFunction } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
-
+import NameSpacePreviewMap from '@pkg/ui/kit/components/pagesection/blog/BlogList'
 import { ContentForm, TweetList } from '@pkg/ui'
 
 
@@ -74,7 +74,7 @@ export default function Home() {
                 <>
                     <div className="my-[5px] h-0 border-b border-gray-200" />
                 </>
-                       <TweetList list={data.tweets} />
+                       <NameSpacePreviewMap />
         </div>
     )
 }

@@ -33,9 +33,9 @@ export let meta: MetaFunction = ({data}) => ({
 export const loader: LoaderFunction = async ({ request,context }) => {
 
   let loaderContext = context as unknown as LoaderContext;
-  let { authorizedDB } = await loaderContext();
+  let { authorizedDB ,SECRET_KEY_ARRAY} = await loaderContext();
   let { gun } = authorizedDB();
-  let masterKeys = await gun.keys([]);
+  let masterKeys = await gun.keys(SECRET_KEY_ARRAY);
   gun.vault("REMIX_GUN", masterKeys);
   let locker = gun.locker(['ENCRYPTED_APP_CONTEXT']);
   let { pages } = await locker.value(data => console.log(data))

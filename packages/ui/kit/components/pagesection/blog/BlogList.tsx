@@ -1,31 +1,31 @@
 import React from 'react';
 import FormSubscribe from '../../form/layout/FormSubscribe';
-import BlogCard from './BlogCard';
+import NameSpaceCard from './BlogCard';
 
 interface Props {
     withSearch?: boolean;
 }
 
-const BlogList = (props: Props) => {
+const NameSpacePreviewMap = (props: Props) => {
     const blogs = [
         {
             tags: ['Car', 'Money'],
             title: 'Work at home',
-            categ: 'Video',
+            service: 'Video',
             img: '/images/blog/1.jpg',
             desc: 'Work at home, remote, is the new age of the job, every person can work at home....',
         },
         {
             tags: ['Car', 'Money'],
             title: 'test',
-            categ: 'Oui',
+            service: 'Oui',
             img: '/images/blog/2.jpg',
             desc: 'The new supercar is here, 543 cv and 140 000$ !!',
         },
         {
             tags: ['Car', 'Money'],
             title: 'test',
-            categ: 'Oui',
+            service: 'Oui',
             img: '/images/blog/3.jpg',
             desc: 'The new supercar is here, 543 cv and 140 000$ !!',
         },
@@ -44,7 +44,7 @@ const BlogList = (props: Props) => {
         {
             tags: ['Car', 'Money'],
             title: 'test',
-            categ: 'Oui',
+            service: 'Oui',
             img: '/images/blog/6.jpg',
             desc: 'The new supercar is here, 543 cv and 140 000$ !!',
         },
@@ -68,11 +68,11 @@ const BlogList = (props: Props) => {
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12">
                 {blogs.map((blog) => {
                     return (
-                        <BlogCard
+                        <NameSpaceCard
                             key={blog.title}
                             tags={blog.tags}
                             title={blog.title}
-                            categ={blog.categ}
+                            service={blog.service}
                             img={blog.img}
                             desc={blog.desc}
                             showAuthor={true}
@@ -84,4 +84,4 @@ const BlogList = (props: Props) => {
     );
 };
 
-export default BlogList;
+export default NameSpacePreviewMap;
