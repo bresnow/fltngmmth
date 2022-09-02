@@ -34,6 +34,9 @@ export const data = (req, res) => {
       },
     },
     cnxt: {
+      header:{
+        title: '#CNXT',
+      },
       page_title: `CNXT  Dynamic Namespaces`,
       version: `v.${version}`,
       profile: '/images/AppIcon.svg',

@@ -3,7 +3,7 @@ import React from 'react';
 const SimpleFolioHome = () => {
     return (
         <main className="dark:bg-gray-800 font-mono bg-white relative overflow-hidden h-screen">
-            <div className="hidden md:block absolute -bottom-32 -left-32 w-96 h-96">
+            {/* <div className="hidden md:block absolute -bottom-32 -left-32 w-96 h-96">
                 <div className="absolute text-extrabold text-xl right-12 z-20 text-start top-1/4">
                     <span className="text-7xl">🎨</span>
                     <p>Got a project ?</p>
@@ -19,7 +19,7 @@ const SimpleFolioHome = () => {
                         transform="translate(100 100)"
                     />
                 </svg>
-            </div>
+            </div> */}
             <header className="h-24 sm:h-32 flex items-center z-30 w-full">
                 <div className="container mx-auto px-6 flex items-center justify-between">
                     <div className="uppercase text-gray-800 dark:text-white font-black text-3xl flex items-center">

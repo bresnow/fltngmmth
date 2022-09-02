@@ -27,6 +27,7 @@ export const RouteHeader = () => {
 					</Text>
 				)}
 			</div>
+			
 		</div>
 	) : null
 }

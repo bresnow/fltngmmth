@@ -7,10 +7,10 @@ declare global {
     }
 }
 export interface LoaderContext {
-    ({ request, params }: {request: Request, params: Params}) :Promise<{
-        authorizedDB(opts?: { keypair: ISEAPair }): {
-            db: IGunUserInstance<any, any, any, IGunInstanceRoot<any, IGunInstance<any>>>;
+    (): Promise<{
+        authorizedDB(): {
             gun: IGunInstance<any>;
-        }
+        };
+        SECRET_KEY: string | undefined;
     }>
 }

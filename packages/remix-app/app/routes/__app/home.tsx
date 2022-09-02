@@ -70,7 +70,7 @@ export default function Home() {
     const { data } = useLoaderData<typeof loader>()
 
     return (
-        <div className="bg">
+        <div >
                 <>
                     <div className="my-[5px] h-0 border-b border-gray-200" />
                 </>

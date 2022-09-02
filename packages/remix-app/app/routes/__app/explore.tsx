@@ -3,7 +3,6 @@ import { Outlet } from "@remix-run/react";
 import { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 import { LoaderContext } from "../../../types/index";
 import { MultipleShoppingCard } from "@pkg/ui";
-
 import { Trigger } from "../../../../ui/dialog/dialog";
 import Natural2Home from "@pkg/ui/kit/templates/homePages/simplePage/Natural2Home";
 import TailKitHome from "@pkg/ui/kit/templates/homePages/simplePage/TailkitHome";
@@ -52,11 +51,11 @@ export default function Explore() {
                 className="sticky top-16 z-10"
             />
             <MultipleShoppingCard />
-            <Trigger>
+            {/* <Trigger>
                 <ButtonFollow />
             </Trigger>
             <ButtonFollow action="/forms/user" />
-            <Outlet />
+            <Outlet /> */}
         </div>
     );
 }

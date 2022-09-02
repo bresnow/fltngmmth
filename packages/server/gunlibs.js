@@ -13,4 +13,3 @@ export * from "gun/lib/not.js";
 export * from "gun/lib/axe.js";
 export * from "gun/lib/utils.js";
 export * from "gun/lib/book.js";
-export * from "chainlocker"

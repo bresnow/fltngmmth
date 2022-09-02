@@ -1,3 +1,4 @@
+import { useLoaderData } from "@remix-run/react";
 import type { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
 import {
   Links,
@@ -13,45 +14,51 @@ import type { LoaderContext } from "types";
 import styles from '@pkg/ui/styles.css';
 import type { LinksFunction } from "@remix-run/server-runtime";
 import 'chainlocker'
+import { json } from '@remix-run/node';
 export const links: LinksFunction = () => {
   return [
     {
       rel: "stylesheet",
       href: styles,
     }
-   
+
   ];
 };
-export let meta: MetaFunction = () => ({
+export let meta: MetaFunction = ({data}) => ({
+  ...data,
   charset: "utf-8",
   title: "New Remix App",
   viewport: "width=device-width,initial-scale=1",
 });
-export let loader: LoaderFunction = async ({ params, request, context }) => {
-  let loaderContext = context as unknown as LoaderContext;
-  return null
-}
+export const loader: LoaderFunction = async ({ request,context }) => {
 
+  let loaderContext = context as unknown as LoaderContext;
+  let { authorizedDB } = await loaderContext();
+  let { gun } = authorizedDB();
+  let masterKeys = await gun.keys([]);
+  gun.vault("REMIX_GUN", masterKeys);
+  let locker = gun.locker(['ENCRYPTED_APP_CONTEXT']);
+  let { pages } = await locker.value(data => console.log(data))
+  let rootmetadata = pages.root.meta
+  let url = new URL(request.url)
+  rootmetadata = JSON.parse(JSON.stringify(rootmetadata).split('<%--protocol-host--%>').join(url.protocol+url.host))
+  return json(rootmetadata)
+}
 export default function App() {
+
   return (
     <html lang='en'>
       <head>
         <Meta />
         <Links />
       </head>
-      <body className='bg-dark-800'>
-        <div className=' font-sans antialiased bg-gradient-to-tr from-cnxt_red via-white to-transparent text-gray-900 leading-normal tracking-wider bg-cover'>
-          <div className='p-5 font-sans antialiased bg-gradient-to-b from-cnxt_black via-blue-400 to-cnxt_blue text-gray-900 leading-normal tracking-wider bg-cover'>
-            {' '}
-            <div className='py-10 mt-10 font-sans antialiased bg-gradient-to-tr from-slate-900 via-transparent to-cnxt_red text-gray-900 leading-normal tracking-wider bg-cover'>
-              <Outlet />
-            </div>
-          </div>
-        </div>
+      <body >
+        <Outlet />
+
         <ScrollRestoration />
         <Scripts />
         {/* <ExternalScripts /> */}
- <LiveReload />
+        <LiveReload />
       </body>
     </html>
   );
@@ -62,10 +69,10 @@ export function CatchBoundary() {
 
   return (
 
-      <main>
-        <h1>{status}</h1>
-        {statusText && <p>{statusText}</p>}
-      </main>
+    <main>
+      <h1>{status}</h1>
+      {statusText && <p>{statusText}</p>}
+    </main>
 
   );
 }
@@ -75,9 +82,9 @@ export function ErrorBoundary({ error }: { error: Error }) {
 
   return (
 
-      <main>
-        <h1>Oops, looks like something went wrong 😭</h1>
-      </main>
+    <main>
+      <h1>Oops, looks like something went wrong 😭</h1>
+    </main>
 
   );
 }

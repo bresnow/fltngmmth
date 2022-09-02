@@ -4,7 +4,7 @@
 
 This is a boilerplate for creating distributed web apps. Using GunDB, SEA authentication and React v18. Out of the box two or more boilerplate instances can share data via GUN's peer websocket feature.
 
-## Goals
+## Under The Hood
 
 - [x] Remix.GUN Relay Server Adapter
 - [x] Authorization with Gun.Sea/ Gun User Api
@@ -38,7 +38,7 @@ This turborepo has some additional tools already setup for you:
 - [Prettier](https://prettier.io) for code formatting
 - [Github Actions](https://github.com/features/actions)
 
-## Treafik Reverse Proxy & Load Balancing In Docker Swarm
+## Traefik Reverse Proxy & Load Balancing In Docker Swarm
 
 Self-hosted deployment is a breeze. There are [swarm stacks](swarm-stacks) for the app and Traefik. Middleware redirects to https and uses a Lets Encrypt tls certificate resolver. Authenticated UI dashboard is also available. There are github worklow dispatchers for traefik and the app so you can spin up a new production instance from the github repo. See [Self-Hosted Github Runners Documentation](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners) .
 

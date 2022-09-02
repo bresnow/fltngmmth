@@ -2,14 +2,13 @@ import { createRequire } from "module";
 import { dirname, resolve } from "path";
 import compression from "compression";
 import express from "express";
-import { createRequestHandler } from "@remix-run/express";
+import { createRequestHandler, GetLoadContextFunction } from "@remix-run/express";
 import { createRoutes } from "@remix-run/server-runtime/dist/routes.js";
 import { matchServerRoutes } from "@remix-run/server-runtime/dist/routeMatching.js";
 import { installGlobals } from "@remix-run/node";
 import Gun from 'gun'
-import './gunlibs.js'
+import '../gunlibs.js'
 import process from 'process';
-import {data} from './loader.config.js'
 installGlobals()
 let require = createRequire(import.meta.url);
 let packagePath = dirname(require.resolve("../remix-app/package.json"));
@@ -24,7 +23,6 @@ const noCompressContentTypes = [
 ];
 // http://expressjs.com/en/advanced/best-practice-security.html#at-a-minimum-disable-x-powered-by-header
 app.disable("x-powered-by");
-app.use(Gun.serve);
 app.use(
   compression({
     filter: (req, res) => {
@@ -52,67 +50,60 @@ app.use(
 app.use(express.static(publicPath, { maxAge: "5m" }));
 
 // eslint-disable-next-line no-undef
-void (async () => {
+// void(async () => {
+ let mode = process.env.NODE_ENV; 
 
-  if (process.env.NODE_ENV === "development") {
     app.all("*", async (req, res, next) => {
       try {
         purgeRequireCache(importPath);
-        remixEarlyHints(await import(importPath))(req, res);
+        remixEarlyHints(await import(importPath))(req, res, next);
         await createRequestHandler({
           build: await import(`${importPath}?${Date.now()}`),
-          getLoadContext,
-          mode: "development",
+          getLoadContext: getLoadContext as unknown as GetLoadContextFunction,
+          mode,
         })(req, res, next);
       } catch (error) {
         console.error(error);
         next(error);
       }
     });
-  } else {
-    app.all(
-      "*",
-      createRequestHandler({
-        build: await import("remix-app"),
-        getLoadContext,
-        mode: "production",
-      })
-    );
-  }
-})();
-const port = process.env.PORT ?? 3333;
-const SECRET_KEY = process.env.SECRET_KEY ;
+  // } else {
+//     app.all(
+//       "*",
+//       createRequestHandler({
+//         build: await import("../remix-app/build"),
+//         getLoadContext: getLoadContext as unknown as GetLoadContextFunction, 
+//         mode: "production",
+//       })
+//     );
+//   }
+// })();
+const port = process.env.PORT ??3333;
 
 const radataDir = "radata";
 let server = app.listen(port, () => {
   console.log(`Remix.Gun relay server listening on port ${port}`);
 });
 const gun = Gun({ file: radataDir, web: server });
-global.Gun = Gun;
-global.gun = gun;
-function purgeRequireCache(path) {
-  delete require.cache[require.resolve(path)];
+
+function purgeRequireCache(path:string) {
+  process.env.NODE_ENV === "development"?
+  delete require.cache[require.resolve(path)]: null;
 }
-(async () => {
-  await import('chainlocker')
-gun.keys([SECRET_KEY],masterKeys => {
-  gun.vault("REMIX_GUN", masterKeys);
-  let locker = gun.locker(['ENCRYPTED_APP_CONTEXT'])
-      locker.put(data);
-
-});
-})();
+const SECRET_KEY = process.env.SECRET_KEY??"secret";
 function getLoadContext() {
-  return async function () {
-
+  return async function ({request, params, secret = [SECRET_KEY]}) {
+    let masterKeys = await gun.keys(secret);
+    console.log("masterKeys", masterKeys);
     return {
-      authorizedDB() {
-        return {gun };
-      },
-      SECRET_KEY,
-    }
+      authorizedDB(opts) {
+        let keypair =  masterKeys;
+        let {protocol, host} =request ??{protocol: 'http', host: `localhost:${port}`};
+       let db = gun.vault(`${protocol}://${host}`, keypair)
+        return {db, gun};
+      }
     };
-  
+  };
 }
 function remixEarlyHints(build) {
   function getRel(resource) {
@@ -123,7 +114,7 @@ function remixEarlyHints(build) {
   }
 
   const routes = createRoutes(build.routes);
-
+  if (process.env.NODE_ENV === "development" ){
   /**
    *
    * @param {*} req
@@ -150,6 +141,10 @@ function remixEarlyHints(build) {
       res.socket.write("\r\n");
     }
 
-    if (next) next();
+    if (next) next();}
+  } else {
+    return () => {
+
+    }
   };
 }

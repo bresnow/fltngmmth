@@ -1,6 +1,4 @@
-import { Link, Outlet } from '@remix-run/react'
-import FMLogo from '@pkg/ui/svg/logos/FltngMmth';
-import SimpleFolioHome from '@pkg/ui/kit/templates/homePages/folio/SimpleFolioHome';
+import { Link, Outlet } from '@remix-run/react';
 import {
     CustomButton as Button,
     ButtonProvider,
@@ -13,9 +11,8 @@ import {
 export default function () {
     return (
         <>
-        <SimpleFolioHome />
             <div className="flex ">
-                <div className="mdl:grid-cols-[auto_600px_minmax(auto,400px)] inline-grid grid-cols-[auto_minmax(auto,800px)]">
+                <div className="md:grid-cols inline-grid grid-cols">
                     {/* Header */}
                     <div className="sticky top-0 z-10 col-start-1 row-start-1 flex flex-wrap h-16 flex-col justify-center px-0 sm:h-screen sm:items-center sm:px-[5px] md:px-3.5 xl:w-[275px] xl:items-start">
                         {/* Logo */}
@@ -30,30 +27,30 @@ export default function () {
                         </div>
                         {/* Account */}
 
-                        <div className="relative w-full bg-red/80 backdrop-blur-lg sm:my-3.5">
+                        <div className="relative rounded-b-xl w-full bg-black/80 backdrop-blur-lg sm:my-3.5">
                             <AccountMenu />
                         </div>
 
                     </div>
 
                     {/* Main */}
-                    <main className="col-span-full col-start-1 row-start-1 border-gray-200 bg-yellow-400 sm:col-auto sm:col-start-2 sm:border-x">
+                    <main className="col-span-full col-start-1 row-start-1 border-gray-200 sm:col-auto sm:col-start-3 sm:border-x">
                         <RouteHeader />
                         <Outlet />
                     </main>
                     {/* Sidebar */}
-                    <div className="lgx:pl-7.5 mdl:flex col-start-3 row-start-1 mb-12  flex-col pl-5 pr-2.5">
+                    {/* <div className="lgx:pl-7.5 mdl:flex col-start-3 row-start-1 mb-12  flex-col pl-5 pr-2.5"> */}
                     {/* display conditionally by page  */}
-                    <div className="sticky top-0 z-10 col-start-3 row-start-1 h-16 bg-white">
+                    {/* <div className="sticky top-0 z-10 col-start-3 row-start-1 h-16 bg-white"> */}
                     {/* Search */}
-                    </div>
+                    {/* </div> */}
                     {/* get the list of widgets from helper matches */}
-                    <div className="sticky top-16">sidebar</div>
-                    </div>
+                    {/* <div className="sticky top-16">sidebar</div> */}
+                    {/* </div> */}
                 </div>
             </div>
             {/* show if not logged in */}
-            <AuthBanner />
+            {/* <AuthBanner /> */}
         </>
     )
 }

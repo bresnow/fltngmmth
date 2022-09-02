@@ -7,7 +7,6 @@ export const loader = async () => {
 // import { useLoaderData } from "@remix-run/react";
 // import type { LoaderFunction } from "@remix-run/server-runtime";
 // import type { LoaderContext } from "types";
-// import {AccountMenu} from '@pkg/ui'
 // export const loader: LoaderFunction = async ({ params, request, context }) => {
 
 //   let loaderContext = context as unknown as LoaderContext;
