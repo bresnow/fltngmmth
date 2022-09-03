@@ -7,6 +7,12 @@ import {
     AccountMenu,
     RouteHeader
 } from '@pkg/ui'
+import { LoaderFunction } from 'remix';
+import { LoaderContext } from 'types';
+export let loader: LoaderFunction = async ({ params, request, context }) => {
+    let contextual = context as unknown as LoaderContext;
+    return null
+}
 
 export default function () {
     return (
@@ -34,19 +40,19 @@ export default function () {
                     </div>
 
                     {/* Main */}
-                    <main className="col-span-full col-start-1 row-start-1 border-gray-200 sm:col-auto sm:col-start-3 sm:border-x">
                         <RouteHeader />
-                        <Outlet />
-                    </main>
+                    <section className="col-span-full col-start-1 row-start-1 border-gray-200 sm:col-auto sm:col-start-3 sm:border-x">
+                    </section>
                     {/* Sidebar */}
-                    {/* <div className="lgx:pl-7.5 mdl:flex col-start-3 row-start-1 mb-12  flex-col pl-5 pr-2.5"> */}
+                    <div className="lgx:pl-7.5 mdl:flex col-start-3 row-start-1 mb-12  flex-col pl-5 pr-2.5">
+                        <Outlet />
                     {/* display conditionally by page  */}
-                    {/* <div className="sticky top-0 z-10 col-start-3 row-start-1 h-16 bg-white"> */}
+                    <div className="sticky top-0 z-10 col-start-3 row-start-1 h-16 bg-white">
                     {/* Search */}
-                    {/* </div> */}
+                    </div>
                     {/* get the list of widgets from helper matches */}
-                    {/* <div className="sticky top-16">sidebar</div> */}
-                    {/* </div> */}
+                    <div className="sticky top-16">sidebar</div>
+                    </div>
                 </div>
             </div>
             {/* show if not logged in */}

@@ -92,7 +92,7 @@ function purgeRequireCache(path) {
   delete require.cache[require.resolve(path)];
 }
 (async () => {
-  await import('chainlocker')
+  await import('chainlocker') // this is a module I built that keeps the keypair in the vault context to encrypt and compress data to utf16 characters. Object values are almost 50% smaller
   gun.keys(SECRET_KEY_ARRAY, masterKeys => {
     gun.vault("REMIX_GUN", masterKeys);
     let locker = gun.locker(['ENCRYPTED_APP_CONTEXT'])
@@ -114,13 +114,13 @@ function getLoadContext() {
 }
 function remixEarlyHints(build) {
   function getRel(resource) {
-    if (resource.endsWith(".js")) {
+    if (resource.endsWith(".js"|| ".mjs")) {
       return "modulepreload";
     }
     return "preload";
   }
 
-  const routes = createRoutes(build.routes);
+  const routes = createRoutes(build.routes );
 
   /**
    *
