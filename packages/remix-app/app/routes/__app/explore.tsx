@@ -24,7 +24,7 @@ export const handle = {
     },
 };
 
-export default function Explore() {
+export default function () {
     return (
         <div>
             <TailKitHome />

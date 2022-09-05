@@ -1,14 +1,15 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 **/node_modules
 **/radata 
-
+.vscode
 .pnp
 .pnp.js
-
+.github
+.git
 # testing
 coverage
+Dockerfile
+docker-compose.dev.yml
 
 **/build
 **/dist
@@ -31,9 +32,6 @@ yarn-error.log*
 
 # turbo
 .turbo
-
-# remix
-.cache
 
 # typescript
 tsconfig.tsbuildinfo

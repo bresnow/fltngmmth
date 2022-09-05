@@ -19,7 +19,7 @@
     "push": "npx --yes turbo run push",
     "typecheck": "npx --yes turbo run typecheck",
     "format": "prettier --write \"**/*.{json,md,mdx,mjs,mts,js,jsx,ts,tsx}\"",
-    "purge:full": "rm -rf node_modules **/**/radata **/**/node_modules",
+    "purge:full": "rm -rf node_modules **/**/radata **/**/node_modules **/*.log",
     "purge:rad": "rm -rf **/**/radata"
   },
   "devDependencies": {
