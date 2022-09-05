@@ -8,8 +8,6 @@
 .git
 # testing
 coverage
-Dockerfile
-docker-compose.dev.yml
 
 **/build
 **/dist
