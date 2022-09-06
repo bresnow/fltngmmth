@@ -4,7 +4,7 @@ services:
     container_name: remix-gun-dev 
     build:
       context: .
-      target: watch-dev
+      # target: watch-dev
     volumes:
       - ./packages:/app/packages
       - ./config:/app/config

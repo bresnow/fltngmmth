@@ -3,12 +3,12 @@ FROM mhart/alpine-node:${NODE_VERSION}
 # deps
 WORKDIR /app
 
-COPY ./package.json /app/package.json
-COPY ./yarn.lock /app/yarn.lock
-COPY ./turbo.json /app/turbo.json
-COPY ./.eslintrc.json /app/.eslintrc.json
-COPY ./packages /app/packages
-COPY ./config /app/config
+COPY ./package.json ./package.json
+COPY ./yarn.lock ./yarn.lock
+COPY ./turbo.json ./turbo.json
+COPY ./.eslintrc.js ./.eslintrc.js
+COPY ./packages ./packages
+COPY ./config ./config
 
 
 RUN yarn ci
