@@ -2,14 +2,14 @@ import { NavLink } from '@remix-run/react'
 import type { NavLinkProps } from '@remix-run/react'
 import cn from 'clsx'
 import React from 'react'
-
+import {CustomButton as Button} from '../button/button-multi'
 import { HashtagLarge, IconCollection, PencilIcon, useUser } from '../'
-import {  ContentForm, Button, Icon, Dialog } from '../'
+import {  ContentForm, Icon, Dialog } from '../'
 
 export const NavList = () => {
 	const user = useUser()
 	return (
-		<nav className="flex flex-auto justify-around gap-2 sm:my-1 sm:flex-col sm:justify-start xl:w-full">
+		<nav className="flex flex-auto justify-around gap-2 w-3/4">
 			{user && (
 				<NavButton to="/home" icon="home" iconActive="home_fill">
 					Home
@@ -57,10 +57,7 @@ const NavButton = ({
 	<NavLink to={to} prefetch="intent">
 		{({ isActive }) => (
 			<Button
-				as="div"
-				variant="ghost"
-				size="xl"
-				icon={isActive && iconActive ? iconActive : icon}
+			type={'button'}
 				className="ring-6 !block w-16 ring-inset ring-white sm:ring-0 xl:!inline-flex xl:w-auto"
 			>
 				<span className={cn(!isActive && 'font-normal', 'hidden xl:block')}>
@@ -77,13 +74,11 @@ const NewSubmissionButton = () => {
 		<>
 			<Button
 				onClick={dialog.toggle}
-				color="default"
-				size="lg"
-				className="shadow-md sm:shadow-none xl:w-full"
-				square
+		type={'button'}
+				className="shadow-md sm:shadow-none xl:w-2/6"
+				shape={'rounded'}
 			>
 				<span className="hidden text-xl xl:block">New Namespace</span>
-				<HashtagLarge fill={'#fff'}className="w-6 h-6" />
 			</Button>
 
 			<Dialog.Content state={dialog}>

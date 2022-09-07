@@ -44,8 +44,8 @@ export  const CustomButton = ({
     square22xl: `rounded-22`,
   };
   const colorStyle = {
-    primary: `bg-cnxt_navy-500`,
-    secondary: `bg-accent-500`,
+    primary: `bg-blue-500`,
+    secondary: `bg-red-500`,
   };
 
   const buttonClasses = cx([

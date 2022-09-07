@@ -12,7 +12,9 @@ export function useUser<UserData>() {
 
 export const AccountMenu = () => {
 	const location = useLocation()
-	let user = useUser<{name:string; username:string; avatar: string}>()
+	let user = useUser<{name:string; username:string; avatar: string; notifications:{
+		messages:any[]
+	}}>()
 	const popover = AriaKit.usePopoverState()
 	const messagePopover = AriaKit.usePopoverState()
 	return (
@@ -20,21 +22,21 @@ export const AccountMenu = () => {
 
 			<AriaKit.PopoverDisclosure
 				state={popover}
-				className="relative flex w-full cursor-pointer select-none items-center rounded-full p-5 transition-colors hover:bg-gray-100 active:bg-gray-200"
+				className="relative flex w-1/4 cursor-pointer select-none items-center rounded-full p-5 "
 			>
 
 				<Avatar
 					size="xs"
-					className="pointer-events-none sm:h-12 sm:w-12 rounded-full"
+					className="pointer-events-none sm:h-12 sm:w-12 rounded-full "
 					src={user?.avatar??"/icons/icon-96x96.png"}
 					alt={user?.name??"Bresnow"}
 				/>
 				<div className=" flex-auto items-center justify-between xl:flex">
 					<div className="text-start mx-3.5 flex flex-col text-lg">
-						<ContentEditable name={'account_name'} id={'account_name'} edit={true}>						
+					
 						<Text weight={7} className="leading-tight">
 								{user?.name ?? "Bresnow"}
-						</Text></ContentEditable>
+						</Text>
 						<Text color="gray" className="leading-tight">
 							{user?.username??`@bresnow`}
 						</Text>

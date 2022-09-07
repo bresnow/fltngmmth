@@ -14,6 +14,16 @@ COPY ./config ./config
 
 RUN yarn ci
 
+FROM clean-install as build
+WORKDIR /app
+COPY --from=clean-install /app /app
+CMD ["yarn", "build"]
+
+FROM build as production
+WORKDIR /app
+COPY --from=build /app /app
+CMD ["yarn", "start"]
+
 FROM clean-install as watch-dev
 WORKDIR /app
 COPY --from=clean-install /app /app
