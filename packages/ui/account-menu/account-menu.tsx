@@ -1,11 +1,18 @@
-import { Form, useLocation } from '@remix-run/react'
+import { useMatches, useLocation } from '@remix-run/react'
 import * as AriaKit from 'ariakit'
 import { ContentEditable } from '../editable'
-// import { useUser } from '../utils'
 import { Icon, Avatar, Text, ProfilePic } from '../'
+export function useUser<UserData>() {
+	const matches = useMatches()
+	const match = matches
+		.reverse()
+		.find((match) => match.data?.user || match.handle?.user)
+	return match?.data?.user || match?.handle?.user as UserData
+}
 
 export const AccountMenu = () => {
 	const location = useLocation()
+	let user = useUser<{name:string; username:string; avatar: string}>()
 	const popover = AriaKit.usePopoverState()
 	const messagePopover = AriaKit.usePopoverState()
 	return (
@@ -19,17 +26,17 @@ export const AccountMenu = () => {
 				<Avatar
 					size="xs"
 					className="pointer-events-none sm:h-12 sm:w-12 rounded-full"
-					src={"/icons/icon-96x96.png"}
-					alt={"Bresnow"}
+					src={user?.avatar??"/icons/icon-96x96.png"}
+					alt={user?.name??"Bresnow"}
 				/>
 				<div className=" flex-auto items-center justify-between xl:flex">
 					<div className="text-start mx-3.5 flex flex-col text-lg">
 						<ContentEditable name={'account_name'} id={'account_name'} edit={true}>						
 						<Text weight={7} className="leading-tight">
-							{'Bresnow'}
+								{user?.name ?? "Bresnow"}
 						</Text></ContentEditable>
 						<Text color="gray" className="leading-tight">
-							{`@bresnow`}
+							{user?.username??`@bresnow`}
 						</Text>
 					</div>
 					<Icon name="dots" size="md" />
@@ -49,7 +56,7 @@ export const AccountMenu = () => {
 									<Avatar
 										size="xs"
 										className="pointer-events-none sm:h-12 sm:w-12 rounded-full"
-										src={"/icons/icon-96x96.png"}
+										src={user.avatar??"/icons/icon-96x96.png"}
 										alt={"Bresnow"}
 									/>
 								</div>

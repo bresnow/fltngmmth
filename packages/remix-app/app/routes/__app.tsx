@@ -13,6 +13,13 @@ export let loader: LoaderFunction = async ({ params, request, context }) => {
     let contextual = context as unknown as LoaderContext;
     return null
 }
+export let handle = {
+    user: {
+        name: 'Hoodiehoo',
+        username: '@elmno',
+        avatar: '/images/gradient.webp'
+    }
+}
 
 export default function () {
     return (
@@ -33,14 +40,14 @@ export default function () {
                         </div>
                         {/* Account */}
 
-                        <div className="relative rounded-b-xl w-full bg-black/80 backdrop-blur-lg sm:my-3.5">
+                        <div className="relative rounded-b-xl w-full backdrop-blur-lg sm:my-3.5">
                             <AccountMenu />
                         </div>
 
                     </div>
 
                     {/* Main */}
-                        <RouteHeader />
+                        {/* <RouteHeader /> */}
                     <section className="col-span-full col-start-1 row-start-1 border-gray-200 sm:col-auto sm:col-start-3 sm:border-x">
                     </section>
                     {/* Sidebar */}

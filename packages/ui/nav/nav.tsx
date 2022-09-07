@@ -3,18 +3,18 @@ import type { NavLinkProps } from '@remix-run/react'
 import cn from 'clsx'
 import React from 'react'
 
-import { HashtagLarge, IconCollection, PencilIcon } from '../'
+import { HashtagLarge, IconCollection, PencilIcon, useUser } from '../'
 import {  ContentForm, Button, Icon, Dialog } from '../'
 
 export const NavList = () => {
-	const user ={username: 'bresnow', name: 'Bresnow'}
+	const user = useUser()
 	return (
 		<nav className="flex flex-auto justify-around gap-2 sm:my-1 sm:flex-col sm:justify-start xl:w-full">
-			{/* {user && ( */}
+			{user && (
 				<NavButton to="/home" icon="home" iconActive="home_fill">
 					Home
 				</NavButton>
-			{/* )} */}
+			 )} 
 
 			<NavButton
 				to="/explore"
@@ -24,21 +24,21 @@ export const NavList = () => {
 				Explore
 			</NavButton>
 
-			{/* {user && ( */}
+			 {user && ( 
 				<>
 					<NavButton
-						to={`/${user.username}`}
+						to={`/${user.username.replace('@', '')}`}
 						icon="user"
 						iconActive="user_fill"
 					>
 						Profile
 					</NavButton>
 					{/* Button New Tweet */}
-					<div className="bottom-21 fixed right-5 sm:static sm:my-5 xl:w-11/12">
-						<TweetButton />
+					<div className="sm:my-5 xl:w-11/12">
+						<NewSubmissionButton />
 					</div>
 				</>
-			{/* )} */}
+			)} 
 		</nav>
 	)
 }
@@ -71,7 +71,7 @@ const NavButton = ({
 	</NavLink>
 )
 
-const TweetButton = () => {
+const NewSubmissionButton = () => {
 	const dialog = Dialog.useDialog()
 	return (
 		<>
@@ -83,7 +83,7 @@ const TweetButton = () => {
 				square
 			>
 				<span className="hidden text-xl xl:block">New Namespace</span>
-				<HashtagLarge className="w-6 h-6" />
+				<HashtagLarge fill={'#fff'}className="w-6 h-6" />
 			</Button>
 
 			<Dialog.Content state={dialog}>

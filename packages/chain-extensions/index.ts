@@ -26,7 +26,7 @@ declare module 'gun/types' {
     }
 }
 
-Gun.chain.json = async function () {
+Gun.chain.json = async function ({request, params, context}) {
 
 }
 // Gun.chain.useCertificate = async function (pub, certPath, path, cb) {

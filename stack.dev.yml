@@ -1,0 +1,54 @@
+version: '3'
+services:
+  app:
+    image: remixgun:dev
+    volumes:
+      - packages:/app/packages
+      - config:/app/config
+      - node_modules:/app/node_modules
+      - public:/app/packages/remix-app/public
+    ports:
+      - 8002:8002
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.rule=Host(`${DOMAIN:-remix-gun.fltngmmth.com}`)
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.entrypoints=http
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.middlewares=https-redirect
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}-https.rule=Host(`${DOMAIN:-remix-gun.fltngmmth.com}`)
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}-https.entrypoints=https
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}-https.service=remix-gun-app-${NUMBER:-0}
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}-https.tls=true
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}-https.tls.certresolver=le
+        - traefik.http.services.remix-gun-app-${NUMBER:-0}.loadbalancer.server.port=${PORT:-3333}
+    networks:
+      - traefik-public
+    environment:
+      - PORT=${PORT:-3333}
+volumes:
+  storage:
+    driver: local-persist
+    driver_opts:
+      mountpoint: ${PWD}/storage
+  public:
+    driver: local-persist
+    driver_opts:
+      mountpoint: ${PWD}/packages/remix-app/public
+  packages:
+    driver: local-persist
+    driver_opts:
+      mountpoint: ${PWD}/packages
+  node_modules:
+    driver: local-persist
+    driver_opts:
+      mountpoint: ${PWD}/node_modules
+  config:
+    driver: local-persist
+    driver_opts:
+     mountpoint: ${PWD}/config
+    
+networks:
+  traefik-public:
+    external: true
