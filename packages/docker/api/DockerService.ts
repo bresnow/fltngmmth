@@ -1,117 +1,117 @@
 export interface Version {
-    Index: number
+  Index: number;
 }
 
 export interface Labels {
-    [id: string]: string
+  [id: string]: string;
 }
 
 export interface Mount {
-    Type: string
-    Source: string
-    Target: string
+  Type: string;
+  Source: string;
+  Target: string;
 }
 
 export interface ContainerSpecType {
-    Image: string
-    Env: string[]
-    Mounts: Mount[]
-    Isolation: string
+  Image: string;
+  Env: string[];
+  Mounts: Mount[];
+  Isolation: string;
 }
 
 export interface Resources {
-    Limits: {
-        MemoryBytes: number
-        NanoCPUs: number
-    }
-    Reservations: {
-        MemoryBytes: number
-        NanoCPUs: number
-    }
+  Limits: {
+    MemoryBytes: number;
+    NanoCPUs: number;
+  };
+  Reservations: {
+    MemoryBytes: number;
+    NanoCPUs: number;
+  };
 }
 
 export interface Placement {
-    Constraints: string[]
+  Constraints: string[];
 }
 
 export interface Options {
-    'max-size': string
+  "max-size": string;
 }
 
 export interface LogDriver {
-    Name: string
-    Options: Options
+  Name: string;
+  Options: Options;
 }
 
 export interface TaskTemplate {
-    ContainerSpec: ContainerSpecType
-    Resources: Resources
-    Placement: Placement
-    LogDriver: LogDriver
-    ForceUpdate: number
-    Runtime: string
+  ContainerSpec: ContainerSpecType;
+  Resources: Resources;
+  Placement: Placement;
+  LogDriver: LogDriver;
+  ForceUpdate: number;
+  Runtime: string;
 }
 
 export interface Replicated {
-    Replicas: number
+  Replicas: number;
 }
 
 export interface Mode {
-    Replicated: Replicated
+  Replicated: Replicated;
 }
 
 export interface Port {
-    Protocol: string
-    TargetPort: number
-    PublishedPort: number
-    PublishMode: string
+  Protocol: string;
+  TargetPort: number;
+  PublishedPort: number;
+  PublishMode: string;
 }
 
 export interface EndpointSpec {
-    Mode: string
-    Ports: Port[]
+  Mode: string;
+  Ports: Port[];
 }
 
 export interface Spec {
-    Name: string
-    Labels: Labels
-    TaskTemplate: TaskTemplate
-    Mode: Mode
-    EndpointSpec: EndpointSpec
+  Name: string;
+  Labels: Labels;
+  TaskTemplate: TaskTemplate;
+  Mode: Mode;
+  EndpointSpec: EndpointSpec;
 }
 
 export interface PreviousSpec {
-    Name: string
-    Labels: Labels
-    TaskTemplate: TaskTemplate
-    Mode: Mode
-    EndpointSpec: EndpointSpec
+  Name: string;
+  Labels: Labels;
+  TaskTemplate: TaskTemplate;
+  Mode: Mode;
+  EndpointSpec: EndpointSpec;
 }
 
 export interface VirtualIP {
-    NetworkID: string
-    Addr: string
+  NetworkID: string;
+  Addr: string;
 }
 
 export interface Endpoint {
-    Spec: Spec
-    Ports: Port[]
-    VirtualIPs: VirtualIP[]
+  Spec: Spec;
+  Ports: Port[];
+  VirtualIPs: VirtualIP[];
 }
 
 export interface UpdateStatus {
-    State: string
-    StartedAt: string
-    Message: string
+  State: string;
+  StartedAt: string;
+  Message: string;
 }
 
 export default interface DockerService {
-    ID: string
-    Version: Version
-    CreatedAt: string
-    UpdatedAt: string
-    Spec: Spec
-    PreviousSpec: PreviousSpec
-    Endpoint: Endpoint
-    UpdateStatus: UpdateStatus
+  ID: string;
+  Version: Version;
+  CreatedAt: string;
+  UpdatedAt: string;
+  Spec: Spec;
+  PreviousSpec: PreviousSpec;
+  Endpoint: Endpoint;
+  UpdateStatus: UpdateStatus;
 }

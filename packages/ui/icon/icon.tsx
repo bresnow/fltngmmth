@@ -1,20 +1,20 @@
-import cn from 'clsx'
-import React from 'react'
-import type { IconCollection } from './icon.collection'
-import { icons } from './icon.collection'
+import cn from "clsx";
+import React from "react";
+import type { IconCollection } from "./icon.collection";
+import { icons } from "./icon.collection";
 
-import { Theme } from '../theme'
+import { Theme } from "../theme";
 
 export type IconProps = {
-	name: IconCollection
-	size?: keyof typeof Theme.sizes.icon
-} & React.ComponentProps<'div'>
+  name: IconCollection;
+  size?: keyof typeof Theme.sizes.icon;
+} & React.ComponentProps<"div">;
 
 export const Icon = ({ name, size, className, ...rest }: IconProps) => {
-	const classes = cn(
-		name && icons[name],
-		size && Theme.sizes.icon[size],
-		className
-	)
-	return <div className={classes} {...rest} />
-}
+  const classes = cn(
+    name && icons[name],
+    size && Theme.sizes.icon[size],
+    className
+  );
+  return <div className={classes} {...rest} />;
+};

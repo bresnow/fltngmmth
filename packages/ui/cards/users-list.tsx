@@ -1,16 +1,16 @@
-import { UserCard } from './user-card'
-import React from 'react'
+import { UserCard } from "./user-card";
+import React from "react";
 
 export type UserListProps = {
-	list?: any[]
-}
+  list?: any[];
+};
 
 export const UserList = ({ list }: UserListProps) => {
-	return (
-		<div>
-			{/* {list.map((user) => ( */}
-				<UserCard  />
-			{/* ))} */}
-		</div>
-	)
-}
+  return (
+    <div>
+      {/* {list.map((user) => ( */}
+      <UserCard />
+      {/* ))} */}
+    </div>
+  );
+};

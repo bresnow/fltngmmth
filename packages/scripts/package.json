@@ -1,1 +1,14 @@
-{"name":"scripts","version":"0.0.1","main":"index.js","license":"MIT","scripts":{"push":"node git/push.mjs"},"dependencies":{"fsxx":"^0.1.0","remix-app":"*","zx":"^7.0.8"}}
+{
+  "name": "scripts",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "push": "node git/push.mjs"
+  },
+  "dependencies": {
+    "fsxx": "^0.1.0",
+    "remix-app": "*",
+    "zx": "^7.0.8"
+  }
+}

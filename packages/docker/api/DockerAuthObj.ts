@@ -1,8 +1,8 @@
 export interface DockerAuthObj {
-    serveraddress: string
-    username: string
-    password: string
-    // email: string // Email is optional in auth
+  serveraddress: string;
+  username: string;
+  password: string;
+  // email: string // Email is optional in auth
 }
 
 /*
@@ -18,8 +18,8 @@ export interface DockerAuthObj {
 }
 */
 export interface DockerRegistryConfig {
-    [serveraddress: string]: {
-        username: string
-        password: string
-    }
+  [serveraddress: string]: {
+    username: string;
+    password: string;
+  };
 }

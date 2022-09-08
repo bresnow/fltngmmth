@@ -1,45 +1,45 @@
-import React, { ComponentType } from 'react';
-import objectAssign from 'object-assign';
+import React, { ComponentType } from "react";
+import objectAssign from "object-assign";
 
 export interface IframeAttr {
   url?: string;
   src?: string;
   allowFullScreen?: boolean;
   position?:
-    | 'relative'
-    | 'absolute'
-    | 'fixed'
-    | 'sticky'
-    | 'static'
-    | 'inherit'
-    | 'initial'
-    | 'unset';
-  display?: 'block' | 'none' | 'inline';
+    | "relative"
+    | "absolute"
+    | "fixed"
+    | "sticky"
+    | "static"
+    | "inherit"
+    | "initial"
+    | "unset";
+  display?: "block" | "none" | "inline";
   height?: string;
   width?: string;
-  loading?: 'auto' | 'eager' | 'lazy';
+  loading?: "auto" | "eager" | "lazy";
   target?: string;
   srcdocument?: string;
-  importance?: 'auto' | 'high' | 'low';
+  importance?: "auto" | "high" | "low";
   overflow?: string;
   styles?: object;
   name?: string;
   allowpaymentrequest?: boolean;
   referrerpolicy?:
-    | 'no-referrer'
-    | 'no-referrer-when-downgrade'
-    | 'origin'
-    | 'origin-when-cross-origin'
-    | 'same-origin'
-    | 'strict-origin'
-    | 'strict-origin-when-cross-origin'
-    | 'unsafe-url';
+    | "no-referrer"
+    | "no-referrer-when-downgrade"
+    | "origin"
+    | "origin-when-cross-origin"
+    | "same-origin"
+    | "strict-origin"
+    | "strict-origin-when-cross-origin"
+    | "unsafe-url";
   onLoad?: (e: Event) => void;
   onMouseOver?: () => void;
   onMouseOut?: () => void;
   onMessage?: (e: MessageEvent) => void;
   frameBorder?: number;
-  scrolling?: 'auto' | 'yes' | 'no';
+  scrolling?: "auto" | "yes" | "no";
   id?: string;
   ariaHidden?: boolean;
   ariaLabel?: string;
@@ -51,18 +51,18 @@ export interface IframeAttr {
   title?: string;
 }
 export enum SandBox {
-  allowForms = 'allow-forms',
-  allowModals = 'allow-modals',
-  allowOrientationLock = 'allow-orientation-lock',
-  allowPointerLock = 'allow-pointer-lock',
-  allowPopups = 'allow-popups',
-  allowPopupsToEscapeSandbox = 'allow-popups-to-escape-sandbox',
-  allowPresentation = 'allow-presentation',
-  allowSameOrigin = 'allow-same-origin',
-  allowScripts = 'allow-scripts',
-  allowStorageAccessByUserActivation = 'allow-storage-access-by-user-activation',
-  allowTopNavigation = 'allow-top-navigation',
-  allowTopNavigationByUserActivation = 'allow-top-navigation-by-user-activation',
+  allowForms = "allow-forms",
+  allowModals = "allow-modals",
+  allowOrientationLock = "allow-orientation-lock",
+  allowPointerLock = "allow-pointer-lock",
+  allowPopups = "allow-popups",
+  allowPopupsToEscapeSandbox = "allow-popups-to-escape-sandbox",
+  allowPresentation = "allow-presentation",
+  allowSameOrigin = "allow-same-origin",
+  allowScripts = "allow-scripts",
+  allowStorageAccessByUserActivation = "allow-storage-access-by-user-activation",
+  allowTopNavigation = "allow-top-navigation",
+  allowTopNavigationByUserActivation = "allow-top-navigation-by-user-activation",
 }
 const Iframe: ComponentType<IframeAttr> = ({
   url,
@@ -102,7 +102,7 @@ const Iframe: ComponentType<IframeAttr> = ({
     target: target || null,
     style: {
       position: position || null,
-      display: display || 'block',
+      display: display || "block",
       overflow: overflow || null,
     },
     scrolling: scrolling || null,
@@ -119,9 +119,9 @@ const Iframe: ComponentType<IframeAttr> = ({
     title: title || null,
     allow: allow || null,
     id: id || null,
-    'aria-labelledby': ariaLabelledby || null,
-    'aria-hidden': ariaHidden || null,
-    'aria-label': ariaLabel || null,
+    "aria-labelledby": ariaLabelledby || null,
+    "aria-hidden": ariaHidden || null,
+    "aria-label": ariaLabel || null,
     width: width || null,
     height: height || null,
     onLoad: onLoad || null,
@@ -142,16 +142,16 @@ const Iframe: ComponentType<IframeAttr> = ({
   }
 
   if (allowFullScreen) {
-    if ('allow' in props) {
-      const currentAllow = props.allow.replace('fullscreen', '');
+    if ("allow" in props) {
+      const currentAllow = props.allow.replace("fullscreen", "");
       props.allow = `fullscreen ${currentAllow.trim()}`.trim();
     } else {
-      props.allow = 'fullscreen';
+      props.allow = "fullscreen";
     }
   }
 
   if (frameBorder && frameBorder >= 0) {
-    if (!props.style.hasOwnProperty('border')) {
+    if (!props.style.hasOwnProperty("border")) {
       props.style.border = frameBorder;
     }
   }

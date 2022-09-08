@@ -1,1 +1,1 @@
-export * from './account-menu'
+export * from "./account-menu";

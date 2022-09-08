@@ -11,11 +11,9 @@
   "search.useGlobalIgnoreFiles": true,
   "files.exclude": {
     "**/.cache": true,
-    "**/.turbo": true,
+    "**/.turbo": true
     // "**/build": true,
     // "**/node_modules": true
   },
-  "cSpell.words": [
-    "chainlocker"
-  ]
+  "cSpell.words": ["chainlocker"]
 }

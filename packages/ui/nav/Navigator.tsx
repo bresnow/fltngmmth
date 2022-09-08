@@ -1,6 +1,5 @@
-import React from 'react';
-import { useMatches, useLocation, NavLink, Link, Form } from 'remix';
-
+import React from "react";
+import { useMatches, useLocation, NavLink, Link, Form } from "remix";
 
 type MenuLinks = {
   id: string;
@@ -8,17 +7,17 @@ type MenuLinks = {
   label: string;
   icon?: JSX.Element | undefined;
   subMenu?: MenuLinks | undefined;
-}[]
+}[];
 const ACTION_TYPE: {
-  [key: string]: 'wallet-toggle' | 'menu-toggle' | 'user-menu';
+  [key: string]: "wallet-toggle" | "menu-toggle" | "user-menu";
 } = {
-  WALLET_TOGGLE: 'wallet-toggle',
-  MENU_TOGGLE: 'menu-toggle',
-  USER_MENU: 'user-menu',
+  WALLET_TOGGLE: "wallet-toggle",
+  MENU_TOGGLE: "menu-toggle",
+  USER_MENU: "user-menu",
 };
 function reduce(
   state: any,
-  { type }: { type: 'wallet-toggle' | 'menu-toggle' | 'user-menu' }
+  { type }: { type: "wallet-toggle" | "menu-toggle" | "user-menu" }
 ) {
   switch (type) {
     case ACTION_TYPE.WALLET_TOGGLE:
@@ -50,7 +49,7 @@ export function Navigation({
   links?: MenuLinks;
 }) {
   let matches = useMatches();
-  let root = matches.find((match) => match.pathname === '/');
+  let root = matches.find((match) => match.pathname === "/");
   const menuarr: MenuLinks = links || root?.handle?.links;
   let { pathname } = useLocation();
   const isActive = (link: string) => pathname === link;
@@ -60,16 +59,16 @@ export function Navigation({
     user: false,
   });
   search = {
-    type: 'search',
+    type: "search",
     required: true,
-    name: 'path',
+    name: "path",
     shadow: true,
 
     ...search,
   } || { ...search };
   return (
-    <header className='fixed top-0 z-20 w-full backdrop-blur bg-opacity-20 transition-colors'>
-      <div className='flex items-center px-6 py-6 xl:px-24'>
+    <header className="fixed top-0 z-20 w-full backdrop-blur bg-opacity-20 transition-colors">
+      <div className="flex items-center px-6 py-6 xl:px-24">
         {/* <!-- Logo --> */}
         {logo}
       </div>

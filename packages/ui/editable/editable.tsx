@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 export type IContentEditable = {
   children: React.ReactNode;
   name: string;
@@ -6,8 +6,6 @@ export type IContentEditable = {
   edit?: boolean | undefined;
   file?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
-
-
 
 export const ContentEditable = ({
   children,
@@ -50,7 +48,7 @@ export const ContentEditable = ({
       >
         {children}
       </div>
-      <input id={`${name}-${id}`} name={name} type='hidden' />
+      <input id={`${name}-${id}`} name={name} type="hidden" />
     </>
   );
 };

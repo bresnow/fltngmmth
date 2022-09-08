@@ -3,7 +3,7 @@
 
 let config = {
   serverModuleFormat: "esm",
-serverDependenciesToBundle: [/^chainlocker/, /^docker.*/],
+  serverDependenciesToBundle: [/^chainlocker/, /^docker.*/],
   ignoredRouteFiles: ["**/.*"],
   devServerPort: 8002,
 
@@ -40,12 +40,10 @@ serverDependenciesToBundle: [/^chainlocker/, /^docker.*/],
    */
   // publicPath: string,
 
-
   /**
    * Additional MDX remark / rehype plugins.
    */
   // mdx: RemixMdxConfig | RemixMdxConfigFunction,
-
 
   /**
    * A server entrypoint, relative to the root directory that becomes your
@@ -58,7 +56,11 @@ serverDependenciesToBundle: [/^chainlocker/, /^docker.*/],
   /**
    * A function for defining custom directories to watch while running `remix dev`, in addition to `appDirectory`.
    */
-  watchPaths: ['../../packages/ui/**/*.{ts,tsx}',"../server/index.js", "../../config/app-data/**/*.{js,ts}"],
+  watchPaths: [
+    "../../packages/ui/**/*.{ts,tsx}",
+    "../server/index.js",
+    "../../config/app-data/**/*.{js,ts}",
+  ],
 };
 
 export default config;

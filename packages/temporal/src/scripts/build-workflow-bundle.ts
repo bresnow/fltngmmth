@@ -1,12 +1,12 @@
-import { bundleWorkflowCode } from '@temporalio/worker';
-import { writeFile } from 'fs/promises';
-import path from 'path';
+import { bundleWorkflowCode } from "@temporalio/worker";
+import { writeFile } from "fs/promises";
+import path from "path";
 
 async function bundle() {
   const { code } = await bundleWorkflowCode({
-    workflowsPath: require.resolve('../workflows'),
+    workflowsPath: require.resolve("../workflows"),
   });
-  const codePath = path.join(__dirname, '../../workflow-bundle.js');
+  const codePath = path.join(__dirname, "../../workflow-bundle.js");
 
   await writeFile(codePath, code);
 

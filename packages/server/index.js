@@ -6,11 +6,11 @@ import { createRequestHandler } from "@remix-run/express";
 import { createRoutes } from "@remix-run/server-runtime/dist/routes.js";
 import { matchServerRoutes } from "@remix-run/server-runtime/dist/routeMatching.js";
 import { installGlobals } from "@remix-run/node";
-import Gun from 'gun'
-import './gunlibs.js'
-import process from 'process';
-import { data } from './loader.config.js'
-installGlobals()
+import Gun from "gun";
+import "./gunlibs.js";
+import process from "process";
+import { data } from "./loader.config.js";
+installGlobals();
 let require = createRequire(import.meta.url);
 let packagePath = dirname(require.resolve("../remix-app/package.json"));
 let importPath = resolve(packagePath, "build/index.js");
@@ -52,34 +52,35 @@ app.use(
 app.use(express.static(publicPath, { maxAge: "5m" }));
 
 // eslint-disable-next-line no-undef
-  if (process.env.NODE_ENV === "development") {
-    app.all("*", async (req, res, next) => {
-      try {
-        purgeRequireCache(importPath);
-        remixEarlyHints(await import(importPath))(req, res);
-        await createRequestHandler({
-          build: await import(`${importPath}?${Date.now()}`),
-          getLoadContext,
-          mode: "development",
-        })(req, res, next);
-      } catch (error) {
-        console.error(error);
-        next(error);
-      }
-    });
-  } else {
-    app.all(
-      "*",
-      createRequestHandler({
-        build: await import("remix-app"),
+if (process.env.NODE_ENV === "development") {
+  app.all("*", async (req, res, next) => {
+    try {
+      purgeRequireCache(importPath);
+      remixEarlyHints(await import(importPath))(req, res);
+      await createRequestHandler({
+        build: await import(`${importPath}?${Date.now()}`),
         getLoadContext,
-        mode: "production",
-      })
-    );
-  }
+        mode: "development",
+      })(req, res, next);
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  });
+} else {
+  app.all(
+    "*",
+    createRequestHandler({
+      build: await import("remix-app"),
+      getLoadContext,
+      mode: "production",
+    })
+  );
+}
 
 const port = parseInt(process.env.PORT) ?? 3333;
-const SECRET_KEY = process.env.SECRET_KEY, SECRET_KEY_ARRAY = SECRET_KEY ? [SECRET_KEY] : []
+const SECRET_KEY = process.env.SECRET_KEY,
+  SECRET_KEY_ARRAY = SECRET_KEY ? [SECRET_KEY] : [];
 
 const radataDir = "radata";
 let server = app.listen(port, () => {
@@ -92,35 +93,32 @@ function purgeRequireCache(path) {
   delete require.cache[require.resolve(path)];
 }
 (async () => {
-  await import('chainlocker') // this is a module I built that keeps the keypair in the vault context to encrypt and compress data to utf16 characters. Object values are almost 50% smaller
-  gun.keys(SECRET_KEY_ARRAY, masterKeys => {
+  await import("chainlocker"); // this is a module I built that keeps the keypair in the vault context to encrypt and compress data to utf16 characters. Object values are almost 50% smaller
+  gun.keys(SECRET_KEY_ARRAY, (masterKeys) => {
     gun.vault("REMIX_GUN", masterKeys);
-    let locker = gun.locker(['ENCRYPTED_APP_CONTEXT'])
+    let locker = gun.locker(["ENCRYPTED_APP_CONTEXT"]);
     locker.put(data);
-
   });
 })();
 function getLoadContext() {
   return async function () {
-
     return {
       authorizedDB() {
         return { gun };
       },
       SECRET_KEY_ARRAY,
-    }
+    };
   };
-
 }
 function remixEarlyHints(build) {
   function getRel(resource) {
-    if (resource.endsWith(".js"|| ".mjs")) {
+    if (resource.endsWith(".js" || ".mjs")) {
       return "modulepreload";
     }
     return "preload";
   }
 
-  const routes = createRoutes(build.routes );
+  const routes = createRoutes(build.routes);
 
   /**
    *
@@ -141,9 +139,7 @@ function remixEarlyHints(build) {
     if (resources && resources.length > 0) {
       res.socket.write("HTTP/1.1 103\r\n");
       for (const resource of resources) {
-        res.socket.write(
-          `Link: <${resource}>; rel=${getRel(resource)}\r\n`
-        );
+        res.socket.write(`Link: <${resource}>; rel=${getRel(resource)}\r\n`);
       }
       res.socket.write("\r\n");
     }
