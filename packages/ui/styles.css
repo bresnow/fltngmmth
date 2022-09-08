@@ -4248,6 +4248,10 @@ video {
     grid-column-start: 3;
   }
 
+  .sm\:col-start-1 {
+    grid-column-start: 1;
+  }
+
   .sm\:my-5 {
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
@@ -4666,6 +4670,10 @@ video {
 
   .md\:z-50 {
     z-index: 50;
+  }
+
+  .md\:col-start-1 {
+    grid-column-start: 1;
   }
 
   .md\:m-0 {
@@ -5350,12 +5358,21 @@ video {
     padding-right: 4rem;
   }
 
+  .lg\:px-5 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
   .lg\:pb-28 {
     padding-bottom: 7rem;
   }
 
   .lg\:pb-0 {
     padding-bottom: 0px;
+  }
+
+  .lg\:pl-7 {
+    padding-left: 1.75rem;
   }
 
   .lg\:text-left {

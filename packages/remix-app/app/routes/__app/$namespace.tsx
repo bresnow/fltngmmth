@@ -13,10 +13,12 @@ export let loader: LoaderFunction = async({params, request, context}) => {
 export default function () {
 
   return (
-<div>
-  <FullPhotoCard />
-      <DraggingState/>
-</div>
+<>
+  
+      <DraggingState><FullPhotoCard /></DraggingState>
+      <DraggingState><FullPhotoCard /></DraggingState>
+      <DraggingState><FullPhotoCard /></DraggingState>
+</>
   );
 }
 // export function CatchBoundary() {

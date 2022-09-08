@@ -12,40 +12,40 @@ const NameSpacePreviewMap = (props: Props) => {
             tags: ['Car', 'Money'],
             title: 'Work at home',
             service: 'Video',
-            img: '/images/blog/1.jpg',
+            img: '/images/gradient.webp',
             desc: 'Work at home, remote, is the new age of the job, every person can work at home....',
         },
         {
             tags: ['Car', 'Money'],
             title: 'test',
             service: 'Oui',
-            img: '/images/blog/2.jpg',
+            img: '/images/gradient1.webp',
             desc: 'The new supercar is here, 543 cv and 140 000$ !!',
         },
         {
             tags: ['Car', 'Money'],
             title: 'test',
             service: 'Oui',
-            img: '/images/blog/3.jpg',
+            img: '/images/gradient.webp',
             desc: 'The new supercar is here, 543 cv and 140 000$ !!',
         },
         {
             tags: ['Car', 'Money'],
             title: 'test',
-            img: '/images/blog/4.jpg',
+            img: '/images/gradient1.webp',
             desc: 'The new supercar is here, 543 cv and 140 000$ !!',
         },
         {
             tags: ['Car', 'Money'],
             title: 'test',
-            img: '/images/blog/5.jpg',
+            img: '/images/gradient.webp',
             desc: 'The new supercar is here, 543 cv and 140 000$ !!',
         },
         {
             tags: ['Car', 'Money'],
             title: 'test',
             service: 'Oui',
-            img: '/images/blog/6.jpg',
+            img: '/images/gradient1.webp',
             desc: 'The new supercar is here, 543 cv and 140 000$ !!',
         },
     ];
@@ -54,9 +54,9 @@ const NameSpacePreviewMap = (props: Props) => {
         <div className="w-full bg-white p-12">
             <div className="header flex items-end justify-between mb-12">
                 <div className="title">
-                    <p className="text-4xl font-bold text-gray-800 mb-4">Lastest articles</p>
+                    <p className="text-4xl font-bold text-gray-800 mb-4">Lastest</p>
                     <p className="text-2xl font-light text-gray-400">
-                        All article are verified by 2 experts and valdiate by the CTO
+                        Latest Projects
                     </p>
                 </div>
                 {props.withSearch && (

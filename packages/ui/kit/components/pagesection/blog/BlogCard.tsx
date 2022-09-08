@@ -15,7 +15,7 @@ interface Props {
 const NameSpaceCard = (props: Props) => {
     return (
         < >
-<section id={'shop-curate'}>
+{/* <section id={'shop-curate'}>
                   <div className="mb-4">
                                             <div className="flex flex-wrap items-center justify-center">
                                                 <div className="flex-shrink-0 mx-2 mb-6 relative overflow-hidden bg-yellow-500 rounded-lg max-w-xs shadow-lg">
@@ -64,7 +64,7 @@ const NameSpaceCard = (props: Props) => {
                                                 </div>
                                             </div>
                                         </div>
-            </section>
+            </section> */}
             
         <div className="overflow-hidden shadow-lg rounded-lg h-90 w-60 md:w-80 cursor-pointer m-auto">
             <a href="#" className="w-full block h-full">

@@ -6,7 +6,7 @@ const HeadProfil = () => {
     return (
         <div className="w-full mx-auto max-w-xl rounded-lg bg-white dark:bg-gray-800 shadow-lg px-5 py-4 text-gray-800 dark:text-gray-50">
             <div className="w-full pt-1 text-center -mt-16 mx-auto">
-                <Avatar size="big" />
+                <Avatar size="small" img={'/images/gradient.webp'}/>
             </div>
             <div className="w-full">
                 <div className="text-center mb-6">

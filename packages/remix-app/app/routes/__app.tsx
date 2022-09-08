@@ -9,6 +9,8 @@ import {
 } from '@pkg/ui'
 import { LoaderFunction } from 'remix';
 import { LoaderContext } from 'types';
+import HeadProfil from '../../../ui/kit/components/pagesection/profile/HeadProfil';
+import FullPhotoCard from '../../../ui/kit/components/pagesection/profile/FullPhotoCard';
 export let loader: LoaderFunction = async ({ params, request, context }) => {
     let contextual = context as unknown as LoaderContext;
     return null
@@ -31,16 +33,16 @@ export default function () {
                         {/* Logo */}
                         <div className=" h-16 sm:block">
 
+                        <RouteHeader />
+                          
                     {/* <FMLogo fill="#000" /> */}
 
                         </div>
                         {/* Nav */}
                         <div className="fixed bottom-0 flex h-16 w-full flex-auto flex-col border-t border-gray-200 bg-cnxt_black sm:static sm:bottom-auto sm:h-auto sm:border-none">
-                           
                         </div>
                         {/* Account */}
 
-                        <RouteHeader />
 
                     </div>
 
@@ -51,7 +53,7 @@ export default function () {
                         {/* </div> */}
                     </section>
                     {/* Sidebar */}
-                    <div className="lgx:pl-7.5 mdl:flex col-start-3 row-start-1 mb-12  flex-col pl-5 pr-2.5">
+                    <div className="lg:pl-7.5 md:flex col-start-3 row-start-1 mb-12  flex-col pl-5 pr-2.5">
                         <Outlet />
                     {/* display conditionally by page  */}
                     <div className="sticky top-0 z-10 col-start-3 row-start-1 h-16 bg-white">
