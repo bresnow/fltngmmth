@@ -26,7 +26,6 @@ services:
       - traefik-public
 
   traefik:
-    # Use the latest Traefik image
     image: traefik:v2.8
     ports:
       - 80:80
@@ -84,8 +83,8 @@ services:
       # Use the TLS Challenge for Let's Encrypt
       - --certificatesresolvers.le.acme.tlschallenge=true
       # Enable Hub communication (open the port 9900 and 9901 by default)
-      - --experimental.hub=true
-      - --hub.tls.insecure=true
+      # - --experimental.hub=true
+      # - --hub.tls.insecure=true
       - --metrics.prometheus.addrouterslabels=true
       # Enable the access log, with HTTP requests
       - --accesslog
@@ -102,20 +101,20 @@ services:
 
 
       ## traefik hub agent
-  hub-agent:
-    hostname: hub-agent
-    image: ghcr.io/traefik/hub-agent-traefik:v0.7.2
-    command:
-      - run
-      - --hub.token=${HUB_TOKEN:-cf72ec92-2453-4d43-a947-4b5bec733ab4}
-      - --auth-server.advertise-url=http://hub-agent
-      - --traefik.host=traefik
-      - --traefik.docker.swarm-mode
-      - --traefik.tls.insecure=true
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    deploy:
-      replicas: 1
+  # hub-agent:
+  #   hostname: hub-agent
+  #   image: ghcr.io/traefik/hub-agent-traefik:v0.7.2
+  #   command:
+  #     - run
+  #     - --hub.token=${HUB_TOKEN}
+  #     - --auth-server.advertise-url=http://hub-agent
+  #     - --traefik.host=traefik
+  #     - --traefik.docker.swarm-mode
+  #     - --traefik.tls.insecure=true
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   deploy:
+  #     replicas: 1
 
 
 
@@ -126,6 +125,7 @@ volumes:
   # Traefik is always deployed to the same Docker node with the same volume containing
   # the HTTPS certificates
   traefik-public-certificates:
+  # Traefik dynamic config file
   traefik_conf:
     driver: local-persist
     driver_opts:

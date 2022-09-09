@@ -30,7 +30,7 @@ services:
         - traefik.http.routers.hot-reloader-${NUMBER:-0}-https.tls.certresolver=le
         - traefik.http.services.hot-reloader-${NUMBER:-0}.loadbalancer.server.port=${DEV_PORT:-8002}
     networks:
-      - docker-socket-proxy
+      - socket-proxy
       - traefik-public
 volumes:
   storage:
@@ -55,7 +55,7 @@ volumes:
      mountpoint: ${PWD}/config
     
 networks:
-  docker-socket-proxy:
+  socket-proxy:
     external: true
   traefik-public:
     external: true

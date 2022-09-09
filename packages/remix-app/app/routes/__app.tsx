@@ -12,8 +12,10 @@ import { LoaderContext } from "types";
 import HeadProfil from "../../../ui/kit/components/pagesection/profile/HeadProfil";
 import FullPhotoCard from "../../../ui/kit/components/pagesection/profile/FullPhotoCard";
 import FMLogo from "../../../ui/svg/logos/FltngMmth";
+
 export let loader: LoaderFunction = async ({ params, request, context }) => {
   let contextual = context as unknown as LoaderContext;
+
   return null;
 };
 export let handle = {

@@ -3,7 +3,7 @@
 
 let config = {
   serverModuleFormat: "esm",
-  serverDependenciesToBundle: [/^chainlocker/, /^docker.*/],
+  serverDependenciesToBundle: [/^chainlocker/, /^dockerode/],
   ignoredRouteFiles: ["**/.*"],
   devServerPort: 8002,
 
