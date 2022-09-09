@@ -1,6 +1,6 @@
 {
   "name": "remix-gun",
-  "version": "0.0.1",
+  "version": "0.0.11",
   "private": true,
   "sideEffects": false,
   "workspaces": [
@@ -16,7 +16,7 @@
     "add:scripts": "yarn workspace scripts add",
     "dev": "npx --yes turbo run dev --parallel",
     "lint": "npx --yes turbo run lint",
-    "push": "npx --yes turbo run push",
+    "push": " npx zx packages/scripts/git/push.mjs",
     "start": "yarn workspace server start",
     "typecheck": "npx --yes turbo run typecheck",
     "format": "prettier --write \"**/*.{json,md,mdx,mjs,mts,js,jsx,ts,tsx}\"",

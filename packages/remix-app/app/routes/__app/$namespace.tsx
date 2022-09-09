@@ -1,6 +1,5 @@
-import { ActionFunction, LoaderFunction, useCatch } from "remix";
+import { LoaderFunction } from "remix";
 import type { LoaderContext } from "types";
-import { json, redirect } from "remix";
 import FullPhotoCard from "../../../../ui/kit/components/pagesection/profile/FullPhotoCard";
 import DraggingState from "../../../../ui/dragable";
 

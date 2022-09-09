@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: bresnow/remix-gun_dev:{VERSION:-v1.0.0}
+    image: bresnow/remix-gun_dev:${VERSION:-v1.0.0}
     volumes:
       - packages:/app/packages
       - config:/app/config
@@ -30,7 +30,7 @@ services:
         - traefik.http.routers.hot-reloader-${NUMBER:-0}-https.tls.certresolver=le
         - traefik.http.services.hot-reloader-${NUMBER:-0}.loadbalancer.server.port=${DEV_PORT:-8002}
     networks:
-      - internal
+      - docker-socket-proxy
       - traefik-public
 volumes:
   storage:
@@ -55,8 +55,7 @@ volumes:
      mountpoint: ${PWD}/config
     
 networks:
-  internal:
-    driver: overlay
-    attachable: true
+  docker-socket-proxy:
+    external: true
   traefik-public:
     external: true
