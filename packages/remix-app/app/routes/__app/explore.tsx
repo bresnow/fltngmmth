@@ -6,6 +6,7 @@ import { MultipleShoppingCard } from "@pkg/ui";
 import { Trigger } from "../../../../ui/dialog/dialog";
 import NaturalHome from "@pkg/ui/kit/templates/homePages/simplePage/NaturalHome";
 import TailKitHome from "@pkg/ui/kit/templates/homePages/simplePage/TailkitHome";
+import SimpleProjectDashboard from "../../../../ui/kit/templates/dashboardPages/projectDashboard/SimpleProjectDashboard";
 export const meta: MetaFunction = () => ({
   title: "Explore",
 });
@@ -27,29 +28,9 @@ export const handle = {
 export default function () {
   return (
     <div>
+      {/* <SimpleProjectDashboard/> */}
       <TailKitHome />
       <NaturalHome />
-      <Tabs
-        list={[
-          {
-            label: "Latest Projects",
-            to: "latest",
-          },
-          {
-            label: "Latest Users",
-            to: "/",
-          },
-          {
-            label: "Latest Projects",
-            to: "latest",
-          },
-          {
-            label: "Latest Users",
-            to: "/",
-          },
-        ]}
-        className="sticky top-16 z-10"
-      />
       <MultipleShoppingCard />
       {/* <Trigger>
                 <ButtonFollow />

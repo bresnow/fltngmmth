@@ -21,7 +21,7 @@ services:
         - traefik.http.routers.remix-gun-app-${NUMBER:-0}-https.tls=true
         - traefik.http.routers.remix-gun-app-${NUMBER:-0}-https.tls.certresolver=le
         - traefik.http.services.remix-gun-app-${NUMBER:-0}.loadbalancer.server.port=${PORT:-3333}
-        # DEV SERVER
+        # DEV SERVER HotReloader
         - traefik.http.routers.hot-reloader-${NUMBER:-0}.entrypoints=http
         - traefik.http.routers.hot-reloader-${NUMBER:-0}.middlewares=https-redirect
         - traefik.http.routers.hot-reloader-${NUMBER:-0}-https.entrypoints=https
