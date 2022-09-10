@@ -33,6 +33,7 @@ services:
       - socket-proxy
       - traefik-public
 volumes:
+
   storage:
     driver: local-persist
     driver_opts:

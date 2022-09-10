@@ -1174,7 +1174,7 @@ class DockerApi {
   async updateService(
     serviceName: string,
     imageName: string | undefined,
-    volumes: IAppVolume[] | undefined,
+    volumes: Docker.Volume[] | undefined,
     networks: string[] | undefined,
     arrayOfEnvKeyAndValue: IAppEnvVar[] | undefined,
     secrets: DockerSecret[] | undefined,

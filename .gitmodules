@@ -1,0 +1,3 @@
+[submodule "packages/proxy"]
+	path = packages/proxy
+	url = git@github.com:bresnow/docker.sock-proxy.git

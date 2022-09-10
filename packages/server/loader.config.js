@@ -13,14 +13,14 @@ export const data = {
         "og:image:height": "512",
         "og:description":
           "Dynamic namespaces for dynamic content. #://HashtagProtocol",
-        "og:title": `CNXT | Dynamic Namespaces`,
+        "og:title": `Dynamic Namespaces`,
         "og:url": `<%--protocol-host--%>/`,
         "og:site_name": `CNXT.app`,
         "og:locale": "en_US",
         "twitter:card": "summary_large_image",
         "twitter:site": "@bresnow",
         "twitter:creator": "@bresnow",
-        "twitter:title": `CNXT.app| Dynamic Namespaces`,
+        "twitter:title": ` Dynamic Namespaces`,
         "twitter:description":
           "Dynamic namespaces for dynamic content. #://HashtagProtocol",
         "twitter:image": `<%--protocol-host--%>/images/Logo.svg`,

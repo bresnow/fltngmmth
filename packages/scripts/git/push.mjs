@@ -48,7 +48,7 @@ try {
   await $`yarn format`;
   await $`git add --all`;
   await $`git commit -s -m ${`${message} | ${version}`}`;
-  await $`git push`;
+  await $`git push --recurse-submodules=check`;
 } catch (error) {
   console.log(chalk.red(error));
 }
