@@ -41,15 +41,30 @@ if (!message) {
   }
 }
 
+await $`git status`;
+let commit = argv.commit,
+  submodules = argv.submodules;
+await git({ commit, submodules });
 // Prettier and finalize
-
-try {
-  $.verbose = true;
-  await $`git status`;
-  await $`yarn format`;
-  await $`git add --all`;
-  await $`git commit -s -m ${`${message} | ${version}`}`;
-  await $`git push --recurse-submodules=on-demand`;
-} catch (error) {
-  console.log(chalk.red(error));
+async function git({ commit, submodules }) {
+  try {
+    $.verbose = true;
+    await $`yarn format`;
+    await $`git add --all`;
+    await $`git commit -s -m ${`${message} | ${version}`}`;
+    if (!commit) {
+      await $`git push `;
+    }
+  } catch (error) {
+    console.log(chalk.red(error));
+  }
+  if (submodules) {
+    let _submodules = await $`cat .gitmodules | grep "path = "`;
+    _submodules.stdout.split("path = ").forEach(async (path) => {
+      if (path) {
+        cd(path);
+        await git(commit, submodules);
+      }
+    });
+  }
 }
