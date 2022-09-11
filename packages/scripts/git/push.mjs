@@ -1,4 +1,4 @@
-import { $, question, argv, chalk, glob } from "zx";
+import { $, question, argv, chalk, glob, cd, log } from "zx";
 import { io } from "fsxx";
 import "zx/globals";
 
@@ -62,7 +62,8 @@ async function git({ commit, submodules }) {
     let _submodules = await $`cat .gitmodules | grep "path = "`;
     _submodules.stdout.split("path = ").forEach(async (path) => {
       if (path) {
-        cd(path);
+        log(cwd() + "/" + path);
+        cd(cwd() + "/" + path);
         await git(commit, submodules);
       }
     });
