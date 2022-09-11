@@ -66,7 +66,7 @@ async function git({ commit, submodules }) {
       .forEach(async (path) => {
         if (path) {
           log(path);
-          cd(path.trim())
+          cd(__dirname+ '/'+ path.trim())
           // await git(commit, submodules);
         }
       });
