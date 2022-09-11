@@ -41,15 +41,21 @@ if (!message) {
   }
 }
 
-await $`git status`;
+try {
+  log(chalk.yellow("Formatting everything with prettier"));
+  await $`yarn format`;
+} catch (error) {
+  console.error(chalk.red(error));
+}
+
 let commit = argv.commit,
   submodules = argv.submodules;
 await git({ commit, submodules });
 // Prettier and finalize
 async function git({ commit, submodules }) {
   try {
+    await $`git status`;
     $.verbose = true;
-    await $`yarn format`;
     await $`git add --all`;
     await $`git commit -s -m ${`${message} | ${version}`}`;
     if (!commit) {
