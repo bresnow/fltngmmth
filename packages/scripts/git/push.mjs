@@ -49,7 +49,7 @@ await git({ commit, submodules });
 async function git({ commit, submodules }) {
   try {
     $.verbose = true;
-    await $`yarn format`;
+    // await $`yarn format`;
     await $`git add --all`;
     await $`git commit -s -m ${`${message} | ${version}`}`;
     if (!commit) {
@@ -66,7 +66,8 @@ async function git({ commit, submodules }) {
       .forEach(async (path) => {
         if (path) {
           log(path);
-          // await git(commit, submodules);
+          cd(path)
+          await git(commit, submodules);
         }
       });
   }

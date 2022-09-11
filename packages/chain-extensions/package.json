@@ -1,12 +1,1 @@
-{
-  "name": "chain-extensions",
-  "version": "0.0.13",
-  "type": "module",
-  "license": "MIT",
-  "dependencies": {
-    "remix-app": "*"
-  },
-  "devDependencies": {
-    "remix-app": "*"
-  }
-}
+{"name":"chain-extensions","version":"0.0.13","type":"module","license":"MIT","dependencies":{"remix-app":"*"},"devDependencies":{"remix-app":"*"}}
