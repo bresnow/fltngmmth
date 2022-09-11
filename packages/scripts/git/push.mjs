@@ -60,12 +60,14 @@ async function git({ commit, submodules }) {
   }
   if (submodules) {
     let _submodules = await $`cat .gitmodules | grep "path = "`;
-    _submodules.stdout.split("path = ").forEach(async (path) => {
-      if (path) {
-        log(__dirname + "/" + path);
-        cd(__dirname + "/" + path);
-        await git(commit, submodules);
-      }
-    });
+    _submodules
+      .toString()
+      .split("path = ")
+      .forEach(async (path) => {
+        if (path) {
+          log(path);
+          // await git(commit, submodules);
+        }
+      });
   }
 }
