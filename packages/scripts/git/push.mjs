@@ -48,8 +48,8 @@ try {
   console.error(chalk.red(error));
 }
 
-let commit = argv.commit,
-  submodules = argv.submodules;
+let commit = argv.commit ?? false,
+  submodules = argv.submodules ?? false;
 await git({ commit, submodules });
 // Prettier and finalize
 async function git({ commit, submodules }) {
