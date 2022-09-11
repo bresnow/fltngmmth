@@ -44,11 +44,12 @@ if (!message) {
 // Prettier and finalize
 
 try {
+  $.verbose = true;
   await $`git status`;
   await $`yarn format`;
   await $`git add --all`;
   await $`git commit -s -m ${`${message} | ${version}`}`;
-  await $`git push --recurse-submodules=check`;
+  await $`git push --recurse-submodules=on-demand`;
 } catch (error) {
   console.log(chalk.red(error));
 }
