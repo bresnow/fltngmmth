@@ -1,14 +1,22 @@
 {
   "name": "docker",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon  ./src/server.mjs",
+    "start": "node ./src/server.mjs"
+  },
   "dependencies": {
     "dockerode": "^3.3.4",
     "js-base64": "^3.7.2",
-    "ssh2": "^1.11.0"
+    "remix-app": "*",
+    "ssh2": "^1.11.0",
+    "uuid": "^9.0.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@types/dockerode": "^3.3.9"
+    "@types/dockerode": "^3.3.9",
+    "remix-app": "*"
   }
 }

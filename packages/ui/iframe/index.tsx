@@ -1,5 +1,4 @@
 import React, { ComponentType } from "react";
-import objectAssign from "object-assign";
 
 export interface IframeAttr {
   url?: string;
@@ -97,7 +96,7 @@ const Iframe: ComponentType<IframeAttr> = ({
   allowpaymentrequest,
   src,
 }: IframeAttr) => {
-  const defaultProps = objectAssign({
+  const defaultProps = Object.assign({
     src: src || url,
     target: target || null,
     style: {

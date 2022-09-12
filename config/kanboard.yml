@@ -1,0 +1,30 @@
+# DOMAIN=example.com docker stack deploy -c kanboard.yml kanboard
+# php cli user:reset-password <username> # Change user password
+
+version: '3.8'
+
+services:
+  kanboard:
+    image: vital987/chrome-novnc:latest
+    environment:
+      - PORT=${PORT:-8080}
+      - VNC_PASS=admin
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=public
+        - traefik.constraint-label=public
+        - traefik.http.routers.kanboard-${NUMBER:-1}.rule=Host(`${DOMAIN:-kanboard.fltngmmth.com}`)
+        - traefik.http.routers.kanboard-${NUMBER:-1}.entrypoints=http,https
+        - traefik.http.routers.kanboard-${NUMBER:-1}.service=kanboard-${NUMBER:-1}
+        - traefik.http.routers.kanboard-${NUMBER:-1}.tls.certresolver=le
+        - traefik.http.services.kanboard-${NUMBER:-1}.loadbalancer.server.port=${PORT:-8080}
+    networks:
+      - public
+      - edge
+
+networks:
+  edge:
+    external: true
+  public:
+    external: true

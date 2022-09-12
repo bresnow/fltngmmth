@@ -1,6 +1,6 @@
 {
   "name": "remix-gun",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "private": true,
   "sideEffects": false,
   "workspaces": [
@@ -20,8 +20,8 @@
     "start": "yarn workspace server start",
     "typecheck": "npx --yes turbo run typecheck",
     "format": "prettier --write \"**/*.{json,md,mdx,mjs,mts,js,jsx,ts,tsx}\"",
-    "purge:full": "rm -rf node_modules **/**/radata **/**/node_modules **/*.log",
-    "purge:rad": "rm -rf **/**/radata"
+    "purge:full": "sudo rm -rf node_modules **/**/radata **/**/node_modules **/*.log",
+    "purge:rad": "sudo rm -rf **/**/radata"
   },
   "devDependencies": {
     "patch-package": "^6.4.7",

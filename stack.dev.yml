@@ -1,31 +1,28 @@
 version: '3'
 services:
-  app.svc:
+  app:
     image: bresnow/remix-gun_dev:${VERSION:-v1.0.0}
     volumes:
       - packages:/app/packages
       - config:/app/config
       - node_modules:/app/node_modules
       - public:/app/packages/remix-app/public
+    networks:
+      - socket-proxy
+      - edge
+      - public
     deploy:
       labels:
         - traefik.enable=true
-        - traefik.docker.network=traefik-public
-        - traefik.constraint-label=traefik-public
+        - traefik.docker.network=public
+        - traefik.constraint-label=public
         - traefik.http.routers.remix-gun-app-${NUMBER:-0}.rule=Host(`${DOMAIN:-remix-gun.fltngmmth.com}`)
-        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.entrypoints=http
-        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.middlewares=https-redirect
-        - traefik.http.routers.remix-gun-app-${NUMBER:-0}-https.rule=Host(`${DOMAIN:-remix-gun.fltngmmth.com}`)
-        - traefik.http.routers.remix-gun-app-${NUMBER:-0}-https.entrypoints=https
-        - traefik.http.routers.remix-gun-app-${NUMBER:-0}-https.service=remix-gun-app-${NUMBER:-0}
-        - traefik.http.routers.remix-gun-app-${NUMBER:-0}-https.tls=true
-        - traefik.http.routers.remix-gun-app-${NUMBER:-0}-https.tls.certresolver=le
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.entrypoints=http,https
+        # - traefik.http.routers.remix-gun-app-${NUMBER:-0}.middlewares=https-redirect
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.tls=true
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.tls.certresolver=le
         - traefik.http.services.remix-gun-app-${NUMBER:-0}.loadbalancer.server.port=${PORT:-3333}
-    networks:
-      - socket-proxy
-      - traefik-public
 volumes:
-
   storage:
     driver: local-persist
     driver_opts:
@@ -48,7 +45,9 @@ volumes:
      mountpoint: ${PWD}/config
     
 networks:
+  edge:
+    external: true
   socket-proxy:
     external: true
-  traefik-public:
+  public:
     external: true

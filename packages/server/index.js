@@ -10,7 +10,7 @@ import Gun from "gun";
 import "./gunlibs.js";
 import process from "process";
 import { data } from "./loader.config.js";
-import Docker from "dockerode";
+
 installGlobals();
 let require = createRequire(import.meta.url);
 let packagePath = dirname(require.resolve("../remix-app/package.json"));
@@ -87,13 +87,19 @@ const radataDir = "radata";
 let server = app.listen(port, () => {
   console.log(`Remix.Gun relay server listening on port ${port}`);
 });
-const gun = Gun({ file: radataDir, web: server });
+
+const gun = Gun({
+  peers: ["http://app:3000/gun"],
+  file: radataDir,
+  web: server,
+});
+gun.get("test").get("cross").put({ soup: "du jour", warm: "hors d'erves" });
+
 global.Gun = Gun;
 global.gun = gun;
 function purgeRequireCache(path) {
   delete require.cache[require.resolve(path)];
 }
-
 (async () => {
   await import("chainlocker"); // this is a module I built that keeps the keypair in the vault context to encrypt and compress data to utf16 characters. Object values are almost 50% smaller
   gun.keys(SECRET_KEY_ARRAY, (masterKeys) => {
