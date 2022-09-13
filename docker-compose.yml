@@ -8,7 +8,7 @@ services:
       - packages:/app/packages
       - config:/app/config
       - node_modules:/app/node_modules
-      - public:/app/packages/remix-app/public
+      - public:/app/packages/remix/public
     ports:
       - 3000:3333
       - 8002:8002
@@ -51,7 +51,7 @@ volumes:
   public:
     driver: local-persist
     driver_opts:
-      mountpoint: ${PWD}/packages/remix-app/public
+      mountpoint: ${PWD}/packages/remix/public
   packages:
     driver: local-persist
     driver_opts:

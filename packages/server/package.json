@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -12,7 +12,7 @@
   "dependencies": {
     "@remix-run/express": "^1.7.0",
     "express": "^4.18.1",
-    "remix-app": "*"
+    "frontend": "*"
   },
   "devDependencies": {
     "@types/compression": "^1.7.2",

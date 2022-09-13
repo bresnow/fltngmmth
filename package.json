@@ -1,6 +1,6 @@
 {
   "name": "remix-gun",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "private": true,
   "sideEffects": false,
   "workspaces": [
@@ -11,17 +11,22 @@
     "postinstall": "npx --yes turbo run postinstall",
     "ci": "yarn purge:full && yarn install --frozen-lockfile",
     "build": "npx --yes turbo run build",
-    "remix": "yarn workspace remix-app",
+    "remix": "yarn workspace frontend",
     "server": "yarn workspace server",
     "scripts": "yarn workspace scripts",
+    "relay": "yarn workspace relay",
     "dev": "npx --yes turbo run dev --parallel",
+    "dockerimg": "concurrently \"yarn front:build --push=true\" \"yarn relay:build --push=true\" \"yarn dev:build --push=true\"",
+    "front:build": "npx zx packages/scripts/docker/build.mjs --target frontend",
+    "relay:build": "npx zx packages/scripts/docker/build.mjs --target relay",
+    "dev:build": "npx zx packages/scripts/docker/build.mjs --target dev",
     "lint": "npx --yes turbo run lint",
     "push": " npx zx packages/scripts/git/push.mjs",
-    "start": "yarn workspace server start",
+    "start": "npx --yes turbo run start",
     "typecheck": "npx --yes turbo run typecheck",
     "format": "prettier --write \"**/*.{json,md,mdx,mjs,mts,js,jsx,ts,tsx}\"",
-    "purge:full": "sudo rm -rf node_modules **/**/radata **/**/node_modules **/*.log",
-    "purge:rad": "sudo rm -rf **/**/radata"
+    "purge:full": "rm -rf node_modules **/**/radata **/**/node_modules **/*.log",
+    "purge:rad": "rm -rf **/**/radata"
   },
   "devDependencies": {
     "patch-package": "^6.4.7",

@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["../{remix-app,ui}/**/*.{js,ts,jsx,tsx}"],
+  content: ["../{remix,ui}/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
   },

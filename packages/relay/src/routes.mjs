@@ -11,6 +11,7 @@ import { Router } from "express";
 const routes = new Router();
 
 routes.get("/", (req, res) => res.json({ ok: true }));
+routes.get("/healthcheck", (req, res) => res.json({ ok: true }));
 routes.get("/fake", FakeApiController.getFakeData);
 
 routes.get("/products/", ProductController.index);

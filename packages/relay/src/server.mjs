@@ -7,9 +7,11 @@ const app = express();
 app.use(express.json());
 app.use(routes);
 
-app.listen(port, () => console.log(`Server Running in Port ${port}`));
+const server = app.listen(port, () =>
+  console.log(`Server Running in Port ${port}`)
+);
 
-const gun = Gun({ peers: ["http://app:3333/gun"] });
+const gun = Gun({ peers: ["http://app:3333/gun"], web: server });
 
 gun
   .get("test")

@@ -18,7 +18,7 @@ This repo uses [yarn](https://www.yarnpkg.com/) as a package manager. It include
 
 ### Packages
 
-- `packages/remix-app`: a [Remix](https://remix.run/) application that makes up the public facing UX
+- `packages/remix`: a [Remix](https://remix.run/) application that makes up the public facing UX
 - `packages/chain-extensions`: Custom Gun hooks with types.
 - `packages/server`: an ESM Node.js server that brings everything together for deployment
 - `packages/ui`:

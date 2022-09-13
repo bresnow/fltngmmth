@@ -1,12 +1,12 @@
 {
   "name": "chain-extensions",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "type": "module",
   "license": "MIT",
   "dependencies": {
-    "remix-app": "*"
+    "frontend": "*"
   },
   "devDependencies": {
-    "remix-app": "*"
+    "frontend": "*"
   }
 }

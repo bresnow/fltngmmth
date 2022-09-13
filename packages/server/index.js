@@ -13,7 +13,7 @@ import { data } from "./loader.config.js";
 
 installGlobals();
 let require = createRequire(import.meta.url);
-let packagePath = dirname(require.resolve("../remix-app/package.json"));
+let packagePath = dirname(require.resolve("../remix/package.json"));
 let importPath = resolve(packagePath, "build/index.js");
 let publicPath = resolve(packagePath, "public");
 
@@ -72,7 +72,7 @@ if (process.env.NODE_ENV === "development") {
   app.all(
     "*",
     createRequestHandler({
-      build: await import("remix-app"),
+      build: await import("remix"),
       getLoadContext,
       mode: "production",
     })

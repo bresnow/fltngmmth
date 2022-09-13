@@ -19,12 +19,21 @@ WORKDIR /app
 COPY --from=clean-install /app /app
 CMD ["yarn", "build"]
 
-FROM build as production
+# remix app - common js code split 
+FROM build as frontend
 WORKDIR /app
 COPY --from=build /app /app
+RUN rm -r packages/relay  packages/proxy packages/scripts packages/temporal 
 CMD ["yarn", "start"]
 
-FROM clean-install as watch-dev
+# relay server with temporal workflow - esm code split. NOTE: realy server connects to frontend app via GUN websocket. 
+FROM build as relay
+WORKDIR /app
+COPY --from=build /app /app
+RUN rm -r packages/server packages/proxy packages/ui packages/scripts 
+CMD ["yarn", "start"]
+
+FROM clean-install as dev
 WORKDIR /app
 COPY --from=clean-install /app /app
 CMD ["yarn", "dev"]

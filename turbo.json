@@ -4,6 +4,10 @@
       "dependsOn": ["^build"],
       "outputs": ["build/**", "public/build/**", ".cache/**"]
     },
+    "start": {
+      "dependsOn": ["^build"],
+      "cache": true
+    },
     "dev": {
       "dependsOn": ["^build"],
       "cache": false
