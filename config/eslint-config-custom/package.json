@@ -1,17 +1,1 @@
-{
-  "name": "eslint-config-custom",
-  "version": "0.0.15",
-  "main": "index.js",
-  "license": "MIT",
-  "files": [
-    "index.js"
-  ],
-  "devDependencies": {
-    "@remix-run/eslint-config": "^1.4.3",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-remix": "^1.0.1"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
-}
+{"name":"eslint-config-custom","version":"0.0.15","main":"index.js","license":"MIT","files":["index.js"],"devDependencies":{"@remix-run/eslint-config":"^1.4.3","eslint-config-prettier":"^8.5.0","eslint-plugin-remix":"^1.0.1"},"publishConfig":{"access":"public"}}

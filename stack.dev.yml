@@ -1,11 +1,11 @@
 version: '3.7'
 services:
   app:
-    image: bresnow/remix-gun_dev:${VERSION:-v0.0.1}
+    image: bresnow/remix-gun_dev:${VERSION:-latest}
     volumes:
       - packages:/app/packages
       - config:/app/config
-      - node_modules:/app/node_modules
+      # - node_modules:/app/node_modules
       - public:/app/packages/remix/public
     networks:
       - socket-proxy

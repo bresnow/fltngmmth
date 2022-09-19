@@ -1,12 +1,1 @@
-{
-  "name": "chain-extensions",
-  "version": "0.0.15",
-  "type": "module",
-  "license": "MIT",
-  "dependencies": {
-    "frontend": "*"
-  },
-  "devDependencies": {
-    "frontend": "*"
-  }
-}
+{"name":"chain-extensions","version":"0.0.15","type":"module","license":"MIT","dependencies":{"frontend":"*"},"devDependencies":{"frontend":"*"}}

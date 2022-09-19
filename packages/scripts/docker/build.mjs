@@ -1,6 +1,6 @@
 import { $, argv } from "zx";
 import pkg from "../package.json" assert { type: "json" };
-let version = pkg.version;
+let version = argv.version !== undefined ? argv.version : pkg.version;
 let target = argv.target ?? argv.T ?? "dev",
   push = argv.push === "true";
 
@@ -16,4 +16,4 @@ if (target === "dev") {
 }
 await $`docker build -t bresnow/${name}:${version} --target=${target} .`;
 
-push & (await $`docker push bresnow/${name}:${version}`);
+push ? (await $`docker push bresnow/${name}:${version}`): console.log('NOT PUSHING TO CONTAINER REGISTRY');

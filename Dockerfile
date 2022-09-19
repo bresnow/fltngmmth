@@ -33,7 +33,7 @@ COPY --from=build /app /app
 RUN rm -r packages/server packages/proxy packages/ui packages/scripts 
 CMD ["yarn", "start"]
 
-FROM clean-install as dev
+FROM build as dev
 WORKDIR /app
-COPY --from=clean-install /app /app
+COPY --from=build /app /app
 CMD ["yarn", "dev"]
