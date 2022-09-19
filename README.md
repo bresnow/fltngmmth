@@ -1,9 +1,10 @@
 # NOTE: THIS PROJECT HAS BECOME ALOT MORE THAN A FRONTEND BOILERPLATE!!!
 
-## This repo has gone from a frontend app boilerplate to an open source cloud infrastructure boilerplate. While Remix is now roughly 25% of the project Gun has proven to be the hero we need but not deserve. (Thank you Mark). The whole repo is going through some brief but necessary refactoring but development script commands run without hiccups. After all the dust is settled remote urls will change and reverse engineering will not be as "easy". 
+## This repo has gone from a frontend app boilerplate to an open source cloud infrastructure boilerplate. While Remix is now roughly 25% of the project Gun has proven to be the hero we need but not deserve. (Thank you Mark). The whole repo is going through some brief but necessary refactoring but development script commands run without hiccups. After all the dust is settled remote urls will change and reverse engineering will not be as "easy".
 
 ### Patrons / Clients / FLTNGMMTH + XDESK Members :
-Everything is merged. Bresnow will deliver deployment instructions to all points of contact. 
+
+Everything is merged. Bresnow will deliver deployment instructions to all points of contact.
 
 This is a boilerplate for creating distributed web apps on Docker Swarm deployment infrastructure. Using GunDB, SEA authentication and React v18. Out of the box two or more boilerplate instances can share data via GUN's peer websocket feature.
 
@@ -21,29 +22,20 @@ This repo uses [yarn](https://www.yarnpkg.com/) as a package manager. It include
 
 ### Packages
 
-- `packages/remix`: a [Remix](https://remix.run/) application that makes up the public facing UX
-- `packages/chain-extensions`: Custom Gun hooks with types.
-- `packages/server`: an ESM Node.js server that brings everything together for deployment
-- `packages/ui`: React components styled with Tailwind Css
-- `packages/temporal`:
-- `packages/dev-scripts`:
-- `config/eslint-config-custom`: shared eslint config that includes `@remix-run/eslint-config` and `prettier`
-- `config/tsconfig`: base tsconfig that other packages inherit from
+- [packages/remix](packages/remix): a [Remix](https://remix.run/) application that makes up the public facing UX
+- [packages/chain-extensions](packages/chain-extensions): Custom Gun hooks with types. Gun.chain === const
+- [packages/server](packages/server): an ESM Node.js server that brings everything together for deployment
+- [packages/relay](packages/relay): Relay server to execute javascript modules (specifically .mjs) via websocket connection since Remix's one (f*cking inconvenient) weakness is that it can only run commonjs. Excuse my french but I almost quit Remix entirely. 
+- [packages/ui](packages/ui): React components styled with TailwindCss
+- [packages/temporal]: Temporal workflows (SOON)
+- [packages/scripts](packages/scripts): Google ZX powered playbook workflow that are called by package.json script commands
+- [config](config): shared eslint config that includes @remix-run/eslint-config , prettier and base tsconfig that other packages inherit from
 
-Each `package/*` is 100% [TypeScript](https://www.typescriptlang.org/).
 
-### Utilities
-
-This turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-- [Github Actions](https://github.com/features/actions)
 
 ## Traefik Reverse Proxy & Load Balancing In Docker Swarm
 
-Self-hosted deployment is a breeze. There are [swarm stacks](swarm-stacks) for the app and Traefik. Middleware redirects to https and uses a Lets Encrypt tls certificate resolver. Authenticated UI dashboard is also available. There are github worklow dispatchers for traefik and the app so you can spin up a new production instance from the github repo. See [Self-Hosted Github Runners Documentation](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners) .
+Self-hosted deployment is a breeze. There are [swarm stacks](packages/proxy/traefik/traefik.yml) for the app and Traefik. Middleware redirects to https and uses a Lets Encrypt tls certificate resolver. 
 
 ![Traefik Service Manager](.github/images/traefik1.png "Traefik1")
 
@@ -71,31 +63,11 @@ To develop all apps and packages, run the following command:
 yarn dev
 ```
 
-### Remote Caching
+### Utilities
 
-Turborepo can use a technique known as [Remote Caching (Beta)](https://turborepo.org/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+This turborepo has some additional tools already setup for you:
 
-By default, Turborepo will cache locally. To enable Remote Caching (Beta) you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Pipelines](https://turborepo.org/docs/core-concepts/pipelines)
-- [Caching](https://turborepo.org/docs/core-concepts/caching)
-- [Remote Caching (Beta)](https://turborepo.org/docs/core-concepts/remote-caching)
-- [Scoped Tasks](https://turborepo.org/docs/core-concepts/scopes)
-- [Configuration Options](https://turborepo.org/docs/reference/configuration)
-- [CLI Usage](https://turborepo.org/docs/reference/command-line-reference)
+- [TypeScript](https://www.typescriptlang.org/) for static type checking
+- [ESLint](https://eslint.org/) for code linting
+- [Prettier](https://prettier.io) for code formatting
+- [Github Actions](https://github.com/features/actions)
