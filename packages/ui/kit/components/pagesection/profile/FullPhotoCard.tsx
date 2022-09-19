@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import type { FC } from "react";
+import React from "react";
 const FullPhotoCard: FC = () => {
   return (
     <div className="overflow-hidden shadow-lg rounded-lg relative mb-1 mb-6 w-64 m-auto">

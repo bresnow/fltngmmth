@@ -1,5 +1,5 @@
 import { $, argv } from "zx";
-import pkg from "../package.json" assert { type: "json" };
+import pkg from "../package.json" ;
 let version = argv.version !== undefined ? argv.version : pkg.version;
 let target = argv.target ?? argv.T ?? "dev",
   push = argv.push === "true";

@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import type { FC } from "react";
+import React from "react";
 const TagsCard: FC = () => {
   return (
     <div className="overflow-hidden shadow-lg rounded-2xl h-90 w-64  m-auto">

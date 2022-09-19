@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from "react";
+import type { ButtonHTMLAttributes } from "react";
 import React from "react";
 import { Link } from "remix";
 import cx from "clsx";

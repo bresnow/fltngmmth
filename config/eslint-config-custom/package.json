@@ -8,8 +8,7 @@
   ],
   "devDependencies": {
     "@remix-run/eslint-config": "^1.4.3",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-remix": "^1.0.1"
+    "eslint-config-prettier": "^8.5.0"
   },
   "publishConfig": {
     "access": "public"

@@ -1,4 +1,4 @@
-import { LoaderFunction } from "remix";
+import type { LoaderFunction } from "remix";
 import type { LoaderContext } from "types";
 import Iframe from "../../../../ui/iframe";
 import FullPhotoCard from "../../../../ui/kit/components/pagesection/profile/FullPhotoCard";

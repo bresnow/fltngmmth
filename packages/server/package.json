@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development  PORT=3333 SECRET_KEY=\"SecretKeyToken\"  nodemon ./index.js --watch ../ui/**/* ../chain-extensions/* ./index.js",
     "start": "cross-env-shell NODE_ENV=production PORT=$PORT SECRET_KEY=$SECRET_KEY node ./index.js",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "typecheck": "tsc -b"
   },
   "dependencies": {

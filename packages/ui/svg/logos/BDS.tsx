@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 
 const BDSLogo = (props: SVGProps<SVGSVGElement>) => (
   <svg

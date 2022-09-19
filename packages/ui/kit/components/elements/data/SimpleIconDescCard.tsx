@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import type { FC } from "react";
+import React from "react";
 const SimpleIconDescCard: FC = () => {
   return (
     <div className="shadow-lg rounded-2xl p-4 bg-gray-900 w-64 m-auto relative">

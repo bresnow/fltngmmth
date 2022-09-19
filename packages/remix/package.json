@@ -16,7 +16,7 @@
     "dev": "cross-env NODE_ENV=development remix watch",
     "postinstall": "remix setup node",
     "prettier": "prettier --write '**/*.{json,md,mdx,mjs,mts,js,jsx,ts,tsx}'",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "typecheck": "tsc -b"
   },
   "dependencies": {

@@ -7,8 +7,8 @@ import {
   AccountMenu,
   RouteHeader,
 } from "@pkg/ui";
-import { LoaderFunction } from "remix";
-import { LoaderContext } from "types";
+import type { LoaderFunction } from "remix";
+import type { LoaderContext } from "types";
 import HeadProfil from "../../../ui/kit/components/pagesection/profile/HeadProfil";
 import FullPhotoCard from "../../../ui/kit/components/pagesection/profile/FullPhotoCard";
 import FMLogo from "../../../ui/svg/logos/FltngMmth";

@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import type { FC } from "react";
+import React from "react";
 const InfoNumberCard: FC = () => {
   return (
     <div className="shadow-lg rounded-2xl w-36 p-4 bg-white dark:bg-gray-800">

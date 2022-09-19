@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 
 const SvgArrowLeft1Icon = (props: SVGProps<SVGSVGElement>) => (
   <svg

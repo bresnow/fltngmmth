@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tailwindcss -m -i ./styles/app.css -o ./styles.css",
     "dev": "tailwindcss -w -i ./styles/app.css -o ./styles.css",
-    "lint": "eslint  **/*",
+    "lint": "eslint  . --fix",
     "prettier": "prettier --write '**/*.{json,md,mdx,mjs,mts,js,jsx,ts,tsx}'"
   },
   "dependencies": {

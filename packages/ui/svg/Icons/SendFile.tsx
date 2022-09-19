@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 
 const SvgSendFile = (props: SVGProps<SVGSVGElement>) => (
   <svg

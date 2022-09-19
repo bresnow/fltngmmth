@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import type { FC } from "react";
+import React from "react";
 const PagerButton: FC = () => {
   return (
     <div className="flex items-center">

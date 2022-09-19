@@ -1,4 +1,4 @@
-import { $, question, argv, chalk, glob, cd } from "zx";
+import { $, question, argv, chalk, glob} from "zx";
 import { io } from "fsxx";
 import "zx/globals";
 let log = console.log.bind(console);
@@ -51,7 +51,6 @@ async function format() {
       if (!line || line.includes("(modified content)") || line.length < 1) {
         return;
       }
-
 
       try {
         log("Formatting " + chalk.yellow(line));

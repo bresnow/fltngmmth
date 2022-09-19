@@ -7,7 +7,7 @@
     "build.watch": "tsc --build --watch",
     "build:workflow": "ts-node src/scripts/build-workflow-bundle.ts",
     "lint": "eslint .",
-    "start": "ts-node src/worker.ts",
+    "start:temp": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "workflow": "ts-node src/client.ts"
   },

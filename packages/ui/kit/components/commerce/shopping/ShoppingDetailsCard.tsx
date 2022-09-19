@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import type { FC } from "react";
+import React from "react";
 const ShoppingDetailsCard: FC = () => {
   return (
     <div className="shadow-lg rounded-2xl  bg-white w-64 m-auto p-2">

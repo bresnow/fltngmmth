@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import type { FC } from "react";
+import React from "react";
 const NotificationIconBadge: FC = () => {
   return (
     <button type="button" className="text-md text-white text-4xl relative">

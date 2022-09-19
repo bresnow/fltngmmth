@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import type { FC } from "react";
+import React from "react";
 import MultipleAvatar from "../avatars/MultipleAvatar";
 const SlackTask: FC = () => {
   return (

@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 export interface CNXTLogoProps extends SVGProps<SVGSVGElement> {
   to?: string;
   darkMode?: string;

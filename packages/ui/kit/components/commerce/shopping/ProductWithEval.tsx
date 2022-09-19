@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import type { FC } from "react";
+import React from "react";
 const ProductWithEval: FC = () => {
   return (
     <div className="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden">

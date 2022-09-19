@@ -1,7 +1,7 @@
 import { ButtonFollow, Tabs } from "@pkg/ui";
 import { Outlet } from "@remix-run/react";
-import { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
-import { LoaderContext } from "../../../types/index";
+import type { LoaderFunction, MetaFunction } from "@remix-run/server-runtime";
+import type { LoaderContext } from "../../../types/index";
 import { MultipleShoppingCard } from "@pkg/ui";
 import { Trigger } from "../../../../ui/dialog/dialog";
 import NaturalHome from "@pkg/ui/kit/templates/homePages/simplePage/NaturalHome";
