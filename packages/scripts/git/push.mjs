@@ -14,8 +14,9 @@ let pkgJsonGlob = await glob(["**/package.json"], { gitignore: true });
 let pkg1 = await io.json`${pkgJsonGlob[0]}`;
 if (!version) {
   version = await question(
-    `${chalk.green("Version? \n Current Version ") +
-    chalk.cyan(pkg1.data.version)
+    `${
+      chalk.green("Version? \n Current Version ") +
+      chalk.cyan(pkg1.data.version)
     }: `
   );
 }
@@ -46,11 +47,11 @@ async function format() {
     .toString()
     .split("modified:")
     .forEach(async (line) => {
+      line = line.trim();
       if (!line || line.includes("(modified content)") || line.length < 1) {
-        return
+        return;
       }
 
-      line = line.trim();
 
       try {
         log("Formatting " + chalk.yellow(line));
