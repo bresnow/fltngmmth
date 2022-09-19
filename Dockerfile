@@ -12,7 +12,7 @@ COPY ./.eslintrc.js ./.eslintrc.js
 COPY ./packages ./packages
 COPY ./config ./config
 
-RUN yarn ci
+RUN yarn 
 
 FROM clean-install as build
 WORKDIR /app

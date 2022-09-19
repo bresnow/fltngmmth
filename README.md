@@ -1,8 +1,11 @@
-# Remix.Gun Boilerplate
+# NOTE: THIS PROJECT HAS BECOME ALOT MORE THAN A FRONTEND BOILERPLATE!!!
 
-![Remix/Gun](.github/images/rmix-gun.png "Remix.Gun")
+## This repo has gone from a frontend app boilerplate to an open source cloud infrastructure boilerplate. While Remix is now roughly 25% of the project Gun has proven to be the hero we need but not deserve. (Thank you Mark). The whole repo is going through some brief but necessary refactoring but development script commands run without hiccups. After all the dust is settled remote urls will change and reverse engineering will not be as "easy". 
 
-This is a boilerplate for creating distributed web apps. Using GunDB, SEA authentication and React v18. Out of the box two or more boilerplate instances can share data via GUN's peer websocket feature.
+### Patrons / Clients / FLTNGMMTH + XDESK Members :
+Everything is merged. Bresnow will deliver deployment instructions to all points of contact. 
+
+This is a boilerplate for creating distributed web apps on Docker Swarm deployment infrastructure. Using GunDB, SEA authentication and React v18. Out of the box two or more boilerplate instances can share data via GUN's peer websocket feature.
 
 ## Under The Hood
 
@@ -21,7 +24,7 @@ This repo uses [yarn](https://www.yarnpkg.com/) as a package manager. It include
 - `packages/remix`: a [Remix](https://remix.run/) application that makes up the public facing UX
 - `packages/chain-extensions`: Custom Gun hooks with types.
 - `packages/server`: an ESM Node.js server that brings everything together for deployment
-- `packages/ui`:
+- `packages/ui`: React components styled with Tailwind Css
 - `packages/temporal`:
 - `packages/dev-scripts`:
 - `config/eslint-config-custom`: shared eslint config that includes `@remix-run/eslint-config` and `prettier`
