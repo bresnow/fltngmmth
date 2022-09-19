@@ -7,7 +7,7 @@ import {
   AccountMenu,
   RouteHeader,
 } from "@pkg/ui";
-import type { LoaderFunction } from "remix";
+import type { LoaderFunction } from "@remix-run/server-runtime";
 import type { LoaderContext } from "types";
 import HeadProfil from "../../../ui/kit/components/pagesection/profile/HeadProfil";
 import FullPhotoCard from "../../../ui/kit/components/pagesection/profile/FullPhotoCard";

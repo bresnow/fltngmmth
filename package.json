@@ -18,7 +18,7 @@
     "server": "yarn workspace server",
     "scripts": "yarn workspace scripts",
     "relay": "yarn workspace relay",
-    "separator1": "echo \"------- DOCKER SCRIPTS--------\"",
+    "separator1": "echo \"------- DOCKER--------\"",
     "dockerimg": "concurrently \"yarn front:build --push=true\" \"yarn relay:build --push=true\" \"yarn dev:build --push=true\"",
     "front:build": "npx zx packages/scripts/docker/build.mjs --target frontend",
     "relay:build": "npx zx packages/scripts/docker/build.mjs --target relay",
@@ -26,8 +26,9 @@
     "lint": "npx --yes turbo run lint",
     "push": " npx zx packages/scripts/git/push.mjs",
     "format": "prettier --write \"**/*.{json,md,mdx,mjs,mts,js,jsx,ts,tsx}\"",
-    "purge:full": "rm -rf node_modules **/**/radata **/**/node_modules **/*.log",
-    "purge:rad": "rm -rf **/**/radata",
+    "purge:full": "concurrently \"rm -r **/node_modules \" \"yarn purge:rad\"",
+    "purge:rad": "rm -r **/radata",
+    "separator2": "echo \"------- SWARM--------\"",
     "deploy:dev": "VERSION=$(node packages/scripts/version.mjs) docker stack deploy -c stack.dev.yml frontend-dev"
   },
   "devDependencies": {

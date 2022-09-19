@@ -1,5 +1,5 @@
 import React from "react";
-import { useMatches, useLocation, NavLink, Link, Form } from "remix";
+import { useMatches, useLocation, NavLink, Link, Form } from "@remix-run/react";
 
 type MenuLinks = {
   id: string;

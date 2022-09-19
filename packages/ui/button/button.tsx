@@ -2,7 +2,7 @@ import cn from "clsx";
 import React from "react";
 import type { IconCollection, TextProps } from "../";
 import { Icon, Text } from "../";
-import { Theme } from "..//theme";
+import { Theme } from "../theme";
 
 export type ButtonProps = {
   as?: React.ElementType;

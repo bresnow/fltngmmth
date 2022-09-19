@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes } from "react";
 import React from "react";
-import { Link } from "remix";
+import { Link } from "@remix-run/react";
 import cx from "clsx";
 
 export interface ButtonType
