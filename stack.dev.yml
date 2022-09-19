@@ -5,7 +5,7 @@ services:
     volumes:
       - packages:/app/packages
       - config:/app/config
-      # - node_modules:/app/node_modules
+      - node_modules:/app/node_modules
       - public:/app/packages/remix/public
     networks:
       - socket-proxy

@@ -1,6 +1,6 @@
 {
   "name": "remix-gun",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "private": true,
   "sideEffects": false,
   "workspaces": [
@@ -23,13 +23,13 @@
     "front:build": "npx zx packages/scripts/docker/build.mjs --target frontend",
     "relay:build": "npx zx packages/scripts/docker/build.mjs --target relay",
     "dev:build": "npx zx packages/scripts/docker/build.mjs --target dev",
+    "deploy:dev": "VERSION=$(node packages/scripts/version.mjs) docker stack deploy -c stack.dev.yml frontend-dev",
+    "separator2": "echo \"------- UTILITY--------\"",
     "lint": "npx --yes turbo run lint",
     "push": " npx zx packages/scripts/git/push.mjs",
     "format": "prettier --write \"**/*.{json,md,mdx,mjs,mts,js,jsx,ts,tsx}\"",
     "purge:full": "concurrently \"rm -r **/node_modules \" \"yarn purge:rad\"",
-    "purge:rad": "rm -r **/radata",
-    "separator2": "echo \"------- SWARM--------\"",
-    "deploy:dev": "VERSION=$(node packages/scripts/version.mjs) docker stack deploy -c stack.dev.yml frontend-dev"
+    "purge:rad": "rm -r **/radata"
   },
   "devDependencies": {
     "patch-package": "^6.4.7",

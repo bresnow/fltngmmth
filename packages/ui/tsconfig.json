@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "../../config/tsconfig/base.json",
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
-  "exclude": ["node_modules", "build", "public/build"],
+  "exclude": ["node_modules", "build"],
   "compilerOptions": {
     "target": "ES2019",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -18,7 +18,7 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"],
+      "~/*": ["../remix/app/*"],
       "@pkg/*": ["../../packages/*"]
     }
   }
