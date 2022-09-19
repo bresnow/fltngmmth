@@ -16,4 +16,6 @@ if (target === "dev") {
 }
 await $`docker build -t bresnow/${name}:${version} --target=${target} .`;
 
-push ? (await $`docker push bresnow/${name}:${version}`): console.log('NOT PUSHING TO CONTAINER REGISTRY');
+push
+  ? await $`docker push bresnow/${name}:${version}`
+  : console.log("NOT PUSHING TO CONTAINER REGISTRY");

@@ -14,8 +14,9 @@ let pkgJsonGlob = await glob(["**/package.json"], { gitignore: true });
 let pkg1 = await io.json`${pkgJsonGlob[0]}`;
 if (!version) {
   version = await question(
-    `${chalk.green("Version? \n Current Version ") +
-    chalk.cyan(pkg1.data.version)
+    `${
+      chalk.green("Version? \n Current Version ") +
+      chalk.cyan(pkg1.data.version)
     }: `
   );
 }
@@ -40,19 +41,24 @@ if (!message) {
   }
 }
 async function format() {
-  var changed = await $`git status | grep "modified:"`
- changed.toString().split('modified:').forEach(async line => {
-    if (line.includes('(modified content)')) {
-      return
-    }
-    line = line.trim()
-    try {
-      log(chalk.yellow('Formatting' + line))
-      await $`yarn prettier -w ${line}`
-    } catch (error) {
-      console.error(chalk.red(error));
-    }
-  })
+  var changed = await $`git status | grep "modified:"`;
+  changed
+    .toString()
+    .split("modified:")
+    .forEach(async (line) => {
+      if (line.includes("(modified content)")) {
+        return;
+      }else {
+        line = line.trim();
+        try {
+          log("Formatting " + chalk.yellow(line));
+          await $`yarn prettier -w ${line}`;
+        } catch (error) {
+          console.error(chalk.red(error));
+        }
+
+      }
+    });
 }
 
 let commit = argv.commit ?? false;
@@ -64,7 +70,7 @@ async function git({ commit }) {
     await $`git status`;
     $.verbose = false;
     await $`git add --all`;
-    await format()
+    await format();
     await $`git commit -s -m ${`${message} | ${version}`}`;
     if (!commit) {
       await $`git push `;

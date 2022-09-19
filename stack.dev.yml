@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 services:
   app:
     image: bresnow/remix-gun_dev:${VERSION:-latest}
@@ -38,8 +38,8 @@ volumes:
   config:
     driver: local-persist
     driver_opts:
-     mountpoint: ${PWD}/config
-    
+      mountpoint: ${PWD}/config
+
 networks:
   edge:
     external: true
