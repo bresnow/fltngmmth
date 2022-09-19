@@ -14,9 +14,8 @@ let pkgJsonGlob = await glob(["**/package.json"], { gitignore: true });
 let pkg1 = await io.json`${pkgJsonGlob[0]}`;
 if (!version) {
   version = await question(
-    `${
-      chalk.green("Version? \n Current Version ") +
-      chalk.cyan(pkg1.data.version)
+    `${chalk.green("Version? \n Current Version ") +
+    chalk.cyan(pkg1.data.version)
     }: `
   );
 }
@@ -25,6 +24,7 @@ pkgJsonGlob.forEach(async (path) => {
   version === "" ? (version = pkg.data.version) : (version = version.trim());
   pkg.data.version = version;
   await pkg.save();
+  await $`yarn prettier -w **/package.json`;
 });
 
 //Commit Message (if not provided default message is used)
@@ -46,11 +46,12 @@ async function format() {
     .toString()
     .split("modified:")
     .forEach(async (line) => {
-      if (line.includes("(modified content)")) {
-        line = '**/package.json'
-      } else {
-        line = line.trim();
+      if (!line || line.includes("(modified content)") || line.length < 1) {
+        return
       }
+
+      line = line.trim();
+
       try {
         log("Formatting " + chalk.yellow(line));
         await $`yarn prettier -w ${line}`;
