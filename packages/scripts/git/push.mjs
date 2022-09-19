@@ -47,16 +47,15 @@ async function format() {
     .split("modified:")
     .forEach(async (line) => {
       if (line.includes("(modified content)")) {
-        return;
-      }else {
+        line = '**/package.json'
+      } else {
         line = line.trim();
-        try {
-          log("Formatting " + chalk.yellow(line));
-          await $`yarn prettier -w ${line}`;
-        } catch (error) {
-          console.error(chalk.red(error));
-        }
-
+      }
+      try {
+        log("Formatting " + chalk.yellow(line));
+        await $`yarn prettier -w ${line}`;
+      } catch (error) {
+        console.error(chalk.red(error));
       }
     });
 }
