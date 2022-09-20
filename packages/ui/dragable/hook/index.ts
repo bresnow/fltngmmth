@@ -1,5 +1,5 @@
 import type { RefObject} from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState , useCallback} from "react";
 
 export enum DraggingState {
   undefined = -1,
@@ -28,8 +28,8 @@ export default function useDraggable() {
     // We save touchOffset value as parentElement's offset
     // to calculate element's offset on the move.
     setPoint({
-      x: e.x - parentElement.offsetLeft,
-      y: e.y - parentElement.offsetTop,
+      x: e.x - parentElement.offsetWidth,
+      y: e.y - parentElement.offsetHeight,
     });
     setElementOffset({
       x: ref.current.offsetLeft,
@@ -43,7 +43,7 @@ export default function useDraggable() {
     setState(DraggingState.starts);
   }
 
-  function onMouseMove(e: MouseEvent) {
+  const onMouseMove = useCallback(function (e: MouseEvent) {
     const parentElement = ref.current?.offsetParent as HTMLElement;
     if (!isDragging() || !ref.current || !parentElement) return;
     setState(DraggingState.moves);
@@ -56,7 +56,7 @@ export default function useDraggable() {
       x: e.x - touchOffset.x - parentElement.offsetLeft,
       y: e.y - touchOffset.y - parentElement.offsetTop,
     });
-  }
+  },[isDragging, touchOffset.x, touchOffset.y])
 
   function onMouseUp(e: MouseEvent) {
     // ends up the flow by setting the state
@@ -79,7 +79,7 @@ export default function useDraggable() {
     return () => {
       element?.removeEventListener("mousedown", onMouseDown);
     };
-  }, [ref.current]);
+  }, []);
 
   // Everytime the state changes, assign or remove
   // the corresponding mousemove, mouseup and click handlers
@@ -98,7 +98,7 @@ export default function useDraggable() {
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("click", onClick);
     };
-  }, [state]);
+  }, [isDragging, onMouseMove, state]);
 
   return {
     ref: ref,

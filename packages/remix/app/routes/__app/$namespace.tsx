@@ -1,21 +1,44 @@
-import type { LoaderFunction } from "@remix-run/server-runtime";
+import { json, LoaderFunction } from "@remix-run/server-runtime";
 import type { LoaderContext } from "types";
 import Iframe from "../../../../ui/iframe";
 import FullPhotoCard from "../../../../ui/kit/components/pagesection/profile/FullPhotoCard";
 import DraggingState from "../../../../ui/dragable";
-
-export let loader: LoaderFunction = async ({ params, request, context }) => {
-  let contextual = context as unknown as LoaderContext;
-  return null;
+import axios from "redaxios"
+import { useLoaderData } from "@remix-run/react";
+export let loader: LoaderFunction = async () => {
+  let { data } = await axios.get('http://soundcloud.com')
+  return data
 };
 
+
+
+export function html(
+  content: string,
+  init: number | ResponseInit = {}
+): Response {
+  let responseInit = typeof init === 'number' ? { status: init } : init;
+
+  let headers = new Headers(responseInit.headers);
+  if (!headers.has('Content-Type')) {
+    headers.set('Content-Type', 'text/html; charset=utf-8');
+  }
+
+  return new Response(content, {
+    ...responseInit,
+    headers,
+  });
+}
+
 export default function () {
+  let data = useLoaderData()
+  console.log(data)
   return (
-    <Iframe url={"http://kanboard:8080"} />
+    <Iframe srcdocument={data} className={'w-full h-1/4'} />
+
     // <>
-    //   <DraggingState>
-    //     <FullPhotoCard />
-    //   </DraggingState>
+      // <DraggingState>
+      //   <FullPhotoCard />
+      // </DraggingState>
     //   <div className="flex gap-4 gap-y-1">
     //     <div className="col-1">
     //       <div className="mb-4">

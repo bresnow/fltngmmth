@@ -2,7 +2,6 @@
 
 ## This repo has gone from a frontend app boilerplate to an open source cloud infrastructure boilerplate. While Remix is now roughly 25% of the project Gun has proven to be the hero we need but not deserve. (Thank you Mark). The whole repo is going through some brief but necessary refactoring but development script commands run without hiccups. After all the dust is settled remote urls will change and reverse engineering will not be as "easy".
 
-
 ![Screenshot](.github/images/front.png "frontend")
 This is a boilerplate for creating distributed web apps on Docker Swarm deployment infrastructure. Using GunDB, SEA authentication and React v18. Out of the box two or more boilerplate instances can share data via GUN's peer websocket feature.
 

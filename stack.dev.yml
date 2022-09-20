@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   app:
-    image: bresnow/remix-gun_dev:${VERSION:-latest}
+    image: bresnow/remix-gun_dev:${VERSION:-0.0.16}
     volumes:
       - packages:/app/packages
       - config:/app/config

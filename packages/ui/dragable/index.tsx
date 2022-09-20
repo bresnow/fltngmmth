@@ -1,6 +1,6 @@
 import React from "react";
 import useDraggable, { DraggingState } from "./hook";
-export default function ({
+export default function Draggable ({
   className,
   children,
 }: {
@@ -18,7 +18,7 @@ export default function ({
   return (
     <>
       {dragging.state === DraggingState.moves
-        ? `x:${dragging.touchOffset.x}, y:${dragging.touchOffset.y} `
+        ? `x:${dragging.elementOffset.x}, y:${dragging.elementOffset.y} `
         : "not dragging"}
       <div ref={ref} className={className} style={style}>
         {children}

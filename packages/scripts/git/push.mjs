@@ -1,4 +1,4 @@
-import { $, question, argv, chalk, glob} from "zx";
+import { $, question, argv, chalk, glob } from "zx";
 import { io } from "fsxx";
 import "zx/globals";
 let log = console.log.bind(console);
@@ -76,6 +76,8 @@ async function git({ commit }) {
       await $`git push `;
     }
   } catch (error) {
-    console.error(chalk.red(error.exitCode) +`\n ${error.stderr}`);
+    console.log(
+      `${chalk.red("ExitCode: " + error.exitCode)}\n ${chalk.bold(error.stderr)}`
+    );
   }
 }

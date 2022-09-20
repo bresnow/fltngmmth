@@ -15,14 +15,16 @@ if (target === "dev") {
   name = "remix-gun_dev";
 }
 try {
-
   await $`docker build -t bresnow/${name}:${version} --target=${target} .`;
 
   if (push) {
-    await $`docker push bresnow/${name}:${version}`
-    if (target === "dev") { await $`yarn deploy:dev` }
+    await $`docker push bresnow/${name}:${version}`;
+    if (target === "dev") {
+      await $`yarn deploy:dev`;
+    }
   }
 } catch (error) {
-  console.error(`${chalk.red('ExitCode: ' + error.exitCode)}\n ${chalk.bold(error.stderr)}`);
+  console.log(
+    `${chalk.red("ExitCode: " + error.exitCode)}\n ${chalk.bold(error.stderr)}`
+  );
 }
-
