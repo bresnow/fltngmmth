@@ -76,6 +76,6 @@ async function git({ commit }) {
       await $`git push `;
     }
   } catch (error) {
-    console.log(chalk.red(error));
+    console.error(chalk.red(error.exitCode) +`\n ${error.stderr}`);
   }
 }
