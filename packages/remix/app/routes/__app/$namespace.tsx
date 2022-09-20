@@ -3,24 +3,22 @@ import type { LoaderContext } from "types";
 import Iframe from "../../../../ui/iframe";
 import FullPhotoCard from "../../../../ui/kit/components/pagesection/profile/FullPhotoCard";
 import DraggingState from "../../../../ui/dragable";
-import axios from "redaxios"
+import axios from "redaxios";
 import { useLoaderData } from "@remix-run/react";
 export let loader: LoaderFunction = async () => {
-  let { data } = await axios.get('http://soundcloud.com')
-  return data
+  let { data } = await axios.get("http://app:3333");
+  return null;
 };
-
-
 
 export function html(
   content: string,
   init: number | ResponseInit = {}
 ): Response {
-  let responseInit = typeof init === 'number' ? { status: init } : init;
+  let responseInit = typeof init === "number" ? { status: init } : init;
 
   let headers = new Headers(responseInit.headers);
-  if (!headers.has('Content-Type')) {
-    headers.set('Content-Type', 'text/html; charset=utf-8');
+  if (!headers.has("Content-Type")) {
+    headers.set("Content-Type", "text/html; charset=utf-8");
   }
 
   return new Response(content, {
@@ -30,15 +28,14 @@ export function html(
 }
 
 export default function () {
-  let data = useLoaderData()
-  console.log(data)
+
   return (
-    <Iframe srcdocument={data} className={'w-full h-1/4'} />
+    <Iframe url={"https://relay.fltngmmth.com"} className={"w-full h-1/2"} />
 
     // <>
-      // <DraggingState>
-      //   <FullPhotoCard />
-      // </DraggingState>
+    // <DraggingState>
+    //   <FullPhotoCard />
+    // </DraggingState>
     //   <div className="flex gap-4 gap-y-1">
     //     <div className="col-1">
     //       <div className="mb-4">

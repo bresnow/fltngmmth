@@ -48,7 +48,7 @@ async function format() {
     .split("modified:")
     .forEach(async (line) => {
       line = line.trim();
-      if (!line || line.includes("(modified content)") || line.length < 1) {
+      if (!line || line.includes("modified content") || line.includes("yarn.lock") || line.length < 1) {
         return;
       }
 
@@ -77,7 +77,9 @@ async function git({ commit }) {
     }
   } catch (error) {
     console.log(
-      `${chalk.red("ExitCode: " + error.exitCode)}\n ${chalk.bold(error.stderr)}`
+      `${chalk.red("ExitCode: " + error.exitCode)}\n ${chalk.bold(
+        error.stderr
+      )}`
     );
   }
 }

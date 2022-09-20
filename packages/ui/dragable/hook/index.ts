@@ -1,5 +1,5 @@
-import type { RefObject} from "react";
-import { useEffect, useRef, useState , useCallback} from "react";
+import type { RefObject } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 export enum DraggingState {
   undefined = -1,
@@ -43,20 +43,23 @@ export default function useDraggable() {
     setState(DraggingState.starts);
   }
 
-  const onMouseMove = useCallback(function (e: MouseEvent) {
-    const parentElement = ref.current?.offsetParent as HTMLElement;
-    if (!isDragging() || !ref.current || !parentElement) return;
-    setState(DraggingState.moves);
+  const onMouseMove = useCallback(
+    function (e: MouseEvent) {
+      const parentElement = ref.current?.offsetParent as HTMLElement;
+      if (!isDragging() || !ref.current || !parentElement) return;
+      setState(DraggingState.moves);
 
-    setPoint({
-      x: e.x - parentElement.offsetLeft,
-      y: e.y - parentElement.offsetTop,
-    });
-    setElementOffset({
-      x: e.x - touchOffset.x - parentElement.offsetLeft,
-      y: e.y - touchOffset.y - parentElement.offsetTop,
-    });
-  },[isDragging, touchOffset.x, touchOffset.y])
+      setPoint({
+        x: e.x - parentElement.offsetLeft,
+        y: e.y - parentElement.offsetTop,
+      });
+      setElementOffset({
+        x: e.x - touchOffset.x - parentElement.offsetLeft,
+        y: e.y - touchOffset.y - parentElement.offsetTop,
+      });
+    },
+    [isDragging, touchOffset.x, touchOffset.y]
+  );
 
   function onMouseUp(e: MouseEvent) {
     // ends up the flow by setting the state

@@ -5,9 +5,7 @@ module.exports = {
   parserOptions: {
     requireConfigFile: false,
     babelOptions: {
-      plugins: [
-        "@babel/plugin-syntax-import-assertions"
-      ]
-    }
-  }
-}
+      plugins: ["@babel/plugin-syntax-import-assertions"],
+    },
+  },
+};

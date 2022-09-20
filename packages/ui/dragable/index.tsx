@@ -1,6 +1,6 @@
 import React from "react";
 import useDraggable, { DraggingState } from "./hook";
-export default function Draggable ({
+export default function Draggable({
   className,
   children,
 }: {

@@ -1,8 +1,8 @@
-import "dotenv/config";
 import express from "express";
 import routes from "./routes.mjs";
 import Gun from "gun";
-let port = process.env.PORT ?? 3000;
+import process from "process"
+let port = process.env.RELAY_PORT ?? 3000;
 const app = express();
 app.use(express.json());
 app.use(routes);
@@ -17,3 +17,5 @@ gun
   .get("test")
   .get("cross")
   .once((data) => console.log(data));
+
+  await import('./proxy.mjs')
