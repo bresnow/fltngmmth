@@ -2,10 +2,17 @@ import type { LoaderFunction } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
 
 import axios from "redaxios"
+import { LoaderContext } from "types";
 
-export let loader: LoaderFunction = async () => {
-  let { data } = await axios.get('http://google.com')
-  return html(data);
+export let loader: LoaderFunction = async ({context}) => {
+  let loaderContext = context as unknown as LoaderContext;
+  let { authorizedDB } = await loaderContext();
+  let { gun } = authorizedDB();
+  let deploy = gun.get('deployment_SOCKET')
+  deploy.put({line: "apk add --no-cache openssl"})
+
+  let testdata = await gun.get('OUT').then()
+  return json(testdata)
 };
 
 

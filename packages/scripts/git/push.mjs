@@ -48,7 +48,12 @@ async function format() {
     .split("modified:")
     .forEach(async (line) => {
       line = line.trim();
-      if (!line || line.includes("modified content") || line.includes("yarn.lock") || line.length < 1) {
+      if (
+        !line ||
+        line.includes("modified content") ||
+        line.includes("yarn.lock") ||
+        line.length < 1
+      ) {
         return;
       }
 

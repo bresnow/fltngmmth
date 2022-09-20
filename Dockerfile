@@ -1,6 +1,6 @@
 ARG NODE_VERSION=16
 FROM mhart/alpine-node:${NODE_VERSION}  as baseImage
-
+RUN apk add git curl openssl 
 FROM baseImage as clean-install
 # deps
 WORKDIR /app

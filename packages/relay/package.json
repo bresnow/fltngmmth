@@ -1,1 +1,23 @@
-{"name":"relay","version":"0.0.16","main":"index.js","license":"MIT","scripts":{"dev":"nodemon  ./src/server.mjs","start":"node ./src/server.mjs"},"dependencies":{"dockerode":"^3.3.4","frontend":"*","js-base64":"^3.7.2","ssh2":"^1.11.0","uuid":"^9.0.0","yup":"^0.32.11"},"devDependencies":{"@types/dockerode":"^3.3.9","frontend":"*","http-proxy":"^1.18.1"}}
+{
+  "name": "relay",
+  "version": "0.0.165",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon  ./src/server.mjs",
+    "start": "node ./src/server.mjs"
+  },
+  "dependencies": {
+    "dockerode": "^3.3.4",
+    "frontend": "*",
+    "js-base64": "^3.7.2",
+    "ssh2": "^1.11.0",
+    "uuid": "^9.0.0",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@types/dockerode": "^3.3.9",
+    "frontend": "*",
+    "http-proxy": "^1.18.1"
+  }
+}

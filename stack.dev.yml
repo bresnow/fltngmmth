@@ -26,6 +26,8 @@ services:
         - traefik.http.routers.remix-gun-app-${NUMBER:-0}.tls=true
         - traefik.http.routers.remix-gun-app-${NUMBER:-0}.tls.certresolver=le
         - traefik.http.services.remix-gun-app-${NUMBER:-0}.loadbalancer.server.port=${PORT:-3333}
+
+  
   relay:
     image: nginx:1.17-alpine
     healthcheck:

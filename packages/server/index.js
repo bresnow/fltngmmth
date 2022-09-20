@@ -89,11 +89,11 @@ let server = app.listen(port, () => {
 });
 
 const gun = Gun({
-  peers: ["http://app:3000/gun"],
+  peers: ["http://front_app:3000/gun"],
   file: radataDir,
   web: server,
 });
-gun.get("test").get("cross").put({ soup: "du jour", warm: "hors d'erves" });
+
 
 global.Gun = Gun;
 global.gun = gun;

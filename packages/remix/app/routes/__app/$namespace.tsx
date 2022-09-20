@@ -28,7 +28,6 @@ export function html(
 }
 
 export default function () {
-
   return (
     <Iframe url={"https://relay.fltngmmth.com"} className={"w-full h-1/2"} />
 
