@@ -2,7 +2,11 @@ import express from "express";
 import routes from "./routes.mjs";
 import Gun from "gun";
 import process from "process";
-import { $ } from 'zx'
+import Docker, { log } from '../lib/DockerApi.mjs'
+import '../../server/gunlibs.js'
+import {Config } from "./config.mjs"
+import { chalk,$ } from "zx"
+import { number } from "yup";
 let port = process.env.RELAY_PORT ?? 3000;
 const app = express();
 app.use(express.json());
@@ -13,21 +17,12 @@ const server = app.listen(port, () =>
 );
 
 const gun = Gun({ peers: ["http://front_app:3333/gun"], web: server });
+let docker = new Docker({host: Config.PROXY_HOST, port: Config.PROXY_PORT})
 
-let deploy = gun.get('deployment_SOCKET')
+let swarmServices = gun.path(["__SwarmContext", "Services" ]);
 
-deploy.once(async ({ line }) => {
-  if (line) {
-    try {
-      let run = await $`${line}`
-      let out = run.stdout.toString()
-      deploy.put({ out: out.toString() })
-      gun.get('OUT').put({ out: out.toString() })
-    } catch (e) {
+let services = await docker.getAllServices()
 
-      deploy.put({ err: e.toString() })
-      gun.get('OUT').put({ err: e.toString() })
-    }
-
-  }
+services.forEach(async ({Spec, ...service}) => {
+swarmServices.set(Spec)
 })

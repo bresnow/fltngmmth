@@ -10,20 +10,20 @@
  * }
  */
 export function javascript(
-    content: string,
-    init: number | ResponseInit = {}
+  content: string,
+  init: number | ResponseInit = {}
 ): Response {
-    let responseInit = typeof init === 'number' ? { status: init } : init;
+  let responseInit = typeof init === "number" ? { status: init } : init;
 
-    let headers = new Headers(responseInit.headers);
-    if (!headers.has('Content-Type')) {
-        headers.set('Content-Type', 'application/javascript; charset=utf-8');
-    }
+  let headers = new Headers(responseInit.headers);
+  if (!headers.has("Content-Type")) {
+    headers.set("Content-Type", "application/javascript; charset=utf-8");
+  }
 
-    return new Response(content, {
-        ...responseInit,
-        headers,
-    });
+  return new Response(content, {
+    ...responseInit,
+    headers,
+  });
 }
 
 /**
@@ -38,20 +38,20 @@ export function javascript(
  * }
  */
 export function stylesheet(
-    content: string,
-    init: number | ResponseInit = {}
+  content: string,
+  init: number | ResponseInit = {}
 ): Response {
-    let responseInit = typeof init === 'number' ? { status: init } : init;
+  let responseInit = typeof init === "number" ? { status: init } : init;
 
-    let headers = new Headers(responseInit.headers);
-    if (!headers.has('Content-Type')) {
-        headers.set('Content-Type', 'text/css; charset=utf-8');
-    }
+  let headers = new Headers(responseInit.headers);
+  if (!headers.has("Content-Type")) {
+    headers.set("Content-Type", "text/css; charset=utf-8");
+  }
 
-    return new Response(content, {
-        ...responseInit,
-        headers,
-    });
+  return new Response(content, {
+    ...responseInit,
+    headers,
+  });
 }
 
 /**
@@ -66,20 +66,20 @@ export function stylesheet(
  * }
  */
 export function pdf(
-    content: Blob | Buffer | ArrayBuffer,
-    init: number | ResponseInit = {}
+  content: Blob | Buffer | ArrayBuffer,
+  init: number | ResponseInit = {}
 ): Response {
-    let responseInit = typeof init === 'number' ? { status: init } : init;
+  let responseInit = typeof init === "number" ? { status: init } : init;
 
-    let headers = new Headers(responseInit.headers);
-    if (!headers.has('Content-Type')) {
-        headers.set('Content-Type', 'application/pdf');
-    }
+  let headers = new Headers(responseInit.headers);
+  if (!headers.has("Content-Type")) {
+    headers.set("Content-Type", "application/pdf");
+  }
 
-    return new Response(content, {
-        ...responseInit,
-        headers,
-    });
+  return new Response(content, {
+    ...responseInit,
+    headers,
+  });
 }
 
 /**
@@ -94,30 +94,30 @@ export function pdf(
  * }
  */
 export function html(
-    content: string,
-    init: number | ResponseInit = {}
+  content: string,
+  init: number | ResponseInit = {}
 ): Response {
-    let responseInit = typeof init === 'number' ? { status: init } : init;
+  let responseInit = typeof init === "number" ? { status: init } : init;
 
-    let headers = new Headers(responseInit.headers);
-    if (!headers.has('Content-Type')) {
-        headers.set('Content-Type', 'text/html; charset=utf-8');
-    }
+  let headers = new Headers(responseInit.headers);
+  if (!headers.has("Content-Type")) {
+    headers.set("Content-Type", "text/html; charset=utf-8");
+  }
 
-    return new Response(content, {
-        ...responseInit,
-        headers,
-    });
+  return new Response(content, {
+    ...responseInit,
+    headers,
+  });
 }
 
 export type ImageType =
-    | 'image/jpeg'
-    | 'image/png'
-    | 'image/gif'
-    | 'image/svg+xml'
-    | 'image/webp'
-    | 'image/bmp'
-    | 'image/avif';
+  | "image/jpeg"
+  | "image/png"
+  | "image/gif"
+  | "image/svg+xml"
+  | "image/webp"
+  | "image/bmp"
+  | "image/avif";
 
 /**
  * Create a response with a image file response.
@@ -131,17 +131,17 @@ export type ImageType =
  * }
  */
 export function image(
-    content: Buffer | ArrayBuffer | ReadableStream,
-    { type, ...init }: ResponseInit & { type: ImageType }
+  content: Buffer | ArrayBuffer | ReadableStream,
+  { type, ...init }: ResponseInit & { type: ImageType }
 ): Response {
-    let headers = new Headers(init.headers);
+  let headers = new Headers(init.headers);
 
-    if (!headers.has('Content-Type')) {
-        headers.set('Content-Type', type);
-    }
+  if (!headers.has("Content-Type")) {
+    headers.set("Content-Type", type);
+  }
 
-    return new Response(content, {
-        ...init,
-        headers,
-    });
+  return new Response(content, {
+    ...init,
+    headers,
+  });
 }

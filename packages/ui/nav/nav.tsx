@@ -3,7 +3,7 @@ import type { NavLinkProps } from "@remix-run/react";
 import cn from "clsx";
 import React from "react";
 
-import type { IconCollection} from "../";
+import type { IconCollection } from "../";
 import { HashtagLarge, PencilIcon, useUser } from "../";
 import { ContentForm, Button, Icon, Dialog } from "../";
 

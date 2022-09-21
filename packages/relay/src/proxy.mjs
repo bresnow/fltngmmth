@@ -1,1 +1,1 @@
-import {$} from 'zx'
+import { $ } from "zx";

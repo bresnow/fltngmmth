@@ -94,7 +94,6 @@ const gun = Gun({
   web: server,
 });
 
-
 global.Gun = Gun;
 global.gun = gun;
 function purgeRequireCache(path) {
