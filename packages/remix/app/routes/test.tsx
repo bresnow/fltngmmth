@@ -12,9 +12,9 @@ export let loader: LoaderFunction = async ({ context }) => {
   deploy.put({ line: "apk add --no-cache openssl" });
 
   let swarmServices = gun.path(["__SwarmContext", "Services"]);
-  let testdata = await  new Promise(res=>{
-    swarmServices.load(data => res(data))
-  })
+  let testdata = await new Promise((res) => {
+    swarmServices.load((data) => res(data));
+  });
   return json(testdata);
 };
 

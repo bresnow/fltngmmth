@@ -8,5 +8,6 @@
     "rootDir": "./src",
     "outDir": "./lib"
   },
-  "include": ["src/docker/DockerApi.mts"]
+  "include": ["src/docker/DockerApi.mts"],
+  "exclude": ["./lib/*"],
 }

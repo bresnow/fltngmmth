@@ -22,14 +22,12 @@ let swarmServices = gun.path(["__SwarmContext", "Services"]);
 let services = await docker.getAllServices();
 
 services.forEach(async (service) => {
- 
-//ARRAYS
-
-/**
- * TaskTemplate.Networks
- *  TaskTemplate.ContainerSpec.Args
- *  TaskTemplate.ContainerSpec.Mounts
- */
+  //ARRAYS
+  /**
+   * TaskTemplate.Networks
+   *  TaskTemplate.ContainerSpec.Args
+   *  TaskTemplate.ContainerSpec.Mounts
+   */
   // swarmServices.put(service);
   // console.log((JSON.stringify(service, null , 2)))
 });
