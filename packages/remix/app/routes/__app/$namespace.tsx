@@ -1,8 +1,5 @@
 import type { LoaderFunction } from "@remix-run/server-runtime";
 import Iframe from "@pkg/ui/iframe";
-import axios from "redaxios";
-import { useLoaderData } from "@remix-run/react";
-
 
 
 export function html(
@@ -22,19 +19,17 @@ export function html(
   });
 }
 
-
-
 export let loader: LoaderFunction = async () => {
-  let { data } = await axios.get("http://front_app:3000");
-  return html(data);
+  // let { data } = await axios.get("http://kan_kanboard:8080");
+  return null
 };
 
 export default function () {
-  let data = useLoaderData();
+  // let data = useLoaderData();
 
   return (
     <>
-      <Iframe src={'https://relay.fltngmmth.com'} className={"w-full h-full"} />
+      <Iframe src={"https://kanboard.fltngmmth.com"} className={"w-full h-full"} />
       {/* <Iframe srcdocument={data} className={"w-full h-1/2"} /> */}
     </>
   );

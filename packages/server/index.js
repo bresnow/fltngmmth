@@ -99,6 +99,7 @@ global.gun = gun;
 function purgeRequireCache(path) {
   delete require.cache[require.resolve(path)];
 }
+
 (async () => {
   await import("chainlocker"); // this is a module I built that keeps the keypair in the vault context to encrypt and compress data to utf16 characters. Object values are almost 50% smaller
   gun.keys(SECRET_KEY_ARRAY, (masterKeys) => {
@@ -119,7 +120,7 @@ function getLoadContext() {
 }
 function remixEarlyHints(build) {
   function getRel(resource) {
-    if (resource.endsWith(".js" || ".mjs")) {
+    if (resource.endsWith(".js")) {
       return "modulepreload";
     }
     return "preload";

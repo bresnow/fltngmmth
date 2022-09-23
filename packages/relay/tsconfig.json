@@ -9,5 +9,5 @@
     "outDir": "./lib"
   },
   "include": ["src/docker/DockerApi.mts"],
-  "exclude": ["./lib/*"],
+  "exclude": ["./lib/*"]
 }

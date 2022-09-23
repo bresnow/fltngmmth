@@ -4,11 +4,8 @@
 version: '3.8'
 
 services:
-  kanboard:
-    image: vital987/chrome-novnc:latest
-    environment:
-      - PORT=${PORT:-8080}
-      - VNC_PASS=${VNC_PASS}
+  playsms:
+    image: playsms/playsms:1.4.5
     deploy:
       labels:
         - traefik.enable=true
@@ -18,11 +15,11 @@ services:
         - traefik.http.routers.kanboard-${NUMBER:-1}.entrypoints=http,https
         - traefik.http.routers.kanboard-${NUMBER:-1}.service=kanboard-${NUMBER:-1}
         - traefik.http.routers.kanboard-${NUMBER:-1}.tls.certresolver=le
-        - traefik.http.services.kanboard-${NUMBER:-1}.loadbalancer.server.port=${PORT:-8080}
+        - traefik.http.services.kanboard-${NUMBER:-1}.loadbalancer.server.port=${PORT:-80}
     networks:
       - public
       - edge
-
+ 
 networks:
   edge:
     external: true

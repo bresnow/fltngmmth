@@ -27,11 +27,11 @@ export default function () {
   return (
     <div>
       <TailKitHome />
-      <Outlet/>
+      <Outlet />
       {/* <SimpleProjectDashboard/> */}
-    {/* //   <NaturalHome />
+      {/* //   <NaturalHome />
     //   <MultipleShoppingCard /> */}
-     {/* <Trigger>
+      {/* <Trigger>
     //             <ButtonFollow />
     //         </Trigger>
     //         <ButtonFollow action="/forms/user" />
