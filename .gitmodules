@@ -15,7 +15,7 @@
 	branch = master
 
 [submodule "packages/server"]
-	path = packages/proxy
+	path = packages/server
 	url = git@github.com:bresnow/remix.gun-server.git
 	branch = master
 
