@@ -1,1 +1,8 @@
-{"name":"tsconfig","version":"0.1.71","private":true,"files":["base.json"]}
+{
+  "name": "tsconfig",
+  "version": "0.1.71",
+  "private": true,
+  "files": [
+    "base.json"
+  ]
+}
