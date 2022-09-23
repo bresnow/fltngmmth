@@ -26,8 +26,8 @@ export const handle = {
 export default function () {
   return (
     <div>
-      <TailKitHome />
       <Outlet />
+      <TailKitHome />
       {/* <SimpleProjectDashboard/> */}
       {/* //   <NaturalHome />
     //   <MultipleShoppingCard /> */}

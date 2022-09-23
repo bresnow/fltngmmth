@@ -1,11 +1,9 @@
-import { routes } from "../express.mjs"
-import { read } from "fsxx";
-const { default: initGun } = await import('../initGun.mjs')
-
-const { gun } = await initGun([], {})
-
-const htmlNode = gun.get("EXPRESS_RESPONSE_ONE");
-const html = `<!DOCTYPE html>
+import type { LoaderFunction } from "@remix-run/server-runtime";
+import type { LoaderContext } from "types";
+import {html} from "./__app/$namespace"
+export let loader: LoaderFunction = async({params, request, context}) => { 
+ let ctx = context as unknown as LoaderContext
+    const base = `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -41,14 +39,5 @@ document.addEventListener('keyup', (ev)=>{
 })
 </script >
 </html > `
-htmlNode.put({html})
-routes.get("/", (req, res) =>{
-  htmlNode.on(({ html}) => {
-    if(html){
-    res.send(html);}
-  })}
-);
-
-routes.get("/healthcheck", (req, res) => res.json({ ok: true }));
-
-export default routes;
+  return html(base)
+}

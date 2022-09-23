@@ -4,10 +4,6 @@ import axios from "redaxios";
 import { useLoaderData } from "@remix-run/react";
 import {html} from "../$namespace"
 
-
-
-
-
 export let loader: LoaderFunction = async () => {
   let { data } = await axios.get("http://front_app:3000");
   return html(data);

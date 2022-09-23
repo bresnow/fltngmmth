@@ -1,4 +1,4 @@
-import process from 'process'
+import process from "process";
 export const Config = {
   PROXY_HOST: process.env.PROXY_HOST ?? "socket-proxy",
   PROXY_PORT: process.env.PROXY_PORT ?? 8000,
@@ -7,4 +7,3 @@ export const Config = {
   VIRTUAL_PEER: process.env.VIRTUAL_PEER ?? "http://front_app:3333/gun",
   DEBUG: !!process.env.DEBUG,
 };
-
