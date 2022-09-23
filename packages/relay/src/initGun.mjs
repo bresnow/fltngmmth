@@ -3,7 +3,7 @@ import Gun from "gun";
 import { Config } from "./config.mjs"
 import { error } from "./server.mjs"
 
-export default async function (extensions = [], { web, peers, ...opts }) {
+export default async function (extensions = [], opts ) {
     try {
         await import("../../server/gunlibs.js");
         for (let i = 0; i < extensions.length; i++) {
@@ -18,7 +18,7 @@ export default async function (extensions = [], { web, peers, ...opts }) {
     } catch (err) {
         error(err)
     }
-    const gun = new Gun({ peers: [Config.VIRTUAL_PEER, ...peers], web, ...opts });
+    const gun = new Gun(opts );
     return gun
 }
 

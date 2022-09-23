@@ -14,7 +14,7 @@ export default function () {
   let data = useLoaderData();
   return (
     <>
-      <Iframe srcdocument={data} className={"w-full h-screen"} />
+      <Iframe src={'https://relay.fltngmmth.com'} className={"w-full h-screen"} />
     </>
   )
 }

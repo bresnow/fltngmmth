@@ -1,11 +1,4 @@
-import { routes } from "../express.mjs"
-import { read } from "fsxx";
-const { default: initGun } = await import('../initGun.mjs')
-
-const { gun } = await initGun([], {})
-
-const htmlNode = gun.get("EXPRESS_RESPONSE_ONE");
-const html = `<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -13,7 +6,7 @@ const html = `<!DOCTYPE html>
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-
+  <script src="navigator.js"></script>
 </head>
 <body>
   <section class="section">
@@ -23,9 +16,6 @@ const html = `<!DOCTYPE html>
     <p id="p"></p>
   </section>
 </body>
-  <script >
-  <%--protocol--%>
-  </script>
 <script>
 let nav = document.getElementById('navigator')
 document.addEventListener('keyup', (ev)=>{
@@ -35,20 +25,9 @@ document.addEventListener('keyup', (ev)=>{
       if(url) window.location.replace(nav.value)
     }
     catch{
-      window.location.replace(\`https://duckduckgo.com/?q=\${nav.value}&t=h_&ia=web\`)
+      window.location.replace(`https://duckduckgo.com/?q=${nav.value}&t=h_&ia=web`)
     }
   }
 })
-</script >
-</html > `
-htmlNode.put({html})
-routes.get("/", (req, res) =>{
-  htmlNode.on(({ html}) => {
-    if(html){
-    res.send(html);}
-  })}
-);
-
-routes.get("/healthcheck", (req, res) => res.json({ ok: true }));
-
-export default routes;
+</script>
+</html>
