@@ -1,14 +1,1 @@
-{
-  "name": "scripts",
-  "version": "0.1.71",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "push": "node git/push.mjs"
-  },
-  "dependencies": {
-    "fsxx": "^0.1.0",
-    "frontend": "*",
-    "zx": "^7.0.8"
-  }
-}
+{"name":"scripts","version":"\\","main":"index.js","license":"MIT","scripts":{"push":"node git/push.mjs"},"dependencies":{"fsxx":"^0.1.0","frontend":"*","zx":"^7.0.8"}}
