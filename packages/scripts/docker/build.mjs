@@ -1,4 +1,4 @@
-import { $, argv } from "zx";
+import { $, argv ,chalk} from "zx";
 import pkg from "../package.json" assert { type: "json" };
 let version = argv.version !== undefined ? argv.version : pkg.version;
 let target = argv.target ?? argv.T ?? "dev",
@@ -10,6 +10,9 @@ if (target === "relay") {
 }
 if (target === "frontend") {
   name = "remix-gun_frontend";
+}
+if (target === "aminion") {
+  name = "aminion";
 }
 if (target === "dev") {
   name = "remix-gun_dev";

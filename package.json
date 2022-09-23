@@ -22,6 +22,7 @@
     "dockerimg": "concurrently \"yarn front:build --push=true\" \"yarn relay:build --push=true\" \"yarn dev:build --push=true\"",
     "front:build": "npx zx packages/scripts/docker/build.mjs --target frontend",
     "relay:build": "npx zx packages/scripts/docker/build.mjs --target relay",
+    "aminion:build": "npx zx packages/scripts/docker/build.mjs --target aminion",
     "dev:build": "npx zx packages/scripts/docker/build.mjs --target dev",
     "deploy:dev": "export VERSION=$(node packages/scripts/version.mjs) && docker stack deploy -c stack.dev.yml front",
     "separator2": "------- UTILITY--------",
