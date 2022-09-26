@@ -28,7 +28,7 @@ CMD ["yarn", "build"]
 FROM build as frontend
 WORKDIR /app
 COPY --from=build /app /app
-RUN rm -r packages/relay  packages/scripts packages/temporal
+RUN rm -r packages/relay  packages/scripts 
 CMD ["yarn", "start"]
 
 # relay server with temporal workflow - esm code split. NOTE: realy server connects to frontend app via GUN websocket. 
@@ -65,10 +65,10 @@ ARG DOCKER_PASSWORD=docker
 RUN useradd -m -u ${DOCKER_UID} -G sudo ${DOCKER_USER} && echo ${DOCKER_USER}:${DOCKER_PASSWORD} | chpasswd
 
 RUN  yarn \ 
-    && yarn -D add electron
+    && yarn workspace aminion -D add electron
 USER ${DOCKER_USER}
 
 ENV QT_X11_NO_MITSHM=1
 
 # Launch application
-CMD ["yarn","start"]
+CMD ["yarn","workspace","aminion","start"]

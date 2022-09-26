@@ -20,62 +20,35 @@ services:
         - traefik.enable=true
         - traefik.docker.network=public
         - traefik.constraint-label=public
-        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.rule=Host(`${DOMAIN:-remix-gun.fltngmmth.com}`)
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.rule=Host(`${DOMAIN:-fltngmmth.com}`)
         - traefik.http.routers.remix-gun-app-${NUMBER:-0}.entrypoints=http,https
         - traefik.http.routers.remix-gun-app-${NUMBER:-0}.middlewares=https-redirect
-        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.tls=true
-        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.tls.certresolver=le
-        - traefik.http.services.remix-gun-app-${NUMBER:-0}.loadbalancer.server.port=${PORT:-3333}
 
-  relay:
-    image: nginx:1.17-alpine
-    healthcheck:
-      test: wget --quiet --tries=1 --spider http://localhost:80/ || exit 1
-      interval: 3s
-      timeout: 600s
-      retries: 3
-      start_period: 5s
-    environment:
-      - STACK_NAME={{ index .Service.Labels "com.docker.stack.namespace" }}
-      - RELAY_PORT=${RELAY_PORT:-3000}
-    networks:
-      - edge
-      - public
-    configs:
-      - source: nginx_config
-        target: /etc/nginx/nginx.conf
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.tls.certresolver=dns
+        - traefik.http.services.remix-gun-app-${NUMBER:-0}.loadbalancer.server.port=${PORT:-3333}
+        # - traefik.http.services.remix-gun-app-${NUMBER:-0}.loadbalancer.passHostHeader=true
+
+  chrome:
+    image: jlesage/firefox
+    # environment:
+    #   - VNC_PASSWORD="Admin"
+    # shm_size: '2gb'
     deploy:
-      mode: replicated
-      replicas: 1
-      update_config:
-        failure_action: rollback
-        parallelism: 1
-        delay: 10s
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
       labels:
         - traefik.enable=true
         - traefik.docker.network=public
         - traefik.constraint-label=public
-        - traefik.http.routers.relay-${NUMBER:-0}.rule=Host(`${RELAY_SUBDOMAIN:-relay}.fltngmmth.com`)
-        - traefik.http.routers.relay-${NUMBER:-0}.tls.certresolver=le
-        - traefik.http.routers.relay-${NUMBER:-0}.entrypoints=http,https
-        - traefik.http.services.relay-${NUMBER:-0}.loadbalancer.server.port=80
-        - traefik.http.services.relay-${NUMBER:-0}.loadbalancer.passhostheader=true
-        - traefik.http.services.relay-${NUMBER:-0}.loadbalancer.healthcheck.path=/healthcheck
-        - traefik.http.services.relay-${NUMBER:-0}.loadbalancer.healthcheck.interval=100ms
-        - traefik.http.services.relay-${NUMBER:-0}.loadbalancer.healthcheck.timeout=75ms
-        - traefik.http.services.relay-${NUMBER:-0}.loadbalancer.healthcheck.scheme=http
-      resources:
-        limits:
-          memory: 128MB
+        - traefik.http.routers.chrome-${NUMBER:-0}.rule=Host(`${CDOMAIN:-chrome.fltngmmth.com}`)
+        - traefik.http.routers.chrome-${NUMBER:-0}.entrypoints=http,https
+        - traefik.http.routers.chrome-${NUMBER:-0}.middlewares=https-redirect
 
-configs:
-  nginx_config:
-    name: nginx-config-${NGINX_CONFIG:-1}
-    file: ${PWD}/config/nginx/nginx.relay.conf
+        - traefik.http.routers.chrome-${NUMBER:-0}.tls.certresolver=dns
+        - traefik.http.services.chrome-${NUMBER:-0}.loadbalancer.server.port=5800
+        # - traefik.http.services.chrome-${NUMBER:-0}.loadbalancer.passHostHeader=true
+    networks:
+      # - socket-proxy
+      - edge
+      - public
 volumes:
   public:
     driver: local-persist

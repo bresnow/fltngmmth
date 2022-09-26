@@ -1,7 +1,7 @@
 import { $ } from "zx";
 import Gun from "gun";
-import { Config } from "./config.mjs";
-import { error } from "./server.mjs";
+
+
 
 export default async function (extensions = [], opts) {
   try {
@@ -16,7 +16,7 @@ export default async function (extensions = [], opts) {
       }
     }
   } catch (err) {
-    error(err);
+   console.error(err);
   }
   const gun = new Gun(opts);
   return gun;

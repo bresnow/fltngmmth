@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+
+  # guacd:
+  #   image: guacamole/guacd
+  #   environment:
+  #     GUACD_LOG_LEVEL: debug
+  test:
+    image: oznu/guacamole
+    ports:
+      - 8080:8080
