@@ -1,0 +1,28 @@
+{
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["frontend/remix/build/**", "frontend/remix/public/build/**", "frontend/remix/public/build/.cache/**"]
+    },
+    "start": {
+      "dependsOn": ["^build"],
+      "cache": true
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false
+    },
+    "lint": {
+      "outputs": []
+    },
+    "postinstall": {
+      "outputs": []
+    },
+    "push": {
+      "outputs": []
+    },
+    "typecheck": {
+      "outputs": ["tsconfig.tsbuildinfo"]
+    }
+  }
+}

@@ -1,0 +1,89 @@
+version: "3.7"
+services:
+  app:
+    image: bresnow/remix-gun_frontend:0.0.16
+    volumes:
+      - packages:/app/packages
+      - config:/app/config
+      - node_modules:/app/node_modules
+      - public:/app/packages/remix/public
+    environment:
+      - STACK_NAME={{ index .Service.Labels "com.docker.stack.namespace" }}
+      - RELAY_PORT=${RELAY_PORT:-3000}
+      - PORT=${PORT:-3333}
+    networks:
+      - edge
+      - public
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=public
+        - traefik.constraint-label=public
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.rule=Host(`${DOMAIN:-fltngmmth.com}`)
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.entrypoints=http,https
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.middlewares=https-redirect
+
+        - traefik.http.routers.remix-gun-app-${NUMBER:-0}.tls.certresolver=namecheap
+        - traefik.http.services.remix-gun-app-${NUMBER:-0}.loadbalancer.server.port=${PORT:-3333}
+        # - traefik.http.services.remix-gun-app-${NUMBER:-0}.loadbalancer.passHostHeader=true
+
+  gtk-relay:
+    image: bresnow/fltngmmth_dev:${VERSION:-latest}
+    volumes:
+      - relay-src:/app/src
+      - relay-node_modules:/app/node_modules
+    environment:
+      # - STACK_NAME={{ index .Service.Labels "com.docker.stack.namespace" }}
+      - RELAY_PORT=${RELAY_PORT:-3000}
+    networks:
+      - socket-proxy
+      - edge
+      - public
+    deploy:
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.role == manager]
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=public
+        - traefik.constraint-label=public
+        - traefik.http.routers.gtk-broadway-${NUMBER:-0}.rule=Host(`broadway.fltngmmth.com`)
+        - traefik.http.routers.gtk-broadway-${NUMBER:-0}.entrypoints=http,https
+        - traefik.http.routers.gtk-broadway-${NUMBER:-0}.middlewares=https-redirect
+
+        - traefik.http.routers.gtk-broadway-${NUMBER:-0}.tls.certresolver=namecheap
+        - traefik.http.services.gtk-broadway-${NUMBER:-0}.loadbalancer.server.port=${BROADWAY_PORT:-8085}
+volumes:
+  relay-node_modules:
+    driver: local-persist
+    driver_opts:
+      mountpoint: ${PWD}/packages/relay/node_modules
+  relay-src:
+    driver: local-persist
+    driver_opts:
+      mountpoint: ${PWD}/packages/relay/src
+  public:
+    driver: local-persist
+    driver_opts:
+      mountpoint: ${PWD}/packages/frontend/public
+  packages:
+    driver: local-persist
+    driver_opts:
+      mountpoint: ${PWD}/packages
+  node_modules:
+    driver: local-persist
+    driver_opts:
+      mountpoint: ${PWD}/node_modules
+  config:
+    driver: local-persist
+    driver_opts:
+      mountpoint: ${PWD}/config
+
+networks:
+  edge:
+    external: true
+  socket-proxy:
+    external: true
+  public:
+    external: true

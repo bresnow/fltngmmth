@@ -1,0 +1,20 @@
+{
+    "name": "remix",
+    "version": "0.1.8",
+    "license": "MIT",
+    "type": "module",
+    "sideEffects": false,
+    "scripts": {
+        "build": "cross-env NODE_ENV=production remix build",
+        "dev": "cross-env NODE_ENV=development remix watch",
+        "postinstall": "remix setup node",
+        "lint": "eslint .",
+        "typecheck": "tsc -b"
+    },
+    "dependencies": {
+        "frontend": "*"
+    },
+    "devDependencies": {
+        "frontend": "*"
+    }
+}

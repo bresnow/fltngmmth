@@ -1,0 +1,16 @@
+{
+    "name": "eslint-gjs",
+    "version": "0.1.8",
+    "main": "index.js",
+    "license": "MIT",
+    "files": [
+        "index.js"
+    ],
+    "devDependencies": {
+"eslint-plugin-gjs": "1.0.4",
+        "eslint-config-prettier": "^8.5.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

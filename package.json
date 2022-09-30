@@ -1,0 +1,46 @@
+{
+    "name": "fltngmmth",
+    "version": "0.1.8",
+    "private": true,
+    "sideEffects": false,
+    "workspaces": [
+        "config/*",
+        "frontend/*",
+        "relay/*"
+    ],
+    "scripts": {
+        "ci": "yarn purge:full && yarn install --frozen-lockfile",
+        "build": "npx --yes turbo run build",
+        "dev": "npx --yes turbo run dev --parallel",
+        "start": "npx --yes turbo run start",
+        "--": "--------------------------- DESIGN --------------------",
+        "--": "--------------------------- DEVELOP --------------------",
+
+        "--": "--------------------------- DEPLOY --------------------",
+        "traefik": "docker stack deploy -c proxy/traefik/traefik.yml traefik",
+        "deploy": "concurrently \"export VERSION=$(node scripts/version.mjs)\" \"docker stack deploy -c config/docker/app.yml fltngmmth\" ",
+        "---": "-------------------------- UTILITY -------------------",
+        "lint": "npx --yes turbo run lint",
+        "format": "prettier --write \"**/*.{json,md,mdx,mjs,mts,js,jsx,ts,tsx}\"",
+        "postinstall": "npx --yes turbo run postinstall",
+        "purge:full": "concurrently \"sudo rm -r **/node_modules \" \"yarn purge:rad\"",
+        "purge:rad": "sudo rm -r **/radata*",
+        "push": " npx zx packages/scripts/git/push.mjs"
+    },
+    "devDependencies": {
+        "patch-package": "^6.4.7",
+        "prettier": "^2.6.2",
+        "typescript": "^4.6.4",
+        "concurrently": "^7.3.0"
+    },
+    "dependenciesMeta": {
+        "buildcheck@0.0.4": {
+            "unplugged": true
+        }
+    },
+    "engines": {
+        "npm": ">=7.0.0",
+        "node": ">=14.0.0"
+    },
+    "packageManager": "yarn@1.22.17"
+}
