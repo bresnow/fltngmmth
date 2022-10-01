@@ -11,10 +11,10 @@ gi.startLoop()
 Gtk.init()
 
 
-process.on('uncaughtException', (err) => {
-  console.log('process.uncaughtException', err)
-  process.exit(1)
-})
+//process.on('uncaughtException', (err) => {
+  //console.log('process.uncaughtException', err)
+  //process.exit(1)
+//})
 process.on('exit', (code) => {
   console.log('process.exit', code)
 })

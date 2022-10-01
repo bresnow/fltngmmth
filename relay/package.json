@@ -1,6 +1,10 @@
 {
     "name": "relay",
-    "type": "module",
+    "private": true,
+    "sideEffects": false,
+    "workspaces": [
+        "react-gjs/*"
+    ],
     "scripts": {
         "dev": "concurrently  \"yarn start\" \"terminator -m -e zsh\" \"gedit\"",
         "start": "npx zx gun/index.mjs --url=\"${START_URL}\"",

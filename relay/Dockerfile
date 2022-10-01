@@ -11,7 +11,7 @@ RUN apk update &&\
     apk add --no-cache git wget yajl dub dmd terminator 
 
 RUN apk update &&\
-    apk add --no-cache gnome xdg-user-dirs gtk4.0 libsoup webkit2gtk mate-desktop-environment dbus dbus-x11 lxdm \
+    apk add --no-cache gnome xdg-user-dirs gtk4.0 libsoup webkit2gtk  dbus dbus-x11 lxdm \
      gobject-introspection pkgconf \
     g++ make cairo gcompat py-pip python3 supervisor gobject-introspection &&\
     gvfs_pkgs=$(apk search gvfs -q | grep -v '\-dev' | grep -v '\-lang' | grep -v '\-doc') \
@@ -31,8 +31,6 @@ RUN \
     thunar \
     xfce4 \
     xfce4-terminal && \
-    apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community \
-    xfce4-pulseaudio-plugin && \
     echo "**** cleanup ****" && \
     rm -rf \
     /tmp/*

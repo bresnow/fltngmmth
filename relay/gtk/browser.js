@@ -17,7 +17,7 @@ const WebBrowser = GObject.registerClass(
       });
 
       // eslint-disable-next-line no-undef
-      this._homeUrl = ARGV[0] || "https://www.gnome.org";
+      this._homeUrl = ARGV[0] || "gnome.org";
 
       // Connect 'activate' and 'startup' signals to the callback functions
       this.connect("activate", () => this._onActivate());
@@ -61,9 +61,10 @@ const WebBrowser = GObject.registerClass(
       });
 
       let window = this._window;
+window.maximize()
       window.set_default_size(screen.get_width(), screen.get_height());
       // Create the application toolbar
-      let toolbar = new Gtk.HeaderBar({ show_close_button: true });
+      let toolbar = new Gtk.HeaderBar({ show_close_button: false });
 
       // Create the browser buttons (Back, Forward and Reload)
       this._backButton = Gtk.Button.new_from_icon_name(
@@ -100,7 +101,7 @@ const WebBrowser = GObject.registerClass(
         .set_javascript_can_open_windows_automatically(false);
 
       // Add the box to the window
-      this._window.set_titlebar(toolbar);
+//      this._window.set_titlebar(toolbar);
       this._window.add(this._webView);
 
       // Show the window and all child widgets
@@ -151,5 +152,3 @@ const WebBrowser = GObject.registerClass(
 const browser = new WebBrowser();
 // eslint-disable-next-line no-undef
 browser.run(ARGV);
-
-

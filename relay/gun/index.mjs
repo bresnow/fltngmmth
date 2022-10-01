@@ -2,7 +2,7 @@ import process from "process";
 import express, { Router } from "express";
 
 import { $, chalk, argv } from "zx";
-import Docker, { log } from "../lib/DockerApi.mjs";
+// import Docker, { log } from "../lib/DockerApi.mjs";
 
 import { Config } from "./config.mjs";
 export const error = (...args) => {

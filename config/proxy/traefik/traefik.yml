@@ -1,0 +1,120 @@
+version: "3.3"
+
+services:
+  socket-proxy:
+    image: bresnow/docker.sock-proxy:latest
+    deploy:
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.role == manager]
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=public
+        - traefik.constraint-label=public
+        - traefik.http.routers.docker-sock-http.entrypoints=docker-sock
+        - traefik.http.routers.docker-sock-http.rule=Host(`${DOCKER_SNI}`)
+        - traefik.http.routers.docker-sock-http.service=docker-sock-http
+        - traefik.http.services.docker-sock-http.loadbalancer.server.port=8000
+        - traefik.tcp.routers.docker-sock.service=docker-sock
+        - traefik.tcp.routers.docker-sock.rule=HostSNI(`docker-proxy.socket`)
+        - traefik.tcp.routers.docker-sock.tls.certresolver=namecheap
+        - traefik.tcp.services.docker-sock.loadbalancer.server.port=8000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+    networks:
+      - socket-proxy
+      - public
+
+  reverse-proxy:
+    image: traefik:v2.8
+    ports:
+      - 80:80
+      - 443:443
+      - 8000:8000
+      - 8101:8101
+    deploy:
+      placement:
+        constraints:
+          # Make the traefik service run only on the node with this label
+          # as the node with it has the volume for the certificates
+          - node.labels.traefik.traefik-certificates == true
+          - node.role == manager
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=public
+        - traefik.constraint-label=public # <--- Default traefik labels
+
+        - traefik.http.middlewares.admin-auth.basicauth.users=${TRAEFIK_ADMINS}
+        - traefik.http.middlewares.https-redirect.redirectscheme.scheme=https
+        - traefik.http.middlewares.https-redirect.redirectscheme.permanent=true
+        - traefik.http.routers.traefik-public-http.rule=Host(`${DOMAIN:-sudo.proxy.fltngmmth.com}`)
+        - traefik.http.routers.traefik-public-http.entrypoints=http,https
+        - traefik.http.routers.traefik-public-http.middlewares=https-redirect
+        - traefik.http.routers.traefik-public-https.rule=Host(`${DOMAIN:-sudo.proxy.fltngmmth.com}`)
+        - traefik.http.routers.traefik-public-https.entrypoints=https
+        - traefik.http.routers.traefik-public-https.tls=true
+        - traefik.http.routers.traefik-public-https.service=api@internal
+        - traefik.http.routers.traefik-public-https.tls.certresolver=namecheap
+        - traefik.http.routers.traefik-public-https.middlewares=admin-auth
+        - traefik.http.services.traefik-public.loadbalancer.server.port=8080
+    volumes:
+      # Mount the volume to store the certificates
+      - tls-certificates:/certificates
+
+    command:
+      # Enable Docker in Traefik, so that it reads labels from Docker services
+      - --providers.docker
+      # Add a constraint to only use services with the label "traefik.constraint-label=public"
+      - --providers.docker.constraints=Label(`traefik.constraint-label`, `public`)
+      # Do not expose all Docker services, only the ones explicitly exposed
+      - --providers.docker.exposedbydefault=false
+      # Proxy the docker socket endpoint and never mount the docker socket to another container again
+      - --providers.docker.endpoint=tcp://socket-proxy:8000 #unix:///var/run/docker.sock <----- DEPLOY USING DOCKER SOCKET FIRST !!!! THEN USE THE DOCKER SOCKET PROXY ENDPOINT
+      # Enable Docker Swarm mode
+      - --providers.docker.swarmmode=true
+      # Create an entrypoint "http" listening on address 80
+      - --entrypoints.http.address=:80
+      # Create an entrypoint "https" listening on address 443
+      - --entrypoints.https.address=:443
+      # Create entrypoints for the docker tcp and it's tls connections listening on address 8000 & 8101
+      - --entrypoints.docker-sock.address=:8000
+      - --entrypoints.docker-sock-secure.address=:8101
+      # Enable the namecheap tls certificate resolver
+      - --certificatesresolvers.namecheap.acme.dnschallenge.provider=namecheap
+      - --certificatesresolvers.namecheap.acme.dnschallenge.delaybeforecheck=0
+      - --certificatesresolvers.namecheap.acme.email=${EMAIL:-bresnow@me.com}
+      - --certificatesresolvers.namecheap.acme.storage=/certificates/acme.json
+      # Create the certificate resolver "le" for Let's Encrypt, uses the environment variable EMAIL
+      - --certificatesresolvers.le.acme.email=${EMAIL:-bresnow@me.com}
+      # Store the Let's Encrypt certificates in the mounted volume
+      - --certificatesresolvers.le.acme.storage=/certificates/acme.json
+      - --metrics.prometheus.addrouterslabels=true
+      # Enable the access log, with HTTP requests
+      - --accesslog
+      # Enable the Traefik log, for configurations and errors
+      - --log
+      # Enable the Dashboard and API
+      - --api
+    environment:
+      NAMECHEAP_API_USER: ${NAMECHEAP_API_USER}
+      NAMECHEAP_API_KEY: ${NAMECHEAP_API_KEY}
+    networks:
+      # Use the public network created to be shared between Traefik and
+      # any other service that needs to be publicly available with HTTPS
+      - public
+      # Use the socket-proxy network to access the docker.socket to internal tcp proxy
+      - socket-proxy
+
+volumes:
+  # Create a volume to store the certificates, there is a constraint to make sure
+  # Traefik is always deployed to the same Docker node with the same volume containing
+  # the HTTPS certificates
+  tls-certificates:
+
+networks:
+  public:
+    external: true
+  socket-proxy:
+    external: true
