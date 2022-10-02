@@ -1,38 +1,54 @@
 import process from "process";
-import express, { Router } from "express";
-
-import { $, chalk, argv } from "zx";
+import express from "express";
+import io from "socket-io"
+import { $, chalk, argv, fs } from "zx";
+import { BroadwayProxy } from "./lib/broadway-proxy/index.js";
 // import Docker, { log } from "../lib/DockerApi.mjs";
 
-import { Config } from "./config.mjs";
+import { Config } from "./gun/config.mjs";
 export const error = (...args) => {
   console.error(chalk.redBright(args));
 };
 
 const app = express();
-const routes = new Router();
-app.use(routes);
-
-// let docker = new Docker({ host: Config.PROXY_HOST, port: Config.PROXY_PORT });
-// try {
-//   let services = await docker.getAllServices();
-//   services.forEach(async (service) => {
-//     if (Config.VIRTUAL_PEER.includes(service.Spec.Name)) {
-//       // log(
-//       //   chalk.blueBright.bold("\nCURRENT SERVICE \n"),
-//       //   JSON.stringify(service, null, 2)
-//       // );
-//     }
-//   });
-// } catch (e) {
-//   error(e);
-// }
-
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/public/index.html');
+});
 const server = app.listen(Config.RELAY_PORT, async () => {
   log(`Relay started on port ${Config.RELAY_PORT}.`);
 });
 
-const { default: initGun } = await import("./initGun.mjs");
+
+let proxySocket = io.listen(server)
+
+
+
+proxySocket.on('connection', function (client) {
+  console.log('CONNECTION received by proxy from client');
+
+  var broadway = new BroadwayProxy();
+  broadway.on('message', function (msg) {
+    client.send(msg);
+  });
+
+  client.on('message', function (msg) {
+    broadway.send(msg);
+  });
+
+  broadway.connect();
+});
+
+
+
+
+
+
+
+
+
+
+const { default: initGun } = await import("./gun/initGun.mjs");
 
 export const gun = await initGun([], {
   peers: [Config.VIRTUAL_PEER],
