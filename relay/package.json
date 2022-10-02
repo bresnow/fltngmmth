@@ -6,6 +6,7 @@
         "react-gjs/*"
     ],
     "scripts": {
+        "docker": "docker build -t bresnow/fltngmmth_relay",
         "dev": "concurrently  \"yarn start\" \"terminator -m -e zsh\" \"gedit\"",
         "start": "npx zx gun/index.mjs --url=\"${START_URL}\"",
         "broadway": "\"supervisord -c /etc/supervisord/unified-supervisord.conf\""

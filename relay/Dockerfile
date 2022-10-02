@@ -1,36 +1,34 @@
 
 FROM mhart/alpine-node:16 as build
-
+# midori gedit nautilus htop
 EXPOSE 8085
 COPY unified-supervisord.conf supervisord.conf /etc/supervisord/
 ENV HOME /app
 RUN  apk update &&\
-    apk add --no-cache xfce4 midori gedit nautilus htop gcc gjs vim 
+    apk add --no-cache   
 
 RUN apk update &&\
-    apk add --no-cache git wget yajl dub dmd terminator 
+    apk add --no-cache 
 
 RUN apk update &&\
-    apk add --no-cache gnome xdg-user-dirs gtk4.0 libsoup webkit2gtk  dbus dbus-x11 lxdm \
-     gobject-introspection pkgconf \
-    g++ make cairo gcompat py-pip python3 supervisor gobject-introspection &&\
     gvfs_pkgs=$(apk search gvfs -q | grep -v '\-dev' | grep -v '\-lang' | grep -v '\-doc') \
-    apk add --no-cache $gvfs_pkgs &&\
+    apk add --no-cache $gvfs_pkgs gnome gtk4.0 gcc gjs libsoup webkit2gtk dbus xdm \
+    gobject-introspection pkgconf \
+    g++ make cairo gcompat py-pip python3 supervisor gobject-introspection &&\
     LC_ALL=C xdg-user-dirs-update --force &&\
     chmod -R 777 /etc/supervisord/  &&\
     mkdir -p /var/log/supervisord/ 
 RUN \
     echo "**** install packages ****" && \
     apk add --no-cache \
-    adwaita-icon-theme \
-    faenza-icon-theme \
-    faenza-icon-theme-xfce4-appfinder \
-    faenza-icon-theme-xfce4-panel \
-    firefox-esr \
-    mousepad \
-    thunar \
-    xfce4 \
-    xfce4-terminal && \
+    git wget vim \
+    # Openbox window manager
+    openbox \
+    xsetroot \
+    # Font
+    font-croscore && \
+    # Remove some unneeded stuff.
+    rm -rf /var/cache/fontconfig/* \
     echo "**** cleanup ****" && \
     rm -rf \
     /tmp/*
