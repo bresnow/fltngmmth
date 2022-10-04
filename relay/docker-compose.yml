@@ -3,48 +3,18 @@ version: '3.8'
 services:
 
   broadway-dev:
-    image: bresnow/fltngmmth_broadwayd:development
+    image: bresnow/node-gtk3-broadway:development
     build: 
       context: .
       dockerfile: Dockerfile
       target: dev
     ports:
-      - "8085-8095:8085-8095"
-      - 4000:3000
-    volumes:
-      - ${PWD}:/app
-    networks:
-      - edge
-      - socket-proxy
-  broadway-production:
-    image: bresnow/gtk-broadway:1.0.0
+      - 8085:8085
+  gtk-broadway:
+    image: bresnow/node-gtk3-broadway:1.0.1
     build: 
       context: .
       dockerfile: Dockerfile
       target: build
-    volumes:
-      - ${PWD}:/app
-    networks:
-      - edge
-      - socket-proxy
-    deploy:
-      labels:
-        - traefik.enable=true
-        - traefik.docker.network=public
-        - traefik.constraint-label=public
-        - traefik.http.routers.broadway-http.entrypoints=http,https
-        - traefik.http.routers.broadway-http.rule=Host(`broadwayd.fltngmmth.com`)
-        - traefik.http.routers.broadway-http.service=broadway-http
-        - traefik.http.routers.broadway-http.tls.certresolver=namecheap
-        - traefik.http.services.broadway-http.loadbalancer.server.port=8085
-
-        - traefik.tcp.routers.broadway-tcp.service=broadway-tcp
-        - traefik.tcp.routers.broadway-tcp.rule=HostSNI(`broadwayd.local`)
-        - traefik.tcp.routers.broadway-tcp.tls.certresolver=le
-        - traefik.tcp.services.broadway-tcp.loadbalancer.server.port=8085
-
-networks:
-  edge:
-    external: true
-  socket-proxy:
-    external: true
+    ports:
+      - 8086:8085

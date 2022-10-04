@@ -3,7 +3,7 @@ version: '3.9'
 services:
 
   broadway:
-    image: bresnow/fltngmmth_relay:development
+    image: bresnow/node-gtk3-broadway:development
     build: 
       context: .
       dockerfile: Dockerfile

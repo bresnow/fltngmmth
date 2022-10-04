@@ -96,7 +96,7 @@ modal.set_decorated(false)
         this.window.set_decorated(false);
 
         try {
-            this.window.set_icon_from_file(path + '/gjs-examples/assets/appIcon.png');
+            this.window.set_icon_from_file(path + '/assets/fist.png');
         } catch (err) {
             this.window.set_icon_name('application-x-executable');
         }
