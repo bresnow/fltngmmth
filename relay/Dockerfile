@@ -1,54 +1,41 @@
 
-FROM mhart/alpine-node:16 as build
-# midori gedit nautilus htop
-EXPOSE 8085
+FROM node:18-alpine3.16 as build
 
-RUN  apk update &&\
-    apk add --no-cache   
-
-RUN apk update &&\
-    apk add --no-cache 
-
+COPY bin/supervisor /etc/supervisord/
 RUN apk update &&\
     gvfs_pkgs=$(apk search gvfs -q | grep -v '\-dev' | grep -v '\-lang' | grep -v '\-doc') \
-    apk add --no-cache $gvfs_pkgs gnome gtk4.0 gtk4.0-demo gcc gjs libsoup webkit2gtk dbus xdm \
-    gobject-introspection pkgconf \
-    g++ make cairo gcompat py-pip python3 gobject-introspection &&\
-    LC_ALL=C xdg-user-dirs-update --force 
-RUN \
-    echo "**** install packages ****" && \
-    apk add --no-cache \
-    git wget vim \
-    # Openbox window manager
-    openbox \
-    xsetroot \
-    # Font
-    font-croscore && \
-    # Remove some unneeded stuff.
-    rm -rf /var/cache/fontconfig/* \
-    echo "**** cleanup ****" && \
-    rm -rf \
-    /tmp/*
+    apk add --no-cache $gvfs_pkgs gnome apk-gtk3 gcc gjs libsoup webkit2gtk \
+    gobject-introspection git wget vim dconf dub  \
+    g++ make cairo gcompat py-pip python3 supervisor xdg-user-dirs &&\
+    LC_ALL=C xdg-user-dirs-update --force &&\
+    chmod -R 777 /etc/supervisord/  &&\
+    mkdir -p /var/log/supervisord/ 
+
 
 ENV GDK_BACKEND broadway
-ENV DISPLAY :5
 ENV BROADWAY_DISPLAY :5
-ENV PROXY_HOST "socket-proxy"
-ENV PROXY_PORT 8000
-ENV RELAY_PORT 3000
-ENV ROUTE_DIRECTORY "src/routes"
-ENV VIRTUAL_PEER "http://front_app:3333/gun"
-ENV DEBUG false
+
 COPY . /app
 WORKDIR /app
 RUN yarn 
-
+ENTRYPOINT supervisord -c "/etc/supervisord/unified-supervisord.conf"
 
 
 FROM build as dev
 WORKDIR /app
+COPY --from=build /etc/supervisord /etc/supervisord
 COPY --from=build /app /app
-RUN apk add --no-cache zsh terminator gedit &&\
+RUN apk update &&\
+    apk add --no-cache zsh \
+    nautilus\
+    midori \
+    wget\
+    vim \
+    gedit &&\
     chmod +x ./bin/omy.sh &&\
-    ./bin/omy.sh 
-CMD ["yarn", "dev"]
+    ./bin/omy.sh &&\
+    echo "**** cleanup ****" && \
+    rm -rf \
+    /tmp/*
+
+

@@ -3,10 +3,9 @@
     "private": true,
     "sideEffects": false,
     "workspaces": [
-        "react-gjs/*"
+        "gjs/*"
     ],
     "scripts": {
-        "docker-dev": "docker build -t bresnow/fltngmmth_relay --target dev .",
         "dev": "concurrently  \"yarn start\" \"terminator -m -e zsh\" \"gedit\"",
         "start": "node index.mjs "
     },
@@ -17,9 +16,7 @@
         "gun": "^0.2020.1238",
         "js-base64": "^3.7.2",
         "scope-api": "^1.0.2",
-        "socket-io": "^1.0.0",
         "uuid": "^9.0.0",
-        "websocket-client": "1.0.0",
         "zx": "^7.0.8"
     },
     "devDependencies": {

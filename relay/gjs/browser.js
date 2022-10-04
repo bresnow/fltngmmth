@@ -1,10 +1,9 @@
 // Updated in August 2022
 
-// eslint-disable-next-line no-undef
-imports.gi.versions.Gtk = "3.0";
-
-// eslint-disable-next-line no-undef
-const { Gtk, Gdk,Gio,  GObject, WebKit2: WebKit } = imports.gi
+import Gtk from 'gi://Gtk?version=3.0';
+import WebKit from 'gi://WebKit2?version=5.0';
+import GObject from "gi://GObject";
+import Gdk from 'gi://Gdk';
 
 Gtk.init(null);
 
@@ -61,7 +60,7 @@ const WebBrowser = GObject.registerClass(
       });
 
       let window = this._window;
-window.maximize()
+// window.maximize()
       window.set_default_size(screen.get_width(), screen.get_height());
       // Create the application toolbar
       let toolbar = new Gtk.HeaderBar({ show_close_button: false });
